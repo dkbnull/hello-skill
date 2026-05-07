@@ -13,14 +13,14 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/编程语言-21-blueviolet">
-  <img src="https://img.shields.io/badge/后端框架-4-blue">
-  <img src="https://img.shields.io/badge/前端框架-8-green">
-  <img src="https://img.shields.io/badge/移动端_桌面端-6-orange">
-  <img src="https://img.shields.io/badge/数据库-10-red">
-  <img src="https://img.shields.io/badge/中间件-2-yellow">
-  <img src="https://img.shields.io/badge/DevOps_工具-3-inactive">
-  <img src="https://img.shields.io/badge/合计-54-brightgreen">
+  <img src="https://img.shields.io/badge/编程语言-28-blueviolet">
+  <img src="https://img.shields.io/badge/后端框架-7-blue">
+  <img src="https://img.shields.io/badge/前端框架-10-green">
+  <img src="https://img.shields.io/badge/移动端_桌面端-9-orange">
+  <img src="https://img.shields.io/badge/数据库-12-red">
+  <img src="https://img.shields.io/badge/中间件-3-yellow">
+  <img src="https://img.shields.io/badge/DevOps_工具-5-inactive">
+  <img src="https://img.shields.io/badge/合计-74-brightgreen">
 </p>
 
 ---
@@ -56,6 +56,13 @@
 | [Assembly](skills/assembly/SKILL.md) | 汇编语言开发 |
 | [COBOL](skills/cobol/SKILL.md) | COBOL 企业级开发 |
 | [Scratch](skills/scratch/SKILL.md) | Scratch 图形化编程 |
+| [Swift](skills/swift/SKILL.md) | Swift / Apple 生态开发 |
+| [Scala](skills/scala/SKILL.md) | Scala 函数式 + 大数据开发 |
+| [Ruby](skills/ruby/SKILL.md) | Ruby / Rails 开发 |
+| [Lua](skills/lua/SKILL.md) | Lua 脚本 / 游戏脚本开发 |
+| [Elixir](skills/elixir/SKILL.md) | Elixir 高并发开发 |
+| [Julia](skills/julia/SKILL.md) | Julia 科学计算开发 |
+| [Groovy](skills/groovy/SKILL.md) | Groovy / Gradle 脚本开发 |
 
 ### 后端框架
 
@@ -64,6 +71,9 @@
 | [Spring Boot](skills/springboot/SKILL.md) | Spring Boot 后端开发 |
 | [Spring Cloud](skills/springcloud/SKILL.md) | Spring Cloud 微服务开发 |
 | [FastAPI](skills/fastapi/SKILL.md) | FastAPI 框架开发 |
+| [Django](skills/django/SKILL.md) | Django Web 框架开发 |
+| [Flask](skills/flask/SKILL.md) | Flask 轻量级 Web 开发 |
+| [Gin](skills/gin/SKILL.md) | Gin 高性能 HTTP 框架开发 |
 | [Node.js](skills/nodejs/SKILL.md) | Node.js 后端开发 |
 
 ### 前端框架
@@ -77,6 +87,8 @@
 | [Vue + Vite + TypeScript](skills/vue-vite-typescript/SKILL.md) | Vue + Vite + TypeScript 前端开发 |
 | [React](skills/react/SKILL.md) | React 前端开发 |
 | [Next.js](skills/nextjs/SKILL.md) | Next.js 全栈框架开发 |
+| [Svelte](skills/svelte/SKILL.md) | Svelte 编译时框架开发 |
+| [Angular](skills/angular/SKILL.md) | Angular 企业级前端开发 |
 | [Layui](skills/layui/SKILL.md) | Layui 前端框架开发 |
 
 ### 移动端 & 桌面端
@@ -87,6 +99,9 @@
 | [Android (Java)](skills/android-java/SKILL.md) | Android Java 应用开发 |
 | [iOS](skills/ios/SKILL.md) | iOS 应用开发 |
 | [Flutter](skills/flutter/SKILL.md) | Flutter 应用开发 |
+| [React Native](skills/react-native/SKILL.md) | React Native 跨平台移动开发 |
+| [UniApp](skills/uniapp/SKILL.md) | UniApp 跨平台开发 |
+| [Electron](skills/electron/SKILL.md) | Electron 桌面应用开发 |
 | [JavaFX](skills/javafx/SKILL.md) | JavaFX 桌面应用开发 |
 | [Qt](skills/qt/SKILL.md) | Qt 跨平台桌面应用开发 |
 
@@ -102,6 +117,8 @@
 | [Redis](skills/redis/SKILL.md) | Redis 缓存与数据结构 |
 | [MongoDB](skills/mongodb/SKILL.md) | MongoDB 文档数据库开发 |
 | [Elasticsearch](skills/elasticsearch/SKILL.md) | Elasticsearch 搜索引擎开发 |
+| [SQLite](skills/sqlite/SKILL.md) | SQLite 嵌入式数据库开发 |
+| [ClickHouse](skills/clickhouse/SKILL.md) | ClickHouse OLAP 数据库开发 |
 | [数据库函数](skills/db-function/SKILL.md) | 数据库自定义函数开发 |
 | [存储过程](skills/db-procedure/SKILL.md) | 数据库存储过程开发 |
 
@@ -110,6 +127,7 @@
 | Skill | 说明 |
 |-------|------|
 | [Kafka](skills/kafka/SKILL.md) | Kafka 消息队列开发 |
+| [RabbitMQ](skills/rabbitmq/SKILL.md) | RabbitMQ 消息中间件开发 |
 | [Nginx](skills/nginx/SKILL.md) | Nginx 反向代理与负载均衡 |
 
 ### DevOps & 工具
@@ -118,4 +136,6 @@
 |-------|------|
 | [Docker](skills/docker/SKILL.md) | Docker 容器化部署 |
 | [Kubernetes](skills/kubernetes/SKILL.md) | Kubernetes 容器编排 |
+| [Jenkins](skills/jenkins/SKILL.md) | Jenkins CI/CD 流水线 |
+| [Terraform](skills/terraform/SKILL.md) | Terraform 基础设施即代码 |
 | [Git](skills/git/SKILL.md) | Git 版本控制 |
