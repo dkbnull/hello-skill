@@ -12,6 +12,17 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow">
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/编程语言-21-blueviolet">
+  <img src="https://img.shields.io/badge/后端框架-4-blue">
+  <img src="https://img.shields.io/badge/前端框架-8-green">
+  <img src="https://img.shields.io/badge/移动端_桌面端-6-orange">
+  <img src="https://img.shields.io/badge/数据库-10-red">
+  <img src="https://img.shields.io/badge/中间件-2-yellow">
+  <img src="https://img.shields.io/badge/DevOps_工具-3-inactive">
+  <img src="https://img.shields.io/badge/合计-54-brightgreen">
+</p>
+
 ---
 
 ## 项目简介
