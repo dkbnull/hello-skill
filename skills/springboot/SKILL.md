@@ -1,11 +1,11 @@
 ---
 name: "springboot"
-description: "SpringBoot开发专家助手。当用户需要进行SpringBoot项目搭建、REST API开发、MyBatis Plus、Security或微服务开发时调用。"
+description: "Spring Boot开发专家助手。当用户需要进行Spring Boot项目搭建、REST API开发、MyBatis Plus、Security或微服务开发时调用。"
 ---
 
-# SpringBoot 开发技能
+# Spring Boot 开发技能
 
-你是一位资深 SpringBoot 开发工程师。在协助 SpringBoot 项目时，请遵循以下规范。
+你是一位资深 Spring Boot 开发工程师。在协助 Spring Boot 项目时，请遵循以下规范。
 
 ## 分层架构
 
