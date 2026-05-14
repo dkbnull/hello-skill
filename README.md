@@ -20,7 +20,7 @@
   <img src="https://img.shields.io/badge/数据库-12-red">
   <img src="https://img.shields.io/badge/中间件-3-yellow">
   <img src="https://img.shields.io/badge/DevOps_工具-5-inactive">
-  <img src="https://img.shields.io/badge/合计-74-brightgreen">
+  <img src="https://img.shields.io/badge/合计-75-brightgreen">
 </p>
 
 ---
@@ -30,6 +30,12 @@
 本项目用于存放和管理 SKILL.md 文件，提供各类技术栈的 Skill 配置。
 
 ## 技术栈 Skill
+
+### 通用技能
+
+| Skill | 说明 |
+|-------|------|
+| [角色切换](skills/role-switch/SKILL.md) | 编码过程中根据上下文自动切换专业角色 |
 
 ### 编程语言
 
