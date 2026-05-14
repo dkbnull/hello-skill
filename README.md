@@ -13,6 +13,7 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/通用技能-8-9cf">
   <img src="https://img.shields.io/badge/编程语言-28-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-7-blue">
   <img src="https://img.shields.io/badge/前端框架-10-green">
@@ -20,7 +21,7 @@
   <img src="https://img.shields.io/badge/数据库-12-red">
   <img src="https://img.shields.io/badge/中间件-3-yellow">
   <img src="https://img.shields.io/badge/DevOps_工具-5-inactive">
-  <img src="https://img.shields.io/badge/合计-75-brightgreen">
+  <img src="https://img.shields.io/badge/合计-82-brightgreen">
 </p>
 
 ---
@@ -36,6 +37,13 @@
 | Skill | 说明 |
 |-------|------|
 | [角色切换](skills/role-switch/SKILL.md) | 编码过程中根据上下文自动切换专业角色 |
+| [代码审查](skills/code-review/SKILL.md) | 多维度代码审查，减少AI生成代码错误率 |
+| [调试排错](skills/debug/SKILL.md) | 系统化调试方法论，快速定位问题根因 |
+| [需求分析](skills/requirement-analysis/SKILL.md) | 编码前需求分析，消除歧义和遗漏 |
+| [防御性编程](skills/defensive-programming/SKILL.md) | 主动预判错误，编写健壮防御性代码 |
+| [API 设计](skills/api-design/SKILL.md) | 系统化 API 设计规范，减少设计缺陷 |
+| [结构化思维](skills/structured-thinking/SKILL.md) | 系统化思维框架，减少AI幻觉和逻辑错误 |
+| [重构优化](skills/refactoring/SKILL.md) | 系统化重构方法论，改善代码质量 |
 
 ### 编程语言
 
