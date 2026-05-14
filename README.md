@@ -13,15 +13,15 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/通用技能-8-9cf">
+  <img src="https://img.shields.io/badge/通用技能-13-9cf">
   <img src="https://img.shields.io/badge/编程语言-28-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-7-blue">
   <img src="https://img.shields.io/badge/前端框架-10-green">
   <img src="https://img.shields.io/badge/移动端_桌面端-9-orange">
   <img src="https://img.shields.io/badge/数据库-12-red">
   <img src="https://img.shields.io/badge/中间件-3-yellow">
-  <img src="https://img.shields.io/badge/DevOps_工具-5-inactive">
-  <img src="https://img.shields.io/badge/合计-82-brightgreen">
+  <img src="https://img.shields.io/badge/DevOps_工具-6-inactive">
+  <img src="https://img.shields.io/badge/合计-88-brightgreen">
 </p>
 
 ---
@@ -44,6 +44,11 @@
 | [API 设计](skills/api-design/SKILL.md) | 系统化 API 设计规范，减少设计缺陷 |
 | [结构化思维](skills/structured-thinking/SKILL.md) | 系统化思维框架，减少AI幻觉和逻辑错误 |
 | [重构优化](skills/refactoring/SKILL.md) | 系统化重构方法论，改善代码质量 |
+| [错误处理规范](skills/error-handling/SKILL.md) | 系统化错误处理，确保异常可感知可追踪可恢复 |
+| [性能优化](skills/performance/SKILL.md) | 系统化性能分析方法，全栈优化策略 |
+| [设计模式](skills/design-patterns/SKILL.md) | 问题驱动的模式选择，提高代码可复用可扩展性 |
+| [技术文档](skills/tech-doc/SKILL.md) | 规范化文档写作标准，确保文档清晰完整可维护 |
+| [代码生成规范](skills/code-generation/SKILL.md) | AI辅助编码规范，减少幻觉和逻辑遗漏 |
 
 ### 编程语言
 
@@ -153,3 +158,4 @@
 | [Jenkins](skills/jenkins/SKILL.md) | Jenkins CI/CD 流水线 |
 | [Terraform](skills/terraform/SKILL.md) | Terraform 基础设施即代码 |
 | [Git](skills/git/SKILL.md) | Git 版本控制 |
+| [Git 工作流](skills/git-workflow/SKILL.md) | 规范化分支策略与提交规范，减少协作冲突 |
