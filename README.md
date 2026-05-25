@@ -14,6 +14,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/通用技能-13-9cf">
+  <img src="https://img.shields.io/badge/通用规则-1-ff69b4">
   <img src="https://img.shields.io/badge/编程语言-28-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-7-blue">
   <img src="https://img.shields.io/badge/前端框架-10-green">
@@ -21,16 +22,24 @@
   <img src="https://img.shields.io/badge/数据库-12-red">
   <img src="https://img.shields.io/badge/中间件-3-yellow">
   <img src="https://img.shields.io/badge/DevOps_工具-6-inactive">
-  <img src="https://img.shields.io/badge/合计-88-brightgreen">
+  <img src="https://img.shields.io/badge/合计-89-brightgreen">
 </p>
 
 ---
 
 ## 项目简介
 
-本项目用于存放和管理 SKILL.md 文件，提供各类技术栈的 Skill 配置。
+本项目用于存放和管理 SKILL.md 和 RULE 规则文件，提供各类技术栈的 Skill 配置和通用 Rule 规则。
 
-> **使用方式**：进入所需分类目录，将 `skills/` 文件夹中的内容复制到 `.trae/skills/` 即可使用。
+> **使用方式**：
+> - **Skill**：进入所需分类目录，将 `skills/` 文件夹中的内容复制到 `.trae/skills/` 即可使用。
+> - **Rule**：将 `common/rules/` 中的规则文件复制到 `.trae/rules/` 即可使用。
+
+## 通用规则
+
+| Rule | 说明 |
+|------|------|
+| [中文回答与自动加载SKILL](common/rules/chinese-with-auto-skill.md) | 强制使用中文回答，并根据任务上下文自动加载对应的SKILL |
 
 ## 技术栈 Skill
 
