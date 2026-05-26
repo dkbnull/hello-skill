@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/通用技能-13-9cf">
   <img src="https://img.shields.io/badge/通用规则-1-ff69b4">
+  <img src="https://img.shields.io/badge/通用技能-13-9cf">
   <img src="https://img.shields.io/badge/编程语言-28-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-7-blue">
   <img src="https://img.shields.io/badge/前端框架-10-green">
@@ -35,7 +35,9 @@
 > - **Skill**：进入所需分类目录，将 `skills/` 文件夹中的内容复制到 `.trae/skills/` 即可使用。
 > - **Rule**：将 `common/rules/` 中的规则文件复制到 `.trae/rules/` 即可使用。
 
-## 通用规则
+## Rule
+
+### 通用规则
 
 | Rule | 说明 |
 |------|------|

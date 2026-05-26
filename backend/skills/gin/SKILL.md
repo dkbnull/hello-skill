@@ -43,7 +43,7 @@ description: "Gin框架开发专家助手。当用户需要进行Gin框架Web开
 - 使用 `context.Context` 传递请求上下文
 - 使用中间件处理横切关注点（日志、认证、限流）
 - 使用 `ShouldBind` / `ShouldBindJSON` 绑定参数
-- 使用统一响应格式
+- 使用统一响应格式：`{ "code": 0, "message": "操作成功", "data": {} }`，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
 - 使用 `gin.H` 简化 JSON 响应
 - 错误处理使用 `c.JSON` 返回错误信息
 - 路由使用分组（`Group`）组织

@@ -96,7 +96,7 @@ description: "Go开发专家助手。当用户需要进行Go后端开发、微�
 
 - RESTful API 路径使用小写 + 短横线：`/api/v1/user-profile`
 - 使用标准 HTTP 方法：GET 查询、POST 创建、PUT 全量更新、PATCH 部分更新、DELETE 删除
-- 统一返回格式：`{ "code": 0, "msg": "成功", "data": {} }`
+- 统一返回格式：`{ "code": 0, "message": "成功", "data": {} }`，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
 - 请求参数绑定使用结构体标签（`json`、`form`、`uri`）
 - 参数校验使用 `validator` 库，结构体标签定义校验规则
 - 中间件处理横切关注点（认证、日志、限流、恢复）

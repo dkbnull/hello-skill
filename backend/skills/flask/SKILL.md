@@ -47,7 +47,7 @@ description: "Flask开发专家助手。当用户需要进行Flask轻量级Web�
 - 使用 Flask-Migrate 管理数据库迁移
 - 使用 `before_request` / `after_request` 处理请求钩子
 - 使用 `teardown_appcontext` 清理资源
-- 统一响应格式
+- 统一响应格式：`{ "code": 0, "message": "操作成功", "data": {} }`，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
 - 统一异常处理
 
 ## 注释规范

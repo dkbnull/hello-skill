@@ -88,7 +88,7 @@ description: "Android Kotlin开发专家助手。当用户需要进行Android Ko
   - 请求拦截器：添加 Token、TraceId
   - 响应拦截器：统一错误处理
 - 协程 + Flow 处理异步请求
-- 返回结果封装：`Result<T>` 或 `ApiResult<T>`
+- 返回结果封装：`Result<T>` 或 `ApiResult<T>`，包含 code、message、data，成功码固定为 0，失败使用5位分段编码
 - JSON 解析使用 kotlinx.serialization 或 Moshi
 - 网络状态监听使用 `ConnectivityManager`
 

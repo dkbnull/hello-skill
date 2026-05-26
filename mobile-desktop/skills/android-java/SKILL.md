@@ -73,7 +73,7 @@ description: "Android Java开发专家助手。当用户需要进行Android Java
   - 请求拦截器：添加 Token、TraceId
   - 响应拦截器：统一错误处理
 - 异步请求使用 RxJava 或 Callback
-- 返回结果封装：统一 `ApiResponse<T>` 类
+- 返回结果封装：统一 `ApiResponse<T>` 类，包含 code、message、data，成功码固定为 0，失败使用5位分段编码
 - JSON 解析使用 Gson 或 Moshi
 - 网络状态监听使用 `ConnectivityManager`
 

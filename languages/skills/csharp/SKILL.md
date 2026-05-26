@@ -72,7 +72,7 @@ description: "C# / .NET开发专家助手。当用户需要进行C#编码、.NET
 ## ASP.NET Core API 规范
 
 - RESTful 风格接口，API 版本化管理：`/api/v1/...`
-- 统一返回格式：`Result<T>` 包含 Code、Message、Data
+- 统一返回格式：`Result<T>` 包含 Code、Message、Data，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
 - Controller 使用 `[ApiController]` + `[Route]` 属性路由
 - 请求参数校验使用 Data Annotations + FluentValidation
 - 全局异常处理使用 Exception Handler Middleware

@@ -106,7 +106,7 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 ## 接口与返回值规范
 
 - 统一使用 RESTful 风格接口，API 版本化管理：`/api/v1/...`
-- 使用自定义 `Result<T>` 统一返回，包含 code、msg、data
+- 使用自定义 `Result<T>` 统一返回，包含 code、message、data，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
 - Controller 接口添加 Swagger/OpenAPI 注解：`@Tag`、`@Operation`
 - 请求参数接收：
   - JSON 请求体使用 `@RequestBody`

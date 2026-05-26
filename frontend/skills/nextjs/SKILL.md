@@ -89,6 +89,7 @@ description: "Next.js开发专家助手。当用户需要进行Next.js全栈开�
   ```typescript
   { code: number; message: string; data: T }
   ```
+  成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
 - 错误处理使用 `NextResponse.json()` 返回错误信息
 - 敏感操作必须验证身份和权限
 
