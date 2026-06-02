@@ -105,6 +105,8 @@ description: "Kotlin开发专家助手。当用户需要进行Kotlin后端开发
 - 数据库访问：
   - 优先使用 Exposed 或 Ktorm（Kotlin 原生 ORM）
   - 或使用 MyBatis Plus + Kotlin 扩展
+  - Service 禁止直接注入 Mapper，所有数据库读写封装在 Repository 层
+  - Repository 内部调用 Mapper，对 Service 层屏蔽数据访问细节
 - 序列化：使用 `kotlinx.serialization`
 - 配置：使用 `@ConfigurationProperties` + data class
 

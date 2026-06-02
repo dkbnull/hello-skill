@@ -9,13 +9,15 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 
 ## 分层架构
 
-- 固定分层结构：Controller → Service（接口 + Impl） → Mapper → Entity
-- 禁止跨层调用，Controller 不写业务逻辑
+- 固定分层结构：Controller → Service（接口 + Impl） → Repository → Mapper → Entity
+- 禁止跨层调用，Controller 不写业务逻辑，Service 禁止直接注入或调用 Mapper
+- 所有数据库读写封装在 Repository 层，Service 只依赖 Repository，Repository 内部调用 Mapper
 - 包路径规范：
   - controller：请求入口，使用 `@RestController`，负责请求响应，保持精简
   - service：业务接口
-  - service.impl：业务实现，使用 `@Service`，承载业务逻辑
-  - mapper：数据访问，使用 `@Mapper` 或 `@MapperScan`，继承 `BaseMapper<T>`
+  - service.impl：业务实现，使用 `@Service`，承载业务逻辑，只依赖 Repository
+  - repository：数据访问封装，使用 `@Repository`，内部注入 Mapper，对外提供数据读写方法
+  - mapper：MyBatis Plus Mapper 接口，使用 `@Mapper` 或 `@MapperScan`，继承 `BaseMapper<T>`，仅在 Repository 内部使用
   - entity：实体类
   - dto：请求/响应 DTO
   - common：通用类（异常、枚举、统一结果）
@@ -61,9 +63,16 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 - 简单查询使用 `QueryWrapper` 或 `LambdaQueryWrapper`，优先使用 Lambda 避免硬编码字段名
 - 分页查询使用 `MybatisPlusInterceptor` 配置 `PaginationInnerInterceptor` 分页插件
 - 使用 `Page<T>` 对象进行分页，通过 `IPage<T>` 返回分页结果
-- 复杂查询（多表关联）在 Mapper XML 中编写自定义 SQL
-- 批量操作使用 `saveBatch`、`updateBatchById` 等批量方法
+- 复杂查询（多表关联）在 Mapper XML 中编写自定义 SQL，通过 Repository 封装后供 Service 调用
+- 批量操作使用 `saveBatch`、`updateBatchById` 等批量方法，在 Repository 层封装
 - 逻辑删除通过全局配置自动处理，查询时自动过滤已删除数据
+- Repository 层方法命名规约：
+  - 获取单个对象：`get` / `find` 前缀（`getUserById`、`findByEmail`）
+  - 获取列表：`list` / `find` 前缀（`listByRole`、`findByStatus`）
+  - 获取统计：`count` 前缀（`countByStatus`）
+  - 插入：`save` / `insert` 前缀（`saveUser`）
+  - 删除：`remove` / `delete` 前缀（`removeById`）
+  - 修改：`update` 前缀（`updateStatus`）
 
 ## 命名规范
 
@@ -77,9 +86,10 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 - 测试类：`{类名}Test`（`UserServiceTest`）
 - DTO 类命名：`{实体}{操作}Request/Response`（`UserCreateRequest`、`UserUpdateResponse`）
 - Mapper 接口命名：`{实体}Mapper`（`UserMapper`）
+- Repository 类命名：`{实体}Repository`
 - Service 接口与实现：`{实体}Service` / `{实体}ServiceImpl`
 - boolean 类型变量不加 is 前缀（POJO/数据库字段场景）
-- Service/DAO 层方法命名规约：
+- Service/Repository 层方法命名规约：
   - 获取单个对象：`get` 前缀（`getUserById`）
   - 获取列表：`list` 前缀（`listUsersByRole`）
   - 获取统计：`count` 前缀（`countActiveUsers`）
@@ -205,6 +215,8 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 
 - 始终使用构造器注入（`@RequiredArgsConstructor`）
 - 使用 DTO 进行请求/响应，绝不直接暴露实体类
+- Service 层只依赖 Repository，禁止直接注入 Mapper
+- Repository 层封装所有数据库操作，对 Service 层屏蔽 Mapper 细节
 - 读操作使用 `@Transactional(readOnly = true)`
 - 使用 MapStruct 进行实体与 DTO 的映射
 - 使用 Spring Security + JWT 实现认证授权
