@@ -42,6 +42,7 @@
 | Rule | 说明 |
 |------|------|
 | [中文回答与自动加载SKILL](common/rules/chinese-with-auto-skill.md) | 强制使用中文回答，并根据任务上下文自动加载对应的SKILL |
+| [CLAUDE.md](CLAUDE.md) | 基于 [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) 扩展，新增中文回答与自动加载 SKILL 规则 |
 
 ## 技术栈 Skill
 
