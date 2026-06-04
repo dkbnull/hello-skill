@@ -46,8 +46,7 @@ description: "Svelte开发专家助手。当用户需要进行Svelte前端开发
 
 ## 格式规范
 
-- .svelte 文件缩进 2 空格
-- .js 文件缩进 4 空格
+- 统一使用 2 空格缩进，禁止 Tab
 - 单行代码长度不超过 100 字符
 - 组件文件不超过 200 行
 - 使用 `prettier` + `prettier-plugin-svelte` 格式化

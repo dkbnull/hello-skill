@@ -64,7 +64,7 @@ description: "HTML/CSS/JavaScript开发专家助手。当用户需要进行网�
   3. 排版（font、line-height、text-align）
   4. 视觉（color、background、border）
   5. 动画（transition、animation）
-- 缩进 4 空格
+- 缩进 2 空格
 
 ## JavaScript 规范
 
@@ -88,7 +88,7 @@ description: "HTML/CSS/JavaScript开发专家助手。当用户需要进行网�
   - 使用 ES Modules（`import` / `export`）
   - 禁止全局变量污染
   - 每个模块单一职责
-- 缩进 4 空格
+- 缩进 2 空格
 
 ## 注释规范
 
