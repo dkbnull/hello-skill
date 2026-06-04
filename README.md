@@ -4,25 +4,25 @@
 
 <p align="center">
   <a href="https://github.com/dkbnull/hello-skill" target="_blank">
-     <img src="https://img.shields.io/badge/GitHub-访问地址-blue?logo=github">
+     <img src="https://img.shields.io/badge/GitHub-仓库-blue?logo=github">
   </a>
   <a href="https://gitee.com/dkbnull/hello-skill" target="_blank">
-     <img src="https://img.shields.io/badge/Gitee-访问地址-red?logo=gitee">
+     <img src="https://img.shields.io/badge/Gitee-仓库-red?logo=gitee">
   </a>
   <img src="https://img.shields.io/badge/License-MIT-yellow">
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/通用规则-1-ff69b4">
-  <img src="https://img.shields.io/badge/通用技能-13-9cf">
+  <img src="https://img.shields.io/badge/通用技能-14-9cf">
   <img src="https://img.shields.io/badge/编程语言-28-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-7-blue">
   <img src="https://img.shields.io/badge/前端框架-10-green">
-  <img src="https://img.shields.io/badge/移动端_桌面端-9-orange">
+  <img src="https://img.shields.io/badge/移动端_桌面端-11-orange">
   <img src="https://img.shields.io/badge/数据库-12-red">
   <img src="https://img.shields.io/badge/中间件-3-yellow">
   <img src="https://img.shields.io/badge/DevOps_工具-6-inactive">
-  <img src="https://img.shields.io/badge/合计-89-brightgreen">
+  <img src="https://img.shields.io/badge/合计-92-brightgreen">
 </p>
 
 ---
@@ -63,6 +63,7 @@
 | [设计模式](common/skills/design-patterns/SKILL.md) | 问题驱动的模式选择，提高代码可复用可扩展性 |
 | [技术文档](common/skills/tech-doc/SKILL.md) | 规范化文档写作标准，确保文档清晰完整可维护 |
 | [代码生成规范](common/skills/code-generation/SKILL.md) | AI辅助编码规范，减少幻觉和逻辑遗漏 |
+| [UI/UX 设计](common/skills/ui-ux-design/SKILL.md) | 界面设计、交互设计与用户体验优化规范 |
 
 ### 编程语言
 
@@ -137,6 +138,8 @@
 | [Electron](mobile-desktop/skills/electron/SKILL.md) | Electron 桌面应用开发 |
 | [JavaFX](mobile-desktop/skills/javafx/SKILL.md) | JavaFX 桌面应用开发 |
 | [Qt](mobile-desktop/skills/qt/SKILL.md) | Qt 跨平台桌面应用开发 |
+| [鸿蒙 (HarmonyOS)](mobile-desktop/skills/harmonyos/SKILL.md) | 鸿蒙原生应用开发（ArkTS + ArkUI） |
+| [微信小程序](mobile-desktop/skills/miniprogram/SKILL.md) | 微信原生小程序开发 |
 
 ### 数据库
 
