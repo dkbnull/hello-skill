@@ -84,7 +84,14 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 - 常量：UPPER_SNAKE_CASE（`MAX_RETRY_COUNT`、`DEFAULT_PAGE_SIZE`）
 - 包名：小写点分隔，统一使用单数形式（`com.example.project.service`）
 - 测试类：`{类名}Test`（`UserServiceTest`）
-- DTO 类命名：`{实体}{操作}Request/Response`（`UserCreateRequest`、`UserUpdateResponse`）
+- DTO 类命名（按场景区分，禁止混用）：
+  - 请求入参：`{实体}{操作}Request`（`UserCreateRequest`、`UserUpdateRequest`、`UserLoginRequest`）
+  - 接口响应：`{实体}{操作}Response`（`UserCreateResponse`、`UserUpdateResponse`、`UserLoginResponse`）
+  - 通用展示对象（不区分操作类型时使用）：`XxxVO`（`UserVO`），仅用于列表/详情等无操作语义的查询返回
+  - 跨服务传输对象：`XxxDTO`（`UserDTO`），仅用于服务间调用，Controller 层禁止使用
+  - 查询条件封装：`XxxQuery`（`UserQuery`），仅用于分页/条件查询的请求参数
+  - 数据对象：`XxxDO`（`UserDO`），仅用于 Repository/Mapper 层，与数据库表映射
+  - **关键约束**：Controller 层接口返回值统一使用 `{实体}{操作}Response` 或 `XxxVO`，禁止使用 `XxxDTO` 作为接口响应
 - Mapper 接口命名：`{实体}Mapper`（`UserMapper`）
 - Repository 类命名：`{实体}Repository`
 - Service 接口与实现：`{实体}Service` / `{实体}ServiceImpl`
@@ -96,11 +103,7 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
   - 插入：`save` / `insert` 前缀（`saveUser`）
   - 删除：`remove` / `delete` 前缀（`removeUserById`）
   - 修改：`update` 前缀（`updateUserRole`）
-- 领域模型命名规约：
-  - 数据对象：`XxxDO`（`UserDO`）
-  - 数据传输对象：`XxxDTO`（`UserDTO`）
-  - 展示对象：`XxxVO`（`UserVO`）
-  - 查询对象：`XxxQuery`（`UserQuery`）
+
 - 枚举类名带 Enum 后缀（`UserStatusEnum`），枚举成员全大写下划线（`ACTIVE`、`DISABLED`）
 
 ## 注释规范
