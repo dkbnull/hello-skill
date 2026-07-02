@@ -14,15 +14,17 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/通用规则-1-ff69b4">
-  <img src="https://img.shields.io/badge/通用技能-14-9cf">
-  <img src="https://img.shields.io/badge/编程语言-28-blueviolet">
-  <img src="https://img.shields.io/badge/后端框架-7-blue">
-  <img src="https://img.shields.io/badge/前端框架-10-green">
-  <img src="https://img.shields.io/badge/移动端_桌面端-11-orange">
-  <img src="https://img.shields.io/badge/数据库-12-red">
-  <img src="https://img.shields.io/badge/中间件-3-yellow">
-  <img src="https://img.shields.io/badge/DevOps_工具-6-inactive">
-  <img src="https://img.shields.io/badge/合计-92-brightgreen">
+  <img src="https://img.shields.io/badge/通用技能-17-9cf">
+  <img src="https://img.shields.io/badge/编程语言-29-blueviolet">
+  <img src="https://img.shields.io/badge/后端框架-11-blue">
+  <img src="https://img.shields.io/badge/前端框架-13-green">
+  <img src="https://img.shields.io/badge/移动端_桌面端-13-orange">
+  <img src="https://img.shields.io/badge/数据库-15-red">
+  <img src="https://img.shields.io/badge/中间件-7-yellow">
+  <img src="https://img.shields.io/badge/DevOps_工具-10-inactive">
+  <img src="https://img.shields.io/badge/AI_大模型-5-ff69b4">
+  <img src="https://img.shields.io/badge/数据工程-4-9cf">
+  <img src="https://img.shields.io/badge/合计-125-brightgreen">
 </p>
 
 ---
@@ -64,6 +66,9 @@
 | [技术文档](common/skills/tech-doc/SKILL.md) | 规范化文档写作标准，确保文档清晰完整可维护 |
 | [代码生成规范](common/skills/code-generation/SKILL.md) | AI辅助编码规范，减少幻觉和逻辑遗漏 |
 | [UI/UX 设计](common/skills/ui-ux-design/SKILL.md) | 界面设计、交互设计与用户体验优化规范 |
+| [安全审查](common/skills/security-review/SKILL.md) | 安全扫描，涵盖注入攻击、认证授权、数据安全、配置安全、依赖安全 |
+| [测试规范](common/skills/testing/SKILL.md) | 系统化测试方法论，涵盖单元测试、集成测试、E2E测试、TDD实践 |
+| [系统架构](common/skills/architecture/SKILL.md) | 架构方法论，涵盖分层架构、微服务架构、事件驱动架构、架构决策记录 |
 
 ### 编程语言
 
@@ -97,6 +102,7 @@
 | [Elixir](languages/skills/elixir/SKILL.md) | Elixir 高并发开发 |
 | [Julia](languages/skills/julia/SKILL.md) | Julia 科学计算开发 |
 | [Groovy](languages/skills/groovy/SKILL.md) | Groovy / Gradle 脚本开发 |
+| [Shell](languages/skills/shell/SKILL.md) | Shell / Bash 脚本开发 |
 
 ### 后端框架
 
@@ -109,6 +115,10 @@
 | [Flask](backend/skills/flask/SKILL.md) | Flask 轻量级 Web 开发 |
 | [Gin](backend/skills/gin/SKILL.md) | Gin 高性能 HTTP 框架开发 |
 | [Node.js](backend/skills/nodejs/SKILL.md) | Node.js 后端开发 |
+| [NestJS](backend/skills/nestjs/SKILL.md) | NestJS 企业级后端开发 |
+| [Express](backend/skills/express/SKILL.md) | Express Web 开发 |
+| [Laravel](backend/skills/laravel/SKILL.md) | Laravel PHP 后端开发 |
+| [gRPC](backend/skills/grpc/SKILL.md) | gRPC 微服务通信 |
 
 ### 前端框架
 
@@ -124,6 +134,9 @@
 | [Svelte](frontend/skills/svelte/SKILL.md) | Svelte 编译时框架开发 |
 | [Angular](frontend/skills/angular/SKILL.md) | Angular 企业级前端开发 |
 | [Layui](frontend/skills/layui/SKILL.md) | Layui 前端框架开发 |
+| [Nuxt](frontend/skills/nuxt/SKILL.md) | Nuxt 全栈 SSR / SSG 开发 |
+| [Tailwind CSS](frontend/skills/tailwindcss/SKILL.md) | Tailwind CSS 实用优先样式开发 |
+| [Astro](frontend/skills/astro/SKILL.md) | Astro 内容驱动网站开发 |
 
 ### 移动端 & 桌面端
 
@@ -140,6 +153,8 @@
 | [Qt](mobile-desktop/skills/qt/SKILL.md) | Qt 跨平台桌面应用开发 |
 | [鸿蒙 (HarmonyOS)](mobile-desktop/skills/harmonyos/SKILL.md) | 鸿蒙原生应用开发（ArkTS + ArkUI） |
 | [微信小程序](mobile-desktop/skills/miniprogram/SKILL.md) | 微信原生小程序开发 |
+| [Tauri](mobile-desktop/skills/tauri/SKILL.md) | Tauri 桌面应用开发 |
+| [Compose Multiplatform](mobile-desktop/skills/compose-multiplatform/SKILL.md) | Kotlin 跨平台 UI 开发 |
 
 ### 数据库
 
@@ -157,6 +172,9 @@
 | [ClickHouse](database/skills/clickhouse/SKILL.md) | ClickHouse OLAP 数据库开发 |
 | [数据库函数](database/skills/db-function/SKILL.md) | 数据库自定义函数开发 |
 | [存储过程](database/skills/db-procedure/SKILL.md) | 数据库存储过程开发 |
+| [TiDB](database/skills/tidb/SKILL.md) | TiDB 分布式 NewSQL 数据库开发 |
+| [TDengine](database/skills/tdengine/SKILL.md) | TDengine 时序数据库开发 |
+| [Neo4j](database/skills/neo4j/SKILL.md) | Neo4j 图数据库开发 |
 
 ### 中间件
 
@@ -165,6 +183,10 @@
 | [Kafka](middleware/skills/kafka/SKILL.md) | Kafka 消息队列开发 |
 | [RabbitMQ](middleware/skills/rabbitmq/SKILL.md) | RabbitMQ 消息中间件开发 |
 | [Nginx](middleware/skills/nginx/SKILL.md) | Nginx 反向代理与负载均衡 |
+| [RocketMQ](middleware/skills/rocketmq/SKILL.md) | RocketMQ 消息队列开发 |
+| [ZooKeeper](middleware/skills/zookeeper/SKILL.md) | ZooKeeper 分布式协调 |
+| [Dubbo](middleware/skills/dubbo/SKILL.md) | Dubbo 微服务 RPC 开发 |
+| [Consul](middleware/skills/consul/SKILL.md) | Consul 服务发现与配置管理 |
 
 ### DevOps & 工具
 
@@ -176,3 +198,26 @@
 | [Terraform](devops/skills/terraform/SKILL.md) | Terraform 基础设施即代码 |
 | [Git](devops/skills/git/SKILL.md) | Git 版本控制 |
 | [Git 工作流](devops/skills/git-workflow/SKILL.md) | 规范化分支策略与提交规范，减少协作冲突 |
+| [GitHub Actions](devops/skills/github-actions/SKILL.md) | GitHub Actions CI/CD 流水线 |
+| [Ansible](devops/skills/ansible/SKILL.md) | Ansible 自动化配置管理 |
+| [Prometheus](devops/skills/prometheus/SKILL.md) | Prometheus 监控与告警 |
+| [Helm](devops/skills/helm/SKILL.md) | Helm Chart 应用打包与管理 |
+
+### AI / 大模型
+
+| Skill | 说明 |
+|-------|------|
+| [Prompt Engineering](ai/skills/prompt-engineering/SKILL.md) | Prompt 设计优化与大模型提示词开发 |
+| [LangChain](ai/skills/langchain/SKILL.md) | LangChain 应用开发与 RAG 检索增强生成 |
+| [PyTorch](ai/skills/pytorch/SKILL.md) | PyTorch 深度学习开发与模型训练 |
+| [TensorFlow](ai/skills/tensorflow/SKILL.md) | TensorFlow 深度学习开发与模型部署 |
+| [Hugging Face](ai/skills/huggingface/SKILL.md) | Hugging Face 模型库与 Transformers 开发 |
+
+### 数据工程
+
+| Skill | 说明 |
+|-------|------|
+| [Spark](data-engineering/skills/spark/SKILL.md) | Spark 大数据计算与批处理 |
+| [Flink](data-engineering/skills/flink/SKILL.md) | Flink 实时流计算与管道开发 |
+| [Airflow](data-engineering/skills/airflow/SKILL.md) | Airflow 工作流调度与 ETL 自动化 |
+| [Hadoop](data-engineering/skills/hadoop/SKILL.md) | Hadoop 大数据存储与计算 |
