@@ -14,7 +14,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/通用规则-1-ff69b4">
-  <img src="https://img.shields.io/badge/通用技能-17-9cf">
+  <img src="https://img.shields.io/badge/通用技能-18-9cf">
   <img src="https://img.shields.io/badge/编程语言-29-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-11-blue">
   <img src="https://img.shields.io/badge/前端框架-13-green">
@@ -24,7 +24,7 @@
   <img src="https://img.shields.io/badge/DevOps_工具-10-inactive">
   <img src="https://img.shields.io/badge/AI_大模型-5-ff69b4">
   <img src="https://img.shields.io/badge/数据工程-4-9cf">
-  <img src="https://img.shields.io/badge/合计-125-brightgreen">
+  <img src="https://img.shields.io/badge/合计-126-brightgreen">
 </p>
 
 ---
@@ -65,6 +65,7 @@
 | [设计模式](common/skills/design-patterns/SKILL.md) | 问题驱动的模式选择，提高代码可复用可扩展性 |
 | [技术文档](common/skills/tech-doc/SKILL.md) | 规范化文档写作标准，确保文档清晰完整可维护 |
 | [代码生成规范](common/skills/code-generation/SKILL.md) | AI辅助编码规范，减少幻觉和逻辑遗漏 |
+| [精简代码](common/skills/concise-code/SKILL.md) | 消除AI生成代码的重复、冗余、重复造轮，控制代码量 |
 | [UI/UX 设计](common/skills/ui-ux-design/SKILL.md) | 界面设计、交互设计与用户体验优化规范 |
 | [安全审查](common/skills/security-review/SKILL.md) | 安全扫描，涵盖注入攻击、认证授权、数据安全、配置安全、依赖安全 |
 | [测试规范](common/skills/testing/SKILL.md) | 系统化测试方法论，涵盖单元测试、集成测试、E2E测试、TDD实践 |
