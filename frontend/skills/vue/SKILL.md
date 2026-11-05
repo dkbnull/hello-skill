@@ -1,6 +1,6 @@
 ---
 name: "vue"
-description: "Vue.js开发专家助手。当用户需要进行Vue组件开发、Pinia状态管理、Vue Router或Vue 3应用构建时调用。"
+description: "Vue.js开发专家助手。当用户需要进行Vue组件开发、Pinia状态管理、Vue Router或Vue 3应用构建时调用。TypeScript/Vite 场景按需组合 typescript、vite 技能。"
 ---
 
 # Vue 开发技能
@@ -88,3 +88,27 @@ description: "Vue.js开发专家助手。当用户需要进行Vue组件开发、
 - 频繁切换使用 `v-show`，条件渲染使用 `v-if`
 - 异步操作始终处理加载和错误状态
 - 使用 `watch` 和 `watchEffect` 处理副作用
+
+## TypeScript 集成（使用 TS 时）
+
+- 通用 TS 类型规范遵循 typescript 技能，本节仅列 Vue 上下文特有约定
+- 使用 `defineProps` 和 `defineEmits` 配合 TypeScript 接口定义组件接口
+- `<script setup>` 内部顺序在基础顺序上增加：类型/接口定义（置于导入依赖之后）
+- tsconfig 优先继承 `@vue/tsconfig` 官方预设，开启 `strict` 严格模式
+- 使用 `vue-tsc` 执行类型检查，确保构建前类型无误
+- 环境变量类型在 `env.d.ts` 中声明，使用 `.d.ts` 文件定义全局接口类型
+- 接口、类型统一抽入 `types` 目录，业务实体定义 `interface`
+
+## Vite 集成（使用 Vite 时）
+
+- Vite 通用配置（别名、代理、环境变量、分包）遵循 vite 技能
+- 开发环境使用 `vite-plugin-vue-devtools`
+- 使用 `unplugin-auto-import` 和 `unplugin-vue-components` 实现自动导入
+
+## API 层约定
+
+- 使用 Axios 创建实例，配置 baseURL 和超时
+- 请求拦截器自动添加 Authorization 头
+- 响应拦截器统一处理错误（401 自动登出跳转）
+- 按模块拆分 API 文件（user.js、auth.js），组件只调用函数不直接写请求地址
+- 接口返回数据统一封装固定结构，前端统一处理成功/失败回调
