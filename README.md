@@ -13,18 +13,18 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/通用规则-1-ff69b4">
+  <img src="https://img.shields.io/badge/通用规则-2-ff69b4">
   <img src="https://img.shields.io/badge/通用技能-20-9cf">
   <img src="https://img.shields.io/badge/编程语言-33-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-13-blue">
   <img src="https://img.shields.io/badge/前端框架-19-green">
   <img src="https://img.shields.io/badge/移动端_桌面端-15-orange">
   <img src="https://img.shields.io/badge/数据库-17-red">
-  <img src="https://img.shields.io/badge/中间件-12-yellow">
-  <img src="https://img.shields.io/badge/DevOps_工具-11-inactive">
-  <img src="https://img.shields.io/badge/AI_大模型-8-ff69b4">
+  <img src="https://img.shields.io/badge/中间件-13-yellow">
+  <img src="https://img.shields.io/badge/DevOps_工具-12-inactive">
+  <img src="https://img.shields.io/badge/AI_大模型-9-ff69b4">
   <img src="https://img.shields.io/badge/数据工程-4-9cf">
-  <img src="https://img.shields.io/badge/合计-152-brightgreen">
+  <img src="https://img.shields.io/badge/合计-155-brightgreen">
 </p>
 
 ---
@@ -44,7 +44,7 @@
 | Rule | 说明 |
 |------|------|
 | [中文回答与自动加载SKILL](common/rules/chinese-with-auto-skill.md) | 强制使用中文回答，并根据任务上下文自动加载对应的SKILL |
-| [CLAUDE.md](CLAUDE.md) | 基于 [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) 扩展，新增中文回答与自动加载 SKILL 规则 |
+| [编码行为准则](common/rules/coding-discipline.md) | 先思考再编码、简洁优先、外科手术式修改、目标驱动验证四条行为准则，减少常见 LLM 编码错误。源自 [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) |
 
 ## 技术栈 Skill
 
@@ -199,7 +199,8 @@
 
 | Skill | 说明 |
 |-------|------|
-| [Kafka](middleware/skills/kafka/SKILL.md) | Kafka 消息队列开发 |
+| [服务发现通用](middleware/skills/service-discovery/SKILL.md) | 服务注册发现/健康检查/配置中心通用规范（权威） |
+| [Kafka](middleware/skills/kafka/SKILL.md) | Kafka 消息队列开发（消息队列通用规范权威） |
 | [RabbitMQ](middleware/skills/rabbitmq/SKILL.md) | RabbitMQ 消息中间件开发 |
 | [Nginx](middleware/skills/nginx/SKILL.md) | Nginx 反向代理与负载均衡 |
 | [RocketMQ](middleware/skills/rocketmq/SKILL.md) | RocketMQ 消息队列开发 |
@@ -216,6 +217,7 @@
 
 | Skill | 说明 |
 |-------|------|
+| [CI/CD 通用](devops/skills/ci-cd/SKILL.md) | CI/CD 流水线通用规范（权威） |
 | [Docker](devops/skills/docker/SKILL.md) | Docker 容器化部署 |
 | [Kubernetes](devops/skills/kubernetes/SKILL.md) | Kubernetes 容器编排 |
 | [Jenkins](devops/skills/jenkins/SKILL.md) | Jenkins CI/CD 流水线 |
@@ -232,6 +234,7 @@
 
 | Skill | 说明 |
 |-------|------|
+| [训练通用](ai/skills/training/SKILL.md) | 深度学习训练工程化通用规范（权威） |
 | [Prompt Engineering](ai/skills/prompt-engineering/SKILL.md) | Prompt 设计优化与大模型提示词开发 |
 | [LangChain](ai/skills/langchain/SKILL.md) | LangChain 应用开发与 RAG 检索增强生成 |
 | [PyTorch](ai/skills/pytorch/SKILL.md) | PyTorch 深度学习开发与模型训练 |
