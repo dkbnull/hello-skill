@@ -53,7 +53,6 @@ description: "Nginx开发专家助手。当用户需要进行Nginx反向代理�
       proxy_set_header X-Forwarded-Proto $scheme;
   }
   ```
-- 必须传递的请求头：`Host`、`X-Real-IP`、`X-Forwarded-For`、`X-Forwarded-Proto`
 - WebSocket 代理必须配置 Upgrade 头
 - 超时设置：
   - `proxy_connect_timeout`：连接超时
@@ -77,11 +76,7 @@ description: "Nginx开发专家助手。当用户需要进行Nginx反向代理�
 ## SSL/TLS 规范
 
 - 协议版本：仅启用 TLSv1.2 和 TLSv1.3
-- 加密套件：
-  ```nginx
-  ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
-  ssl_prefer_server_ciphers on;
-  ```
+- 加密套件：`ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;` 并设置 `ssl_prefer_server_ciphers on;`
 - HSTS：`add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;`
 - 证书自动续期使用 Certbot / acme.sh
 - HTTP 自动跳转 HTTPS
@@ -131,9 +126,6 @@ description: "Nginx开发专家助手。当用户需要进行Nginx反向代理�
 
 ## 代码质量强制要求
 
-- 生产环境必须启用 HTTPS
-- 必须配置安全响应头
-- 必须隐藏版本号
 - 代理必须传递真实客户端 IP
 - 超时参数必须合理配置
 - 禁止使用 `root` 指令在 `location` 中指向敏感目录
@@ -147,7 +139,6 @@ description: "Nginx开发专家助手。当用户需要进行Nginx反向代理�
 - 开启 `sendfile`、`tcp_nopush`、`tcp_nodelay`
 - 连接保持：`keepalive_timeout 65`
 - Upstream 长连接：`keepalive` 指令
-- 静态资源开启缓存和压缩
 - 日志缓冲：`access_log ... buffer=32k flush=5m`
 
 ## 日志规范
@@ -164,7 +155,6 @@ description: "Nginx开发专家助手。当用户需要进行Nginx反向代理�
 
 ## 最佳实践
 
-- 使用 `include` 拆分配置，保持主配置简洁
 - 使用 `map` 指令实现条件逻辑
 - 使用 `try_files` 处理前端路由（SPA 应用）
 - 配置热重载：`nginx -s reload`

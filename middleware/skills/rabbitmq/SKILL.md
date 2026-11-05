@@ -73,16 +73,6 @@ description: "RabbitMQ开发专家助手。当用户需要进行RabbitMQ消息�
 - 每个队列/交换机声明独占一块
 - 路由键使用点分格式
 
-## 代码质量强制要求
-
-- 必须使用 Publisher Confirm
-- 必须使用 Manual ACK
-- 必须配置死信队列
-- 消息必须持久化
-- 必须实现消费幂等
-- 禁止使用自动确认（Auto ACK）
-- 必须处理消费异常
-
 ## 性能优化
 
 - 批量发送消息
@@ -113,5 +103,4 @@ description: "RabbitMQ开发专家助手。当用户需要进行RabbitMQ消息�
 - 使用 Spring AMQP / RabbitMQ Client
 - 使用死信队列 + 延迟队列实现定时任务
 - 使用消息追踪（Firehose / Tracing）
-- 使用 Prometheus + Grafana 监控
 - 使用 Federation / Shovel 跨数据中心

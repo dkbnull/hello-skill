@@ -1,11 +1,13 @@
 ---
 name: "springboot"
-description: "Spring Boot开发专家助手。当用户需要进行Spring Boot项目搭建、REST API开发、MyBatis Plus、Security或微服务开发时调用。"
+description: "Spring Boot开发专家助手。当用户需要进行Spring Boot项目搭建、REST API开发、MyBatis Plus或Security开发时调用。"
 ---
 
 # Spring Boot 开发技能
 
 你是一位资深 Spring Boot 开发工程师。在协助 Spring Boot 项目时，请遵循以下规范。
+
+> Java 语言规范遵循 languages/skills/java，本技能仅补充 Spring Boot 特有内容。
 
 ## 分层架构
 
@@ -21,8 +23,8 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
   - entity：实体类
   - dto：请求/响应 DTO
   - common：通用类（异常、枚举、统一结果）
+  - mapstruct：MapStruct 映射器
   - util：工具类
-- Model 层：分为 entity（`@TableName` 实体类）、dto（请求/响应 DTO）、mapstruct（MapStruct 映射器）
 - Exception 层：使用 `@RestControllerAdvice` 全局异常处理
 - Security 层：安全配置和认证授权
 
@@ -66,24 +68,12 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 - 复杂查询（多表关联）在 Mapper XML 中编写自定义 SQL，通过 Repository 封装后供 Service 调用
 - 批量操作使用 `saveBatch`、`updateBatchById` 等批量方法，在 Repository 层封装
 - 逻辑删除通过全局配置自动处理，查询时自动过滤已删除数据
-- Repository 层方法命名规约：
-  - 获取单个对象：`get` / `find` 前缀（`getUserById`、`findByEmail`）
-  - 获取列表：`list` / `find` 前缀（`listByRole`、`findByStatus`）
-  - 获取统计：`count` 前缀（`countByStatus`）
-  - 插入：`save` / `insert` 前缀（`saveUser`）
-  - 删除：`remove` / `delete` 前缀（`removeById`）
-  - 修改：`update` 前缀（`updateStatus`）
 
 ## 命名规范
 
-- 类名：PascalCase（`UserService`、`OrderController`、`UserCreateRequest`）
-- 抽象类命名以 Base 或 Abstract 开头（`BaseEntity`、`AbstractProcessor`）
-- 异常类命名以 Exception 结尾（`BusinessException`、`ValidationException`）
-- 方法名：camelCase（`getUserById`、`calculateTotalAmount`）
-- 变量名：camelCase（`userList`、`orderCount`）
-- 常量：UPPER_SNAKE_CASE（`MAX_RETRY_COUNT`、`DEFAULT_PAGE_SIZE`）
-- 包名：小写点分隔，统一使用单数形式（`com.example.project.service`）
-- 测试类：`{类名}Test`（`UserServiceTest`）
+- 基础命名（类名 PascalCase、方法/变量 camelCase、常量 UPPER_SNAKE_CASE、包名单数形式、测试类 `{类名}Test`）遵循 java 技能
+- 抽象类命名以 Base 或 Abstract 开头（`BaseEntity`）
+- 异常类命名以 Exception 结尾（`BusinessException`）
 - DTO 类命名（按场景区分，禁止混用）：
   - 请求入参：`{实体}{操作}Request`（`UserCreateRequest`、`UserUpdateRequest`、`UserLoginRequest`）
   - 接口响应：`{实体}{操作}Response`（`UserCreateResponse`、`UserUpdateResponse`、`UserLoginResponse`）
@@ -91,7 +81,7 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
   - 跨服务传输对象：`XxxDTO`（`UserDTO`），仅用于服务间调用，Controller 层禁止使用
   - 查询条件封装：`XxxQuery`（`UserQuery`），仅用于分页/条件查询的请求参数
   - 数据对象：`XxxDO`（`UserDO`），仅用于 Repository/Mapper 层，与数据库表映射
-  - **关键约束**：Controller 层接口返回值统一使用 `{实体}{操作}Response` 或 `XxxVO`，禁止使用 `XxxDTO` 作为接口响应
+  - **关键约束**：Controller 层接口返回值统一使用 `{实体}{操作}Response` 或 `XxxVO`
 - Mapper 接口命名：`{实体}Mapper`（`UserMapper`）
 - Repository 类命名：`{实体}Repository`
 - Service 接口与实现：`{实体}Service` / `{实体}ServiceImpl`
@@ -108,13 +98,8 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 
 ## 注释规范
 
-- 所有类、接口必须有中文 Javadoc 注释，说明用途和职责
-- 所有 public 方法必须有中文 Javadoc 注释，包含功能说明、`@param`、`@return`、`@throws`
-- 复杂业务逻辑、核心算法必须添加中文行内注释说明意图
-- TODO 注释格式：`// TODO: [作者] 具体待办事项描述`
-- 禁止无意义注释，注释必须与代码保持同步
+- Javadoc、TODO 格式、注释同步等通用注释规范遵循 java 技能
 - Mapper XML 中的自定义 SQL 必须添加中文注释说明查询用途
-- 注释掉的代码应直接删除，版本管理由 Git 负责，禁止保留注释代码
 
 ## 接口与返回值规范
 
@@ -156,72 +141,19 @@ description: "Spring Boot开发专家助手。当用户需要进行Spring Boot�
 
 ## 格式规范
 
-- 统一使用 4 空格缩进，禁止 Tab
-- 单行代码长度不超过 120 字符
-- 方法体长度不超过 80 行，超过必须拆分
-- 方法参数不超过 5 个，超过使用对象封装
-- 大括号不换行（K&R 风格），一行一条语句
-- if/else/for/while/do 语句必须使用大括号，即使只有一行代码
-- 类成员排列顺序：静态变量 → 实例变量 → 构造方法 → 公有方法 → 私有方法
-- 方法内部定义的局部变量应在首次使用时声明，不要集中在方法顶部
-
-## OOP 规约
-
-- 所有覆写方法必须加 `@Override` 注解
-- 构造方法里禁止加入业务逻辑，如有初始化逻辑应放在 `@PostConstruct` 或 `init` 方法中
-- POJO 类必须写 `toString` 方法，便于排查问题
-- 可变参数必须放在参数列表最后
-- 避免通过类的对象引用来访问静态变量或方法，应直接使用类名访问
-- `equals` 方法必须满足对称性、传递性、一致性，重写 `equals` 必须同时重写 `hashCode`
-- 优先使用基本数据类型而非包装类型，避免自动拆箱导致的 NPE
-
-## 集合处理
-
-- `ArrayList` 的 `subList` 结果不可强转成 `ArrayList`，否则抛出 `ClassCastException`
-- 使用 `Map` 的 `entrySet` 遍历键值对，`keySet` 仅遍历键
-- `Map` 的 key 为自定义对象时必须重写 `hashCode` 和 `equals`
-- foreach 循环里禁止进行元素的 `remove`/`add` 操作，应使用 `Iterator`
-- `Arrays.asList()` 返回的集合不能使用 `add`/`remove`/`clear` 方法
-- 集合转数组必须使用 `toArray(T[] array)`，避免类型转换异常
-- 泛型通配符：`<? extends T>` 上界通配符不能 `add`，`<? super T>` 下界通配符不能 `get`
+- 格式规范（缩进、行宽、方法长度、参数个数、大括号风格等）遵循 java 技能
 
 ## 代码质量强制要求
 
-- 禁止空指针：所有可能为 null 的返回值必须判空或使用 `Optional`，禁止信任外部输入
-- 禁止魔法值：代码中不允许出现未解释的硬编码常量，必须定义为命名常量或枚举
-  - 禁止：`if (status == 1)`
-  - 正确：`if (status == UserStatusEnum.ACTIVE.getCode())`
-- 禁止 `==` 比较对象值，字符串使用 `equals()`，对象使用 `Objects.equals()`
+- 通用代码质量要求（空指针、魔法值、equals、BigDecimal、日期时间、循环拼接、资源关闭、并发安全等）遵循 java 技能
 - 集合操作前必须判空，使用 `CollectionUtils.isEmpty()` 或 `CollUtil.isEmpty()`
-- 数值计算注意溢出和精度，金额必须使用 `BigDecimal`，禁止使用 `float`/`double`
-- 日期时间使用 `LocalDateTime`，禁止使用 `java.util.Date`
-- 禁止在循环中拼接字符串，使用 `StringBuilder`
 - 禁止在循环中执行数据库操作，使用批量方法
-- switch 语句必须包含 default 分支
-- 所有资源（流、连接）必须使用 try-with-resources 关闭
-- 并发场景必须使用线程安全集合或加锁，禁止在多线程中使用非安全集合
-- 优先使用 JDK8+ 特性：Stream、Lambda、Optional
-- 方法入参必须校验：外部传入参数、跨层调用参数、public 方法入参
-- 优先使用卫语句减少 if-else 嵌套，尽早 return
-
-## 并发处理
-
-- 线程资源必须通过线程池提供，禁止显式 `new Thread()`
-- 线程池禁止使用 `Executors` 创建，必须通过 `ThreadPoolExecutor` 方式，明确线程池参数
-- 必须回收自定义 `ThreadLocal` 变量，使用 `try-finally` 调用 `remove()`，避免内存泄漏
-- 多线程加锁必须保持一致的加锁顺序，避免死锁
-- `SimpleDateFormat` 线程不安全，使用 `DateTimeFormatter` 替代
-- 并发修改同一记录时必须加锁，避免数据不一致
-- `volatile` 解决多线程内存可见性问题，但不能保证原子性，原子操作使用 `Atomic` 类
 
 ## 最佳实践
 
 - 始终使用构造器注入（`@RequiredArgsConstructor`）
 - 使用 DTO 进行请求/响应，绝不直接暴露实体类
-- Service 层只依赖 Repository，禁止直接注入 Mapper
-- Repository 层封装所有数据库操作，对 Service 层屏蔽 Mapper 细节
 - 读操作使用 `@Transactional(readOnly = true)`
-- 使用 MapStruct 进行实体与 DTO 的映射
 - 使用 Spring Security + JWT 实现认证授权
 - 非阻塞操作使用 `@Async`
 - 启用 Actuator 端点进行应用监控

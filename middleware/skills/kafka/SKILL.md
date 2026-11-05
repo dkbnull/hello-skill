@@ -61,8 +61,7 @@ description: "Kafka开发专家助手。当用户需要进行Kafka消息队列�
   - 不同业务服务使用不同消费者组
   - 消费者组实例数不超过分区数
 - Offset 管理：
-  - 优先使用自动提交（`enable.auto.commit = true`）
-  - 手动提交：处理完成后 `commitSync()` 或 `commitAsync()`
+  - 优先使用手动提交（`enable.auto.commit = false`），处理完成后 `commitSync()` 或 `commitAsync()`
   - 禁止在消息处理前提交 Offset
 - 消费幂等：
   - 所有消费者必须实现幂等消费
@@ -101,17 +100,6 @@ description: "Kafka开发专家助手。当用户需要进行Kafka消息队列�
 - 复杂流处理逻辑必须添加中文行内注释
 - 禁止无意义注释，注释必须与代码保持同步
 
-## 代码质量强制要求
-
-- 生产者必须启用幂等和重试
-- 消费者必须实现幂等消费
-- 消息必须包含 TraceId，便于链路追踪
-- 消费失败必须进入死信队列，禁止丢弃
-- 禁止在消息处理前提交 Offset
-- 消息大小不超过 1MB
-- 消费者线程禁止执行阻塞操作
-- Topic 和消费者组必须有监控告警
-
 ## 运维规范
 
 - 监控指标：
@@ -133,7 +121,5 @@ description: "Kafka开发专家助手。当用户需要进行Kafka消息队列�
 ## 最佳实践
 
 - 使用 Schema Registry 管理消息 Schema（Avro/Protobuf）
-- 使用 `spring-kafka` 简化 Spring Boot 集成
 - 使用 `@KafkaListener` 声明式消费
 - 使用 `KafkaTemplate` 发送消息
-- 消费者 Lag 监控使用 Burrow 或 Kafka Manager

@@ -131,7 +131,6 @@ description: "NestJS开发专家助手。当用户需要进行NestJS企业级后
 
 ## 最佳实践
 
-- 使用 `@nestjs/config` 管理配置，敏感信息通过环境变量注入
 - 使用 `@nestjs/swagger` 自动生成 API 文档
 - 使用 `@nestjs/typeorm` 或 `@nestjs/mongoose` 访问数据库
 - 使用 `@nestjs/jwt` + `@nestjs/passport` 实现认证授权

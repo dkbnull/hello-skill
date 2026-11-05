@@ -87,11 +87,6 @@ description: "Dubbo开发专家助手。当用户需要进行Dubbo微服务开�
 
 ## 代码质量强制要求
 
-- 接口与实现必须分离，接口单独打包
-- 接口返回值必须使用 `Result<T>` 包装
-- 非幂等写操作必须使用 `Failfast` 容错策略
-- 接口必须定义超时时间
-- 服务降级逻辑必须实现
 - 禁止在 Provider 端执行耗时初始化逻辑（影响启动速度）
 - 消费者必须配置 `check = false`，避免启动顺序依赖
 
@@ -125,10 +120,6 @@ description: "Dubbo开发专家助手。当用户需要进行Dubbo微服务开�
 
 ## 最佳实践
 
-- 使用 `dubbo-spring-boot-starter` 简化 Spring Boot 集成
-- 使用 Triple 协议实现跨语言调用
-- 使用 Nacos 作为注册中心和配置中心
 - 接口版本化管理，平滑升级
 - 使用 `@DubboService` 和 `@DubboReference` 注解声明服务
-- 使用 `Result<T>` 统一返回格式，区分业务异常和系统异常
 - 使用 `dubbo-spring-boot-observability` 接入链路追踪

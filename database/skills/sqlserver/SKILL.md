@@ -84,14 +84,7 @@ description: "SQL Server开发专家助手。当用户需要进行SQL Server数�
 
 ## 代码质量强制要求
 
-- 禁止 `SELECT *`
-- 更新/删除必须带 WHERE 条件
-- 禁止在 WHERE 条件中对字段使用函数
-- 大批量操作分批执行（`TOP n`）
-- 禁止物理删除，使用逻辑删除
-- 存储过程必须使用 `SET NOCOUNT ON`
-- 必须使用 `TRY...CATCH` 处理错误
-- 禁止在循环中执行 SQL
+- 通用 SQL 规范（禁止 `SELECT *`、更新/删除带 WHERE、分批执行、逻辑删除、禁止循环 SQL 等）遵循 database/skills/sql 技能
 
 ## 性能优化
 

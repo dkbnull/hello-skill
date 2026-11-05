@@ -112,8 +112,7 @@ description: "Android Java开发专家助手。当用户需要进行Android Java
 
 ## 推送通知
 
-- 海外使用 FCM（Firebase Cloud Messaging）
-- 国内设备无法稳定连接 FCM，需接入华为 HMS Push、小米、OPPO、vivo、荣耀等厂商通道，推荐使用极光、个推等聚合 SDK 统一接入（厂商通道为主，自建长连接兜底）
+- 海外使用 FCM（Firebase Cloud Messaging）；国内设备无法稳定连接 FCM，需接入华为 HMS Push、小米、OPPO、vivo、荣耀等厂商通道，推荐使用极光、个推等聚合 SDK 统一接入（厂商通道为主，自建长连接兜底）
 - Android 8.0+ 必须创建 `NotificationChannel`，按业务划分渠道，支持用户在系统设置中关闭
 - Android 13+ 通知需动态申请 `POST_NOTIFICATIONS` 权限，被拒绝后不展示通知
 - 通知 PendingIntent 必须设置 `FLAG_IMMUTABLE`（Android 12+ 强制要求）

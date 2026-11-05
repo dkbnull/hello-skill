@@ -102,13 +102,9 @@ description: "HTML/CSS/JavaScript开发专家助手。当用户需要进行网�
 
 ## 代码质量强制要求
 
-- 禁止空指针：所有可能为 null/undefined 的值必须判空，禁止信任外部输入
-- 禁止魔法值：硬编码常量必须定义为命名常量
-- 禁止使用 `==` 比较，统一使用 `===` 严格相等
-- 集合操作前必须判空，使用 `Array.isArray()` + `.length`
+- 通用 JS 代码质量（严格相等、判空、魔法值、`eval()`/`with`/`document.write()` 禁用等）遵循 javascript 技能
 - DOM 操作必须确保元素存在后再操作
 - 异步操作必须处理错误状态
-- 禁止使用 `eval()`、`with`、`document.write()`
 - 禁止在内联事件处理器中编写 JS（`onclick="..."`）
 - 冗余代码、`console.log` 上线前必须清理
 

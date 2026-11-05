@@ -13,6 +13,7 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
 - Java 客户端使用 Apache Curator 5.x 框架（禁止直接使用原生 ZooKeeper 客户端）
 - Spring Boot 集成使用 `curator-recipes` 和 `spring-boot-starter-zookeeper`
 - 连接串格式：`host1:2181,host2:2181,host3:2181`
+- 客户端必须配置重试策略（Curator `RetryPolicy`），连接断开自动重连
 
 ## 命名规范
 
@@ -91,16 +92,6 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
 - Leader 选举类必须有中文注释说明选举策略和 Leader 职责
 - 禁止无意义注释，注释必须与代码保持同步
 
-## 代码质量强制要求
-
-- 必须使用 Curator 框架，禁止使用原生 ZooKeeper 客户端
-- 分布式锁必须在 `finally` 中释放
-- 分布式锁必须设置获取超时时间
-- Watch 必须使用 Curator Cache 机制，禁止使用原生 Watch
-- 节点数据大小不超过 1MB
-- 敏感配置禁止明文存储
-- 连接断开必须有重连机制（Curator `RetryPolicy`）
-
 ## 运维规范
 
 - 监控指标：
@@ -116,10 +107,5 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
 
 ## 最佳实践
 
-- 使用 Curator Recipes 简化分布式原语开发
-- 使用 `LeaderLatch` 实现主备切换
-- 使用 `InterProcessMutex` 实现分布式锁
-- 使用 `TreeCache` 实现配置热更新
-- 避免在 ZooKeeper 中存储大量数据，仅存元数据
 - 连接重试使用 `ExponentialBackoffRetry`
 - 使用 `ZooKeeperNavigator` 或 `PrettyZoo` 管理节点

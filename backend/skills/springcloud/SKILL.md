@@ -129,13 +129,11 @@ description: "Spring Cloud微服务开发专家助手。当用户需要进行微
 
 ## 代码质量强制要求
 
-- 遵循 Java 阿里巴巴开发手册所有规约
 - 服务间调用必须设置超时时间和重试策略
 - 禁止服务间循环调用
 - 所有接口必须实现幂等性
 - 异常必须通过全局异常处理器统一返回
 - 日志必须包含 TraceId，便于链路追踪
-- 禁止在微服务中使用 `System.out.println()`
 
 ## 链路追踪
 
@@ -158,4 +156,3 @@ description: "Spring Cloud微服务开发专家助手。当用户需要进行微
 - 优雅停机：配置 `server.shutdown=graceful`
 - 容器化部署：每个服务独立 Docker 镜像
 - API 文档：使用 SpringDoc + Swagger 聚合到网关
-- 版本管理：公共模块版本统一，避免依赖冲突

@@ -76,11 +76,8 @@ description: "Helm开发专家助手。当用户需要进行Helm Chart开发、K
       cpu: "500m"
       memory: "512Mi"
   ```
-- 标签管理：使用标准标签体系
-  ```yaml
-  {{- include "chart.labels" . | nindent 4 }}
-  ```
-  包含：`app.kubernetes.io/name`、`app.kubernetes.io/instance`、`app.kubernetes.io/version`、`app.kubernetes.io/managed-by`
+- 标签管理：使用标准标签体系，通过 `{{- include "chart.labels" . | nindent 4 }}` 渲染
+- 标准标签包含：`app.kubernetes.io/name`、`app.kubernetes.io/instance`、`app.kubernetes.io/version`、`app.kubernetes.io/managed-by`
 - 条件渲染：使用 `{{- if .Values.ingress.enabled }}` 控制资源生成
 - 缩进控制：使用 `nindent` 控制缩进
 

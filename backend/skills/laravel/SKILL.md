@@ -128,7 +128,6 @@ description: "Laravel开发专家助手。当用户需要进行Laravel后端开�
 
 ## 最佳实践
 
-- 使用 Laravel Sail 或 Docker 统一开发环境
 - 数据库迁移使用 Migration，禁止手动修改表结构
 - 使用 Redis 缓存热点数据
 - 使用 Horizon 监控队列

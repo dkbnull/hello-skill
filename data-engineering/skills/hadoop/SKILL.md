@@ -47,9 +47,6 @@ description: "Hadoop开发专家助手。当用户需要进行Hadoop大数据存
 
 ## MapReduce 规范
 
-- 优先使用 Spark 替代 MapReduce：
-  - MapReduce 仅用于遗留系统维护
-  - 新开发必须使用 Spark / Flink
 - 必须使用 MapReduce 时：
   - Mapper：继承 `Mapper`，实现 `map()` 方法
   - Reducer：继承 `Reducer`，实现 `reduce()` 方法
@@ -87,9 +84,7 @@ description: "Hadoop开发专家助手。当用户需要进行Hadoop大数据存
 - 禁止魔法值：副本数、块大小等必须定义为命名常量或配置项
 - MapReduce 必须使用 Combiner 优化
 - HDFS 写入必须校验数据完整性（CRC32）
-- 必须处理小文件问题：合并或归档
 - MapReduce 任务必须设置超时：`mapreduce.task.timeout`
-- 禁止在 HDFS 存储临时大量小文件
 - 数据处理必须幂等，支持重跑
 
 ## 运维规范
@@ -111,9 +106,6 @@ description: "Hadoop开发专家助手。当用户需要进行Hadoop大数据存
 
 ## 最佳实践
 
-- 新项目优先使用 Spark / Flink 替代 MapReduce
 - HDFS 数据使用 Parquet / ORC 列式格式存储
 - 使用 HDFS Snapshot 实现数据备份
-- 小文件问题必须治理：合并 + 归档
-- NameNode HA 必须配置，避免单点故障
 - 定期清理临时数据和过期数据

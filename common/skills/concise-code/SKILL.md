@@ -29,11 +29,6 @@ public void validateEmail(String email) { /* 几乎相同的校验逻辑 20 行 
 
 ✅ 精简：
 public void validateField(String value, ValidationRule... rules) { /* 统一校验逻辑 */ }
-
-检查方法：
-□ 是否有超过 5 行的代码块在两处以上出现？
-□ 是否有仅变量名不同的相似函数/方法？
-□ 是否有可提取为工具方法的重复逻辑？
 ```
 
 ### 模式二：冗余抽象
@@ -44,12 +39,6 @@ public void validateField(String value, ValidationRule... rules) { /* 统一校�
 
 ❌ 冗余：为一种支付方式创建 PaymentStrategy 接口 + 工厂 + 3 个类
 ✅ 精简：一个 pay() 方法，if-else 分支即可
-
-检查方法：
-□ 接口是否只有一个实现？→ 删除接口，直接用类
-□ 工厂是否只生产一种产品？→ 删除工厂，直接 new
-□ 抽象类是否只有一层继承？→ 合并为一个类
-□ 配置项是否只有一种取值？→ 硬编码常量即可
 ```
 
 ### 模式三：重复造轮
@@ -70,12 +59,6 @@ Collections.reverse(list);
 ❌ 重复造轮：手写字符串分割解析 JSON
 ✅ 精简：使用 Jackson / Gson 解析
 objectMapper.readValue(json, User.class);
-
-检查方法：
-□ 是否手写了语言/框架已内置的功能？
-□ 是否有标准库一行代码能完成的事却写了多行？
-□ 是否有现成的工具函数可以调用？
-□ 是否手写了常见算法而非调用库？
 ```
 
 ### 模式四：过度防御
@@ -99,12 +82,6 @@ public User getUser(Long id) {
 public User getUser(Long id) {
     return userRepository.findById(id);
 }
-
-检查方法：
-□ 是否对调用方已保证的参数反复校验？
-□ 是否有空 catch 块吞掉异常？
-□ 是否对不可能为 null 的值做 null 检查？
-□ 防御代码是否多于业务代码？
 ```
 
 ### 模式五：冗余注释
@@ -122,12 +99,6 @@ return result;
 ✅ 精简：
 user.setName("张三");
 return result;
-
-检查方法：
-□ 注释是否只是把代码翻译成中文？
-□ 注释是否与代码明显重复？
-□ 删除注释后是否影响理解？
-□ 是否对显而易见的逻辑加了注释？
 ```
 
 ### 模式六：预先实现
@@ -138,12 +109,6 @@ return result;
 
 ❌ 冗余：需求只要读 CSV，却实现了读 CSV/Excel/JSON 三种格式
 ✅ 精简：只实现读 CSV
-
-检查方法：
-□ 是否有需求未要求的功能？
-□ 是否有"预留"的扩展点？（违反 YAGNI）
-□ 是否有未使用的配置项？
-□ 是否有未调用的 public 方法？
 ```
 
 ## 精简策略
@@ -218,6 +183,7 @@ return result;
   - 是否有只有一个实现的接口？
   - 是否有只生产一种产品的工厂？
   - 是否有不必要的继承层次？
+  - 是否有只有一种取值的配置项？
 
 □ 重复造轮检查
   - 是否手写了标准库/框架已提供的能力？

@@ -12,7 +12,6 @@ description: "ClickHouse开发专家助手。当用户需要进行ClickHouse OLA
 - 使用 ClickHouse 24.x 版本
 - 使用 MergeTree 引擎家族
 - 使用 JDBC / HTTP 接口连接
-- 使用参数化查询
 
 ## 命名规范
 
@@ -40,7 +39,6 @@ description: "ClickHouse开发专家助手。当用户需要进行ClickHouse OLA
 
 ## 查询规范
 
-- 使用参数化查询
 - 避免 `SELECT *`，明确指定列名
 - 大结果集使用 `LIMIT`
 - 使用 `PREWHERE` 优化过滤（替代 `WHERE`）
@@ -69,7 +67,6 @@ description: "ClickHouse开发专家助手。当用户需要进行ClickHouse OLA
 - 必须使用参数化查询
 - 必须指定 `ORDER BY`
 - 必须指定 `PARTITION BY`
-- 禁止 `SELECT *`
 - 禁止在大表上无 `LIMIT` 查询
 - 必须设置 `TTL` 管理数据生命周期
 - `JOIN` 必须注意表顺序（小表在右）

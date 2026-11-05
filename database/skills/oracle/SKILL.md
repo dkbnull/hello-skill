@@ -94,14 +94,7 @@ description: "Oracle数据库开发专家助手。当用户需要进行Oracle数
 
 ## 代码质量强制要求
 
-- 禁止 `SELECT *`
-- 更新/删除必须带 WHERE 条件
-- 禁止在 WHERE 条件中对字段使用函数
-- 大批量操作使用 `FORALL` + `BULK COLLECT`
-- 禁止物理删除，使用逻辑删除
-- 必须使用 `EXCEPTION` 块处理错误
-- 绑定变量必须使用，禁止字符串拼接 SQL
-- 禁止在循环中逐条执行 DML
+- 通用 SQL 规范（禁止 `SELECT *`、更新/删除带 WHERE、分批执行、逻辑删除、禁止循环 DML 等）遵循 database/skills/sql 技能
 
 ## 性能优化
 
