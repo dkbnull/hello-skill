@@ -47,7 +47,7 @@ description: "Airflow开发专家助手。当用户需要进行Airflow工作流�
   - 文件传输：`S3ToRedshiftOperator` / `GCSToBigQueryOperator`
   - Python 逻辑：`@task` 装饰器（TaskFlow API）
   - 容器化任务：`KubernetesPodOperator`
-  - 禁止使用 `BashOperator` 执行复杂逻辑
+  - `BashOperator` 仅用于简单 Shell 命令
 - TaskFlow API：
   - 使用 `@task` 装饰器定义任务
   - 使用 XCom 传递小型数据（< 48KB），大数据通过存储传递
@@ -104,6 +104,14 @@ description: "Airflow开发专家助手。当用户需要进行Airflow工作流�
 - 超时控制：`execution_timeout` 限制 Task 执行时间
 - 资源监控：关注 Scheduler 队列积压和 Worker 负载
 - DAG 生命周期：`on_success_callback` / `on_failure_callback` 回调
+
+## 权限与安全
+
+- 认证授权：Webserver 使用 FAB（Flask-AppBuilder）认证，按默认角色（Admin / Op / User / Viewer / Public）授权，生产环境禁用匿名访问，企业内集成 LDAP / OAuth 登录
+- 密钥管理：连接与变量统一接入 Secrets Backend（HashiCorp Vault、AWS Secrets Manager、GCP Secret Manager 等），敏感值不在元数据库和 UI 明文留存
+- DAG 权限：以 DAG ID 划分角色权限（DAG 级 Permissions），不同业务线只能查看/操作自己的 DAG，禁止将 Admin 角色授予普通用户
+- 日志脱敏：密码、Token、AK/SK 等敏感信息禁止写入 Task 日志，敏感 Variable 由 Airflow 自动脱敏，自定义日志输出需自行过滤敏感字段
+- 访问安全：生产环境部署在反向代理后并启用 HTTPS，保持 `expose_config = False`，禁止公网直接访问 UI
 
 ## 最佳实践
 

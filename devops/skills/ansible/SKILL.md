@@ -12,7 +12,7 @@ description: "Ansible开发专家助手。当用户需要进行自动化配置�
 - 使用 Ansible 2.15+ 版本
 - 使用 Python 3.10+ 运行环境
 - 使用 `ansible-core` 精简安装，按需安装 Collection
-- 禁止使用已废弃模块（`command` 优先于 `shell`）
+- 模块使用上 `command` 优先于 `shell`，仅在需要管道/重定向时使用 `shell`
 - 生产环境必须使用 `--check` 预检后再执行
 
 ## 命名规范

@@ -105,7 +105,22 @@ description: "MongoDB开发专家助手。当用户需要进行MongoDB文档模�
 - 启用 TLS/SSL 加密通信
 - 按最小权限原则创建数据库用户
 - 审计日志记录关键操作
-- 定期备份数据，使用 `mongodump` 或云厂商备份
+
+## 备份与恢复
+
+- 备份策略：副本集从隐藏节点做每日全量 + oplog 增量，大集群优先文件系统快照；备份文件异地存放，分片集群必须连同 config server 一起备份
+- 逻辑备份（mongodump/mongorestore）：
+  - 备份：`mongodump --uri="mongodb://host:27017" --db=mydb --out=/backup/20240101 --gzip`
+  - 恢复：`mongorestore --uri="mongodb://host:27017" --db=mydb --drop /backup/20240101/mydb`
+  - 大集合逻辑备份慢且恢复需重建索引，适合中小规模；大集群用 `--archive` 单文件流式传输
+- 文件系统快照（物理）：
+  - 对数据目录做 LVM/EBS 快照，必须同时快照 WiredTiger journal（默认与数据同目录），否则快照不一致
+  - 快照期间用 `db.fsyncLock()` 锁写入保证一致性，完成后 `db.fsyncUnlock()`；点一致快照（如 EBS）且 journal 与数据同时快照时可省略
+  - 恢复：还原快照到数据目录后重启实例
+- 副本集隐藏节点备份：增加 hidden 节点（`priority: 0, hidden: true`）承接 mongodump 与快照，不影响业务读写路由；备份前用 `rs.printSecondaryReplicationInfo()` 确认复制延迟已追平
+- oplog 时间点恢复（PITR）：备份加 `--oplog` 保证备份点一致，恢复用 `mongorestore --oplogReplay` 重放到一致点，再按 oplog 过滤重放到误操作前一刻；oplog 时间窗口（`rs.printReplicationInfo()`）必须覆盖备份周期，否则出现恢复空洞；Percona Backup for MongoDB（PBM）支持自动化 PITR
+- 分片集群备份一致性：先 `sh.stopBalancer()` 停均衡再备份，恢复期间保持关闭；必须同时备份各分片与 config server（chunk 迁移元数据在 config 库）；mongos 发起的逻辑备份各分片时间点不一致，全局一致需各分片同一时刻做文件系统快照，或直接使用 PBM
+- 备份校验与恢复演练：定期在测试环境 mongorestore 恢复，比对集合数、索引（`db.coll.getIndexes()`）与抽样文档；演练记录 RTO/RPO
 
 ## 最佳实践
 

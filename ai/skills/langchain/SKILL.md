@@ -13,7 +13,7 @@ description: "LangChain开发专家助手。当用户需要进行LangChain应用
 - Python 3.10+ 版本
 - 使用 LangGraph 构建 Agent 工作流（替代旧版 AgentExecutor）
 - 类型注解必须完整，使用 `pydantic v2` 进行数据校验
-- 禁止使用已废弃的 `llm` 参数，统一使用 `llm` → `model` 新命名
+- 禁止使用已废弃的 `llm` 参数名，模型参数统一使用新命名 `model`
 
 ## 命名规范
 

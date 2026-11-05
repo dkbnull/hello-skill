@@ -35,7 +35,7 @@ description: "Spring Cloud微服务开发专家助手。当用户需要进行微
 - 服务名：小写 + 短横线分隔（`user-service`、`order-service`）
 - 包名：小写点分隔（`com.example.userservice`）
 - API 路径：`/api/{服务名}/v1/...`（`/api/user/v1/users`）
-- 配置文件：`bootstrap.yml` + `application.yml`
+- 配置文件：`application.yml`，Spring Cloud 2021.x+ 使用 `spring.config.import=nacos:` 方式接入配置中心（不再依赖 `bootstrap.yml`）；低版本仍可用 `bootstrap.yml`
 - 常量、类名、方法名遵循 Java 阿里巴巴开发手册规范
 
 ## 服务注册与发现

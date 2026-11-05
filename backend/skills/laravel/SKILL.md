@@ -78,6 +78,13 @@ description: "Laravel开发专家助手。当用户需要进行Laravel后端开�
 - 类成员排列顺序：Trait → 常量 → 属性 → 构造方法 → 公有方法 → 受保护方法 → 私有方法
 - 使用 Laravel Pint 格式化代码
 
+## 接口与返回值规范
+
+- 统一响应结构：通过 API Resource 包装或自定义响应宏（`Response::macro`）统一输出 code、message、data 结构
+- 成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
+- 错误码分段规则与响应结构详见 common/skills/api-design 技能
+- 异常经 Handler 的 `render()` 方法统一渲染为该响应结构，禁止控制器内自行拼装错误格式
+
 ## 代码质量强制要求
 
 - 禁止空指针：所有可能为 null 的返回值必须判空，使用 `?->`、`??` 或 `optional()`
@@ -109,6 +116,15 @@ description: "Laravel开发专家助手。当用户需要进行Laravel后端开�
 - 使用 `RefreshDatabase` trait 重置数据库
 - Factory 定义测试数据，禁止手动创建
 - 覆盖率目标：核心逻辑 80%+
+
+## 部署规范
+
+- 运行模式：标准部署使用 PHP-FPM + nginx（`fastcgi_pass` 到 FPM），高性能常驻场景使用 Laravel Octane（Swoole / RoadRunner）
+- 发布缓存：发布流程执行 `php artisan config:cache`、`route:cache`、`view:cache`；依赖安装使用 `composer install --no-dev --optimize-autoloader`，开启 opcache
+- 数据库变更：生产执行 `php artisan migrate --force`（`--force` 跳过交互确认），迁移必须向后兼容以支持滚动发布
+- 队列 Worker：使用 Supervisor 守护 `php artisan queue:work` 进程，发布后执行 `php artisan queue:restart` 平滑重启，避免旧代码消费新消息结构
+- 定时任务：crontab 仅注册一条 `php artisan schedule:run`（每分钟），调度定义统一收敛在 `routes/console.php`
+- 环境配置：`.env` 文件权限收紧（640）且禁止提交仓库，生产设置 `APP_ENV=production`、`APP_DEBUG=false`
 
 ## 最佳实践
 

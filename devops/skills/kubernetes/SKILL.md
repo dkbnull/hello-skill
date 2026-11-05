@@ -9,7 +9,9 @@ description: "Kubernetes开发专家助手。当用户需要进行K8s容器编�
 
 ## 技术栈强制约束
 
-- 使用 Kubernetes 1.27+ 版本
+> Helm Chart 规范遵循 helm 技能，镜像构建规范遵循 docker 技能，本技能仅覆盖 K8s 平台规范。
+
+- 使用 Kubernetes 1.28+ 版本
 - 使用 kubectl 命令行工具
 - 包管理使用 Helm 3
 - 清单文件使用 YAML，推荐使用 Kustomize 管理多环境
@@ -43,10 +45,8 @@ description: "Kubernetes开发专家助手。当用户需要进行K8s容器编�
   - `livenessProbe`：存活检查，失败重启 Pod
   - `readinessProbe`：就绪检查，失败从 Service 摘除
   - `startupProbe`：启动检查，慢启动应用使用
-- 镜像规范：
-  - 禁止使用 `latest` 标签，必须指定明确版本
-  - 优先使用最小化基础镜像（Alpine、Distroless）
-  - 镜像仓库使用私有仓库
+- 镜像构建规范（标签、基础镜像、漏洞扫描）遵循 docker 技能
+- 镜像仓库使用私有仓库
 - 安全上下文：
   - 禁止以 root 运行：`runAsNonRoot: true`
   - 设置只读文件系统：`readOnlyRootFilesystem: true`
@@ -101,32 +101,10 @@ description: "Kubernetes开发专家助手。当用户需要进行K8s容器编�
 
 - 所有 Pod 必须设置资源限制（requests + limits）
 - 所有 Pod 必须配置健康检查
-- 镜像禁止使用 `latest` 标签
 - 禁止以 root 用户运行容器
 - Secret 禁止明文存储
 - 生产环境必须配置 PDB
 - 禁止单副本部署无状态服务
-
-## Helm Chart 规范
-
-- Chart 目录结构：
-  ```
-  chart/
-  ├── Chart.yaml
-  ├── values.yaml
-  ├── templates/
-  │   ├── deployment.yaml
-  │   ├── service.yaml
-  │   ├── ingress.yaml
-  │   ├── configmap.yaml
-  │   ├── secret.yaml
-  │   └── _helpers.tpl
-  └── .helmignore
-  ```
-- `values.yaml` 提供合理默认值
-- 多环境覆盖：`values-dev.yaml`、`values-prod.yaml`
-- 使用 `_helpers.tpl` 定义通用模板
-- Chart 版本遵循 SemVer
 
 ## 监控与日志
 
@@ -144,7 +122,6 @@ description: "Kubernetes开发专家助手。当用户需要进行K8s容器编�
 - RBAC 权限控制：最小权限原则
 - NetworkPolicy 限制 Pod 间网络访问
 - Pod Security Standards：Restricted 模式
-- 镜像扫描：使用 Trivy 扫描漏洞
 - 审计日志记录 API 调用
 
 ## 最佳实践

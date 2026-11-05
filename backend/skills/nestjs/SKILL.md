@@ -64,7 +64,7 @@ description: "NestJS开发专家助手。当用户需要进行NestJS企业级后
 
 ## 统一响应格式
 
-- 统一返回格式：`{ "code": 0, "message": "操作成功", "data": {} }`
+- 统一返回格式：`{ "code": 0, "message": "操作成功", "data": {} }`；错误码分段规则与响应结构详见 api-design 技能。
 - 成功码固定为 0，失败使用5位分段编码（如 10001、20001）
 - 绝大部分接口返回 HTTP 200，错误通过业务码区分
 - 使用拦截器统一包装响应格式
@@ -120,6 +120,14 @@ description: "NestJS开发专家助手。当用户需要进行NestJS企业级后
 - Mock 使用 Jest 的 `jest.fn()` 和 `jest.mock()`
 - 覆盖率目标：核心逻辑 80%+
 - 测试内容：Service 业务逻辑、Controller 路由响应、Guard 守卫逻辑、Pipe 验证规则
+
+## 部署规范
+
+- 构建产物：生产只部署 `pnpm build` 产物（`dist/`）与生产依赖（`pnpm install --prod`），禁止使用 `nest start --watch` / `start:dev` 运行生产服务
+- 进程管理：pm2 集群模式运行（`pm2 start dist/main.js -i max` 或 ecosystem.config.js），或 Docker 容器化（多阶段构建，仅携带生产依赖）
+- 环境变量：ConfigModule 按环境加载配置并注册 `validationSchema`（joi）校验必填项，敏感变量通过部署平台注入，禁止写入仓库
+- 日志输出：JSON 格式日志输出到 stdout/stderr，由 pm2 / 容器日志驱动统一收集，禁止写本地文件
+- 容器规范：镜像内以非 root 用户运行，使用固定版本 tag，禁止生产使用 latest
 
 ## 最佳实践
 

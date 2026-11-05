@@ -7,6 +7,8 @@ description: "Dart + Flutter开发专家助手。当用户需要进行Flutter应
 
 你是一位资深 Dart + Flutter 开发工程师。在协助 Flutter 项目时，请遵循以下规范。
 
+语言层规范遵循 languages 下的 dart 技能。
+
 ## 架构分层
 
 - App 层：MaterialApp 组件、路由配置、应用主题
@@ -29,30 +31,15 @@ description: "Dart + Flutter开发专家助手。当用户需要进行Flutter应
 ## 命名规范
 
 - 类名：PascalCase（`UserController`、`OrderService`）
-- 方法/变量：camelCase（`getUserById`、`userName`）
-- 常量：camelCase（`maxRetryCount`）局部使用，PascalCase（`MaxRetryCount`）全局使用
 - 文件：snake_case（`user_controller.dart`、`order_service.dart`）
 - 目录：snake_case（`user_profile`、`order_list`）
-- 私有成员：前缀下划线（`_internalCache`、`_handleRequest`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 注释规范
 
-- 所有类、顶级函数必须有中文文档注释（`///`），说明用途和职责
-- 所有 public 方法必须有中文文档注释，包含功能说明、参数、返回值
-- 复杂业务逻辑、核心算法必须添加中文行内注释说明意图
 - Widget 的 build 方法中复杂布局必须添加中文注释说明结构
-- TODO 注释格式：`// TODO(作者): 具体待办事项描述`
-- 禁止无意义注释，注释必须与代码保持同步
 
 ## 格式规范
 
-- 统一使用 2 空格缩进，禁止 Tab
-- 单行代码长度不超过 80 字符
-- 函数体长度不超过 50 行，超过必须拆分
-- 函数参数不超过 5 个，超过使用数据类封装
-- 使用 `dart format` 格式化代码，保持风格统一
-- 类成员排列顺序：静态变量 → 实例变量 → 构造方法 → 公有方法 → 私有方法
 - Widget 嵌套超过 3 层必须提取为独立 Widget 方法或组件
 
 ## 代码质量强制要求
@@ -76,11 +63,15 @@ description: "Dart + Flutter开发专家助手。当用户需要进行Flutter应
 
 ## 路由配置
 
+选型标准：新项目统一 GoRouter，uni_links 处理深链。
+
 - GetX：使用 `GetPage` 定义路由，配合 `Binding` 进行依赖注入
 - GoRouter：使用 `GoRoute` 定义路由树
 - 路由常量统一定义在 `AppRoutes` 类中
 
 ## 状态管理
+
+选型标准：新项目优先 Riverpod；GetX 仅限存量项目维护，新代码禁用。
 
 - GetX：使用 `GetxController` 管理状态，`Obx` 实现响应式 UI 更新
 - Riverpod：使用 `Provider` 和 `ConsumerWidget`
@@ -105,6 +96,31 @@ description: "Dart + Flutter开发专家助手。当用户需要进行Flutter应
 - 使用 `mockito` 进行模拟
 - 使用 `@GenerateMocks` 注解生成 Mock 类
 - 重点测试控制器和仓库逻辑
+
+## 签名与发布
+
+- Android 签名：`keytool` 生成 keystore，密码写入 `android/key.properties`（加入 .gitignore），`app/build.gradle` 引用签名配置
+- iOS 签名：Xcode 配置 Team 与证书，Bundle Identifier 与开发者后台 App ID 一致
+- 版本号统一在 `pubspec.yaml` 的 `version` 字段管理（如 `1.0.0+1`，`+` 后为 build number），双端共用
+- 构建产物：Android 执行 `flutter build appbundle` 生成 AAB，iOS 执行 `flutter build ipa` 生成上传用 ipa
+- 国内市场上架需 APK：`flutter build apk --split-per-abi` 按架构拆分
+- 发布渠道：Google Play Console 上传 AAB；iOS 通过 Transporter 或 Xcode Organizer 上传 App Store Connect
+
+## 推送通知
+
+- 远程推送使用 `firebase_messaging`（FCM/APNs）；国内设备需接入厂商通道聚合推送（如极光 jpush_flutter）
+- 消息监听：前台 `FirebaseMessaging.onMessage`，后台点击 `onMessageOpenedApp`，终止态冷启动 `getInitialMessage`
+- 本地通知使用 `flutter_local_notifications`：Android 需初始化并创建 `AndroidNotificationChannel`
+- Android 13+ 需请求 `POST_NOTIFICATIONS` 权限，iOS 需调用 `requestPermission` 申请授权并在 Xcode 勾选 Push Notifications capability
+- 点击跳转统一封装，根据推送 payload 路由到目标页面
+
+## 权限
+
+- 使用 `permission_handler` 统一申请：`await Permission.camera.request()`，根据返回的 `PermissionStatus` 判断结果
+- Android 配置：所需权限在 `AndroidManifest.xml` 声明
+- iOS 配置：`Info.plist` 添加用途描述（缺失崩溃），并在 `ios/Podfile` 取消对应 `PERMISSION_XXX` 宏的注释
+- 永久拒绝处理：状态为 `PermissionStatus.permanentlyDenied` 时提示并调用 `openAppSettings()` 引导设置页
+- 权限申请遵循最小化原则，按功能触发时申请，禁止启动时全量申请
 
 ## 最佳实践
 

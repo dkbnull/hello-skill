@@ -123,7 +123,7 @@ description: "Qt开发专家助手。当用户需要进行Qt桌面应用开发�
 
 - 单元测试使用 Qt Test 框架
 - 测试类命名：`{被测类}Test`（`UserServiceTest`）
-- 测试函数命名：`test_{方法名}_{场景}`
+- 测试函数命名：`test_{方法名}_{场景}_{期望结果}`，默认命名规范见 common 下的 testing 技能
 - UI 测试使用 `QTest` 事件模拟
 - 使用 `QSignalSpy` 验证信号发射
 

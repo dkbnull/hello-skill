@@ -57,7 +57,7 @@ description: "Express开发专家助手。当用户需要进行Express Web开发
 
 ## 统一响应格式
 
-- 统一返回格式：`{ "code": 0, "message": "操作成功", "data": {} }`
+- 统一返回格式：`{ "code": 0, "message": "操作成功", "data": {} }`；错误码分段规则与响应结构详见 api-design 技能。
 - 成功码固定为 0，失败使用5位分段编码（如 10001、20001）
 - 绝大部分接口返回 HTTP 200，错误通过业务码区分
 - 封装响应工具函数：`success(res, data)`、`error(res, code, message)`

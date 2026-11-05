@@ -7,6 +7,8 @@ description: "iOS开发专家助手。当用户需要进行iOS应用开发、Swi
 
 你是一位资深 iOS 开发工程师。在协助 iOS 项目时，请遵循以下规范。
 
+语言层规范遵循 languages 下的 swift 技能，本技能仅覆盖 iOS 平台规范。
+
 ## 技术栈强制约束
 
 - 使用 Swift 5.9+ 作为主要开发语言，禁止新项目使用 Objective-C
@@ -119,6 +121,32 @@ description: "iOS开发专家助手。当用户需要进行iOS应用开发、Swi
 - Mock 使用协议 + 测试实现
 - 测试命名：`test_{方法名}_{场景}_{期望结果}`
 - 快照测试使用 `swift-snapshot-testing`
+
+## 签名与发布
+
+- 证书管理：开发者后台创建 Apple Development / Apple Distribution 证书，Xcode 在 Signing & Capabilities 勾选 Automatically manage signing 自动维护描述文件
+- 描述文件（Provisioning Profile）绑定证书、App ID 与测试设备，分发前确认未过期；发布证书有效期 1 年，及时续期
+- 测试分发使用 TestFlight：内部测试最多 100 人免审核，外部测试最多 10000 人需 Beta App Review
+- 提审流程：Xcode Archive 上传 App Store Connect，填写版本信息、截图、App 隐私标签与隐私政策链接
+- 中国区上架需提供 ICP 备案号，注意审核指南常见驳回项（如 4.2 最低功能要求、隐私合规）
+- 版本号：Marketing Version 对外展示，Build Number 单调递增
+
+## 推送通知
+
+- 推送链路基于 APNs，服务端优先使用 Token 认证（.p8 密钥，替代旧证书方式）
+- 申请授权：`UNUserNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge])`
+- 注册 Device Token：实现 `application(_:didRegisterForRemoteNotificationsWithDeviceToken:)` 并上报服务端
+- 前台展示：默认前台不展示通知，需实现 delegate 的 `willPresent` 回调并返回 `.banner` 等展示选项
+- 点击响应：实现 `didReceive` 回调处理通知点击与自定义 action
+- 静默推送需开启 Background Modes 的 Remote notifications，实现 `application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`
+
+## 权限
+
+- Info.plist 必须声明用途描述（如 `NSCameraUsageDescription`、`NSLocationWhenInUseUsageDescription`），缺失对应 API 直接崩溃
+- 定位：`CLLocationManager.requestWhenInUseAuthorization()` 或 `requestAlwaysAuthorization()`，通过 delegate 监听授权状态变化
+- 相机：`AVCaptureDevice.requestAccess(for: .video)`；相册选择推荐 `PHPickerViewController`（无需相册权限）
+- 拒绝降级：检查 `CLLocationManager.authorizationStatus` 等授权状态，拒绝时隐藏对应功能并降级提示
+- 引导设置页：`UIApplication.openSettingsURLString` 打开本应用系统设置
 
 ## 最佳实践
 

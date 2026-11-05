@@ -88,6 +88,32 @@ description: "UniApp开发专家助手。当用户需要进行UniApp跨平台开
 - 使用 `uni-app` 官方测试工具
 - 兼容性测试覆盖各目标平台
 
+## 发布
+
+- `manifest.json` 基础配置：DCloud AppID、应用名称、图标、启动界面、`versionName` / `versionCode`
+- 云打包：HBuilderX → 发行 → 原生 App-云打包，可选 DCloud 公共测试证书或自有证书；正式发布必须使用自有 Android keystore 并妥善保管，签名变更将导致无法覆盖安装
+- 离线打包：Android 集成 Android Studio 工程与 uni-app SDK，iOS 集成 Xcode 工程与 SDK，签名按原生工程配置
+- 国内应用市场上架（华为、小米、OPPO、vivo、应用宝等）：需软件著作权证书、隐私政策链接，并完成各市场安全检测；iOS 上架走 App Store Connect 提审。App 备案（2023 年起工信部强制，未备案无法上架）
+- 隐私合规：配置 `androidPrivacy.json` 隐私弹窗，App 首次启动先弹隐私协议（未配置无法通过国内市场审核）
+
+## 推送
+
+- 使用 uniPush 2.0（DCloud 官方推送，基于个推），自动聚合华为、小米、OPPO、vivo、荣耀等厂商通道；uniPush 1.0 不用于新项目
+- `manifest.json` 中开通 uniPush 并配置各厂商通道参数（AppKey、AppSecret 等）
+- 客户端：`uni.getPushClientId()` 获取设备推送标识（cid）并上报服务端，`uni.onPushMessage()` 监听通知与透传消息
+- 服务端推送：uniCloud 云函数使用 `uniCloud.getPushManager().push()`，或调用个推 REST API 按 cid 推送
+- 透传消息需自行调用 `uni.createPushMessage` 创建通知栏消息，通知消息由系统直接展示
+- 厂商通道对送达与展示有配额限制，重要通知优先走厂商通知栏通道
+
+## 权限
+
+- Android 权限声明：`manifest.json` 权限配置中勾选，或源码视图添加 `<uses-permission>`
+- iOS 隐私描述：`manifest.json` 中配置定位、相机、相册等隐私权限访问描述文案
+- Android 运行时权限申请：`plus.android.requestPermissions(['android.permission.CAMERA'], successCallback, errorCallback)`，在功能触发时调用
+- iOS 权限由 uni API 首次调用触发系统授权弹窗（如 `uni.getLocation` 触发定位、`uni.chooseImage` 触发相册），无需手动 request
+- 授权状态检查：`uni.getAppAuthorizeSetting()` 获取各权限状态，`denied` 时引导设置页（iOS 用 `plus.runtime.openURL('app-settings:')`）
+- 平台差异逻辑使用条件编译隔离（`#ifdef APP-ANDROID` / `#ifdef APP-IOS`）
+
 ## 最佳实践
 
 - 使用 Pinia 状态管理

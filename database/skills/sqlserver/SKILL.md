@@ -14,6 +14,8 @@ description: "SQL Server开发专家助手。当用户需要进行SQL Server数�
 - 排序规则：`Chinese_PRC_CI_AS` 或 `Latin1_General_CI_AS`
 - 生产环境必须启用完整恢复模式 + 定期备份
 
+> 事务隔离级别跨库口径见 database/skills/sql，跨库项目显式指定。
+
 ## 命名规范
 
 - 数据库名：小写 + 下划线分隔（`user_center`、`order_system`）
@@ -100,6 +102,15 @@ description: "SQL Server开发专家助手。当用户需要进行SQL Server数�
 - 临时表 vs 表变量：大数据量使用临时表（支持索引）
 - 使用 `WITH(NOLOCK)` 减少读锁（允许脏读场景）
 - 分区表：大表按时间或范围分区
+
+## 监控与诊断
+
+- DMV 查询统计：`sys.dm_exec_query_stats` 按总耗时 / CPU / 逻辑读排序定位 Top SQL，配合 `sys.dm_exec_sql_text`、`sys.dm_exec_query_plan` 关联取出 SQL 文本与执行计划
+- 实时会话排查：`sys.dm_exec_requests` 查看当前请求与阻塞链（`blocking_session_id`），`sys.dm_os_waiting_tasks` 定位资源等待的具体任务
+- Extended Events：替代已弃用的 SQL Trace / Profiler，采集死锁（`xml_deadlock_report`）、阻塞超阈值、登录失败等事件；会话只抓目标事件并限制内存与落盘，避免生产开销
+- Query Store：按库启用（`ALTER DATABASE ... SET QUERY_STORE = ON`），保留查询计划历史与运行时统计，定位计划回退（参数嗅探），必要时使用 `sp_query_store_force_plan` 强制执行计划
+- 等待统计：采样分析 `sys.dm_os_wait_stats`（可用 `DBCC SQLPERF('sys.dm_os_wait_stats', CLEAR)` 清零重计），按等待类型归因：`PAGEIOLATCH_*` → IO 瓶颈、`LCK_M_*` → 锁争用、`WRITELOG` → 事务日志写入瓶颈、`CXPACKET` → 并行度
+- 基线管理：定期留存 DMV / 等待统计快照作为基线，故障时对比基线定位异常增量
 
 ## 安全规范
 

@@ -60,6 +60,7 @@ description: "Fortran开发专家助手。当用户需要进行Fortran科学计�
 - 统一使用 4 空格缩进，禁止 Tab
 - 单行代码长度不超过 100 字符
 - 函数体长度不超过 80 行
+- 函数参数不超过 5 个，超过使用派生类型封装
 - 使用 `end do` / `end if` / `end subroutine` 完整形式
 - 使用 `fprettify` 格式化代码
 

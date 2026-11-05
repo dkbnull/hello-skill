@@ -101,8 +101,8 @@ description: "Tauri开发专家助手。当用户需要进行Tauri桌面应用�
 - 使用 `tauri build` 构建生产包
 - 配置应用元信息（名称、版本、作者、描述）
 - 配置应用图标（多种尺寸，使用 `tauri icon` 生成）
-- Windows 配置 MSI 或 NSIS 安装包
-- macOS 配置 DMG 安装包，必须配置代码签名
+- Windows 配置 MSI 或 NSIS 安装包，同样必须配置代码签名证书，否则 SmartScreen 拦截
+- macOS 配置 DMG 安装包，需 Developer ID 签名 + 公证
 - Linux 配置 AppImage 或 deb 包
 - 更新功能使用 `tauri-plugin-updater`
 

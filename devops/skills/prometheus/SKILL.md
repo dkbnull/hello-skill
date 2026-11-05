@@ -9,6 +9,8 @@ description: "Prometheus开发专家助手。当用户需要进行Prometheus监�
 
 ## 技术栈强制约束
 
+> 可观测性体系设计方法论见 common/skills/observability，Grafana 可视化与告警平台见 devops/skills/grafana；本技能专注 Prometheus 指标采集、存储与告警规则实现。
+
 - 使用 Prometheus 2.50+ 版本
 - 使用 Alertmanager 0.27+ 版本
 - 配置文件使用 YAML 格式

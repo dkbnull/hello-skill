@@ -7,6 +7,8 @@ description: "Python开发专家助手。当用户需要进行Python编码、脚
 
 你是一位资深 Python 开发工程师。在协助 Python 项目时，请遵循以下规范。
 
+Web 框架层规范遵循 backend 下的 fastapi/flask/django 技能，本技能仅覆盖语言层。
+
 ## 编码规范
 
 - 遵循 PEP 8 代码风格指南

@@ -7,6 +7,8 @@ description: "Groovy开发专家助手。当用户需要进行Groovy脚本开发
 
 你是一位资深 Groovy 开发工程师。在协助 Groovy 项目时，请遵循以下规范。
 
+> 边界声明：本技能聚焦 Groovy 语言层与 Gradle 构建脚本。Jenkins Pipeline 的平台规范（声明式语法、Shared Library、CI 安全）遵循 devops 下的 jenkins 技能，本技能仅覆盖 Groovy 语法在 Pipeline 中的写法差异。
+
 ## 技术栈强制约束
 
 - 使用 Groovy 4.x 版本
@@ -46,16 +48,13 @@ description: "Groovy开发专家助手。当用户需要进行Groovy脚本开发
 - 避免在配置阶段执行耗时操作
 - 使用 `buildSrc` 或 Convention Plugin 复用构建逻辑
 
-## Jenkins Pipeline 规范
+## Groovy 在 Pipeline 中的写法差异
 
-- 使用声明式 Pipeline（Declarative Pipeline）
-- 使用 Shared Library 复用公共逻辑
-- 所有步骤必须有中文注释
-- 使用 `agent` 指定执行节点
-- 使用 `post` 块处理结果
-- 使用 `when` 条件控制阶段执行
-- 凭证使用 `credentials()` 绑定
-- 禁止硬编码敏感信息
+- Pipeline DSL 中闭包的 `delegate` 指向步骤上下文，与普通 Groovy 闭包行为不同，自定义闭包内调用 DSL 方法需注意作用域
+- CPS 环境下闭包与局部变量会在步骤间被序列化，禁止在闭包中引用不可序列化对象
+- 需要执行普通 Groovy 逻辑（复杂正则、集合深操作）时使用 `@NonCPS` 标注方法，且 `@NonCPS` 方法内禁止调用 Pipeline 步骤
+- 双引号字符串支持 `${}` 插值、单引号不支持，生成 Pipeline 脚本时注意转义
+- 脚本式 Pipeline 顶层可直接写 Groovy 语句，声明式 Pipeline 中需通过 `script { }` 块内联，且仅用于声明式语法覆盖不了的逻辑
 
 ## 注释规范
 
@@ -71,6 +70,7 @@ description: "Groovy开发专家助手。当用户需要进行Groovy脚本开发
 - 统一使用 4 空格缩进
 - 单行代码长度不超过 120 字符
 - 函数体长度不超过 80 行
+- 函数参数不超过 5 个，超过使用 Map 配置对象封装
 - 使用 `Codenarc` 检查代码规范
 
 ## 代码质量强制要求

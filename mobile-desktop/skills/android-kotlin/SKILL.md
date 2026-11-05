@@ -7,6 +7,8 @@ description: "Android Kotlin开发专家助手。当用户需要进行Android Ko
 
 你是一位资深 Android Kotlin 开发工程师。在协助 Android Kotlin 项目时，请遵循以下规范。
 
+Kotlin 语言层规范遵循 languages 下的 kotlin 技能，本技能仅补充 Android 平台规范。
+
 ## 技术栈强制约束
 
 - 使用 Kotlin 作为主要开发语言
@@ -88,7 +90,7 @@ description: "Android Kotlin开发专家助手。当用户需要进行Android Ko
   - 请求拦截器：添加 Token、TraceId
   - 响应拦截器：统一错误处理
 - 协程 + Flow 处理异步请求
-- 返回结果封装：`Result<T>` 或 `ApiResult<T>`，包含 code、message、data，成功码固定为 0，失败使用5位分段编码
+- 返回结果封装：`Result<T>` 或 `ApiResult<T>`，包含 code、message、data，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200；错误码分段规则与响应结构详见 common/skills/api-design 技能
 - JSON 解析使用 kotlinx.serialization 或 Moshi
 - 网络状态监听使用 `ConnectivityManager`
 
@@ -143,10 +145,37 @@ description: "Android Kotlin开发专家助手。当用户需要进行Android Ko
 
 - 单元测试使用 JUnit 5 + MockK（Kotlin 原生 Mock 框架）
 - UI 测试使用 Compose Testing
-- 测试命名：`should_{期望行为}_when_{条件}`
+- 测试命名：`should_{期望行为}_when_{条件}`，该 BDD 风格为框架惯例豁免，默认命名见 common 下的 testing 技能，同一项目内风格必须统一。
 - ViewModel 测试使用 Turbine 验证 Flow
 - Repository 测试使用 MockWebServer
 - 协程测试使用 `runTest`
+
+## 签名与发布
+
+- 使用 `keytool` 生成发布 keystore，密码通过 `keystore.properties`（加入 .gitignore）或环境变量注入 `build.gradle.kts` 的 `signingConfigs`，禁止硬编码
+- keystore 务必在异地保留副本，一旦丢失将永久失去为已发布应用推送更新的能力
+- 发布使用 Android App Bundle：`./gradlew bundleRelease`，Google Play 强制 AAB 格式，建议开启 Play App Signing
+- release 构建开启 R8 混淆（`isMinifyEnabled = true`）与资源收缩（`isShrinkResources = true`），维护 keep 规则
+- 版本号：`versionCode` 每次发版必须递增，`versionName` 采用语义化版本命名
+- 应用内更新：受国内市场合规约束，更新需跳转至应用当前所在官方商店完成，不得引导用户自行下载 APK 安装；海外接入 Google Play In-App Updates API
+
+## 推送通知
+
+- 海外使用 FCM（firebase-messaging），国内接入华为 HMS Push、小米、OPPO、vivo、荣耀等厂商通道，推荐极光、个推等聚合 SDK 统一接入
+- Android 8.0+ 必须创建 `NotificationChannel`，按业务划分渠道
+- Android 13+ 需动态申请 `POST_NOTIFICATIONS` 权限
+- Compose 中使用 `rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission())` 申请通知权限
+- 通知的 PendingIntent 需声明 `FLAG_IMMUTABLE`，Android 12 起系统强制校验
+- 点击跳转通过深链或 Intent extras 处理，数据消息依赖厂商通道长连接到达
+
+## 运行时权限
+
+- 定位、相机、麦克风、存储等危险权限须在运行时向用户发起授权，仅在清单中声明并不会自动获得
+- Compose：`rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted -> ... }`，在 `LaunchedEffect` 中触发申请
+- 非 Compose：`registerForActivityResult(ActivityResultContracts.RequestPermission())` 替代传统 `onRequestPermissionsResult` 回调
+- 申请前检查：`ContextCompat.checkSelfPermission()`；多权限使用 `RequestMultiplePermissions`
+- 处理拒绝：`shouldShowRequestPermissionRationale()` 为 true 先弹用途说明，永久拒绝引导用户到系统设置页
+- 敏感权限按需索取：待相关功能首次触发时再发起申请，不允许应用启动时集中索要全部权限
 
 ## 最佳实践
 

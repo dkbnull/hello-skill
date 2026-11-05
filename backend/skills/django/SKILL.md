@@ -7,6 +7,8 @@ description: "Django开发专家助手。当用户需要进行Django Web开发�
 
 你是一位资深 Django 开发工程师。在协助 Django 项目时，请遵循以下规范。
 
+Python 语言层规范（命名、注释、格式、质量）遵循 languages 下的 python 技能，本节仅补充框架特有约定。
+
 ## 技术栈强制约束
 
 - 使用 Django 5.0+ 版本
@@ -25,7 +27,6 @@ description: "Django开发专家助手。当用户需要进行Django Web开发�
 - 常量：UPPER_SNAKE_CASE（`MAX_RETRY_COUNT`）
 - 应用名：snake_case（`user_service`、`order_management`）
 - 文件名：snake_case（`views.py`、`user_service.py`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 项目结构规范
 
@@ -70,11 +71,18 @@ description: "Django开发专家助手。当用户需要进行Django Web开发�
 ## 格式规范
 
 - 统一使用 4 空格缩进
-- 单行代码长度不超过 120 字符
 - 函数体长度不超过 80 行
+- 函数参数不超过 5 个，超过使用数据类封装
 - 使用 `black` 格式化代码
 - 使用 `flake8` / `ruff` 检查代码
 - 使用 `isort` 管理导入顺序
+
+## 接口与返回值规范
+
+- 统一响应结构：通过自定义 Renderer 或封装统一的响应工具函数包装 DRF Response，输出 code、message、data 结构
+- 成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
+- 错误码分段规则与响应结构详见 common/skills/api-design 技能
+- 异常经自定义异常处理器统一转换为该响应结构，禁止视图内自行拼装错误格式
 
 ## 代码质量强制要求
 
@@ -103,6 +111,15 @@ description: "Django开发专家助手。当用户需要进行Django Web开发�
 - 使用 `factory_boy` 创建测试数据
 - API 测试使用 `APIClient`
 - 覆盖率目标：核心逻辑 80%+
+
+## 部署规范
+
+- 应用服务器：使用 gunicorn（或 uwsgi）运行 WSGI（`gunicorn project.wsgi:application --workers 2*CPU+1 --bind 127.0.0.1:8000`），禁止使用 `runserver` 对外服务
+- Nginx 反向代理：对外 80/443 由 nginx 接入，动态请求反代到 gunicorn，静态/媒体文件由 nginx 直接服务
+- 静态文件：发布流程中执行 `python manage.py collectstatic --noinput`，必须配置 `STATIC_ROOT`
+- 安全配置：生产 `DEBUG=False`，`ALLOWED_HOSTS` 显式配置业务域名，禁止 `['*']`；`SECRET_KEY`、数据库密码通过环境变量注入
+- 数据库迁移：发布时执行 `python manage.py migrate --no-input`，迁移必须向后兼容以支持滚动发布
+- 进程管理：使用 systemd / supervisor 守护 gunicorn，重载使用 `kill -HUP` 平滑重启
 
 ## 最佳实践
 

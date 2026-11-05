@@ -69,7 +69,7 @@ description: "Sentinel开发专家助手。当用户需要进行Sentinel限流�
   - 用于突发热点场景：爆款商品、单用户/单商品刷接口
   - 必须处理 ParamFlowException，返回降级响应
 - 系统自适应保护（SystemRule）：
-  - 维度：Load（仅 Linux/Unix）、平均 RT、并发线程数、入口 QPS、CPU 使用率（1.8+）
+  - 维度：Load（仅 Linux/Unix）、平均 RT、并发线程数、入口 QPS、CPU 使用率
   - 作为全局入口兜底防线，阈值结合压测水位设定，建议一次只启用一个维度
 - 授权规则（黑白名单）：按调用来源（origin）控制访问，用于服务间信任隔离
 
@@ -89,7 +89,6 @@ description: "Sentinel开发专家助手。当用户需要进行Sentinel限流�
 - RestTemplate：使用 `@SentinelRestTemplate` 注解声明兜底
 - 网关限流：引入 `spring-cloud-alibaba-sentinel-gateway`，配置网关流控规则（Route 维度 / API 分组）
 - 控制台必须内网部署并加鉴权，禁止暴露公网
-- 链路模式需要时关闭统一入口聚合：`spring.cloud.sentinel.web-context-unify=false`
 
 ## 注释规范
 

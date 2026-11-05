@@ -7,6 +7,8 @@ description: "Scala开发专家助手。当用户需要进行Scala函数式编�
 
 你是一位资深 Scala 开发工程师。在协助 Scala 项目时，请遵循以下规范。
 
+> 边界声明：本技能聚焦 Scala 语言层。Spark 专属规范（DataFrame 调优、资源管理、Structured Streaming 等）遵循 data-engineering 下的 spark 技能，本技能仅覆盖 Scala 语法与通用并发（Akka）等内容。
+
 ## 技术栈强制约束
 
 - 使用 Scala 3.x 版本
@@ -59,6 +61,7 @@ description: "Scala开发专家助手。当用户需要进行Scala函数式编�
 - 统一使用 2 空格缩进
 - 单行代码长度不超过 120 字符
 - 函数体长度不超过 80 行
+- 函数参数不超过 5 个，超过使用 case class 封装
 - 使用 `scalafmt` 格式化代码
 - 使用 `scalac` `-Xlint` 检查代码
 
@@ -71,15 +74,6 @@ description: "Scala开发专家助手。当用户需要进行Scala函数式编�
 - 必须处理异常，禁止空 `catch`
 - 尾递归必须标注 `@tailrec`
 - 禁止隐式转换滥用
-
-## 大数据开发规范
-
-- 使用 Apache Spark 处理大规模数据
-- 使用 Dataset/DataFrame API 替代 RDD
-- 使用 Catalyst 优化器自动优化
-- 分区策略合理设计
-- 避免 Driver 端收集大数据（`collect`）
-- 使用广播变量优化小表 Join
 
 ## 测试规范
 

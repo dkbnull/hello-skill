@@ -7,6 +7,8 @@ description: "Dart开发专家助手。当用户需要进行Dart编码、项目�
 
 你是一位资深 Dart 开发工程师。在协助 Dart 项目时，请遵循以下规范。
 
+Flutter 专属规范（widget、状态管理、路由）遵循 mobile-desktop 下的 flutter 技能，本技能仅覆盖 Dart 语言层。
+
 ## 编码规范
 
 - 始终启用严格的空安全

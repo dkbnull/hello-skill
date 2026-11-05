@@ -128,6 +128,23 @@ description: "Elasticsearch开发专家助手。当用户需要进行全文搜�
   - Force Merge 减少段数量
   - 删除旧数据使用 ILM
 
+## 备份与恢复
+
+- 备份策略：必须依赖 snapshot（快照）机制，禁止把副本分片当备份（误删索引会同时删除副本）；日志类索引在 ILM delete 阶段前确保有快照留存
+- Repository 注册：
+  - FS 仓库：`PUT _snapshot/my_repo {"type":"fs","settings":{"location":"/mnt/backups"}}`，仓库路径必须在所有节点 `elasticsearch.yml` 的 `path.repo` 白名单内
+  - S3 仓库：安装 repository-s3 插件后 `PUT _snapshot/my_s3_repo {"type":"s3","settings":{"bucket":"my-bucket","base_path":"es-backup"}}`
+- SLM 快照生命周期策略：
+  - `PUT _slm/policy/daily-snapshot` 定义 `schedule`（cron）、`repository`、`config.indices` 与 `retention`（如 `expire_after: 30d`）
+  - 手动触发 `POST _slm/policy/daily-snapshot/_execute`；retention 自动清理过期快照
+- 增量快照机制：快照基于 Lucene 段，只复制自上次快照后新增/变更的段，首次全量、后续增量，不阻塞写入；日志场景建议 `include_global_state: false`，避免恢复时覆盖集群全局状态
+- Restore 流程：
+  - 恢复：`POST _snapshot/my_repo/snap_1/_restore {"indices":"log-*","rename_pattern":"log_(.+)","rename_replacement":"restored_log_$1"}`
+  - 目标索引已存在会失败，需先删除或用重命名恢复；`ignore_unavailable: true` 允许部分索引缺失
+  - 监控：`GET _snapshot/my_repo/snap_1/_status` 与 `GET _recovery`
+- 版本兼容：快照只能恢复到相同或更高版本（向前兼容一个大版本，如 7.x 快照可恢复到 8.x），不可逆向；升级集群前先在测试集群用生产快照验证恢复
+- 备份校验与恢复演练：定期 `GET _snapshot/my_repo/_all` 校验快照完整性，每季度在测试集群完整 restore 并抽样比对文档数（`GET _count`），演练记录 RTO/RPO
+
 ## 最佳实践
 
 - 使用索引别名实现零停机重建索引

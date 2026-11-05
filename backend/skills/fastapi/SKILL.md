@@ -7,6 +7,8 @@ description: "Python + FastAPI开发专家助手。当用户需要进行FastAPI�
 
 你是一位资深 Python + FastAPI 开发工程师。在协助 FastAPI 项目时，请遵循以下规范。
 
+Python 语言层规范（命名、注释、格式、质量）遵循 languages 下的 python 技能，本节仅补充框架特有约定。
+
 ## 架构分层
 
 - API 层：端点定义，使用 `APIRouter` 组织路由，按版本分组（`/api/v1/`）
@@ -31,30 +33,25 @@ description: "Python + FastAPI开发专家助手。当用户需要进行FastAPI�
 
 ## 命名规范
 
-- 模块/包：snake_case（`user_service.py`）
 - 类名：PascalCase（`UserService`、`OrderRouter`）
 - 函数/方法：snake_case（`get_user_by_id`、`create_order`）
 - 常量：UPPER_SNAKE_CASE（`MAX_PAGE_SIZE`、`DEFAULT_TIMEOUT`）
 - 路由前缀：kebab-case（`/api/v1/user-profiles`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 注释规范
 
-- 所有模块、类必须有中文 docstring，说明用途和职责
-- 所有 public 函数/方法必须有中文 docstring，包含功能说明、参数、返回值、异常
 - API 端点必须使用中文 summary 和 description
-- 复杂业务逻辑、核心算法必须添加中文行内注释说明意图
-- TODO 注释格式：`# TODO: [作者] 具体待办事项描述`
-- 禁止无意义注释，注释必须与代码保持同步
 
 ## 格式规范
 
-- 统一使用 4 空格缩进，禁止 Tab
-- 单行代码长度不超过 120 字符
-- 函数体长度不超过 50 行，超过必须拆分
 - 函数参数不超过 5 个，超过使用 Pydantic 模型封装
-- 使用 `ruff` 进行代码格式化，保持风格统一
-- 类成员排列顺序：类变量 → 实例变量 → `__init__` → 公有方法 → 私有方法
+
+## 接口与返回值规范
+
+- 统一响应结构：自定义 `Result` Pydantic 模型（包含 code、message、data 字段）封装所有接口返回
+- 成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
+- 错误码分段规则与响应结构详见 common/skills/api-design 技能
+- 全局异常处理器统一将业务异常转换为该响应结构，禁止各端点自行拼装错误格式
 
 ## 代码质量强制要求
 

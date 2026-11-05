@@ -45,8 +45,7 @@ description: "Helm开发专家助手。当用户需要进行Helm Chart开发、K
   │   ├── NOTES.txt           # 安装说明
   │   └── tests/              # 测试模板
   │       └── test-connection.yaml
-  ├── templates/              # 可按子 Chart 组织
-  └── charts/                 # 依赖 Chart
+  └── charts/                 # 子 Chart 依赖
   ```
 - `Chart.yaml` 规范：
   - `apiVersion` 必须为 `v2`
@@ -83,7 +82,7 @@ description: "Helm开发专家助手。当用户需要进行Helm Chart开发、K
   ```
   包含：`app.kubernetes.io/name`、`app.kubernetes.io/instance`、`app.kubernetes.io/version`、`app.kubernetes.io/managed-by`
 - 条件渲染：使用 `{{- if .Values.ingress.enabled }}` 控制资源生成
-- 缩进控制：使用 `nindent` / `nindent` 确保缩进正确
+- 缩进控制：使用 `nindent` 控制缩进
 
 ## Values 规范
 
@@ -119,7 +118,7 @@ description: "Helm开发专家助手。当用户需要进行Helm Chart开发、K
 
 - Chart 必须通过 `helm lint` 检查
 - 所有工作负载必须设置资源限制
-- 镜像禁止使用 `latest` 标签
+- 镜像构建规范（标签、基础镜像、漏洞扫描）遵循 docker 技能
 - 敏感配置必须使用 Secret，禁止 ConfigMap
 - 必须使用标准标签体系（`app.kubernetes.io/*`）
 - `Chart.yaml` 的 `apiVersion` 必须为 `v2`

@@ -113,6 +113,15 @@ description: "Oracle数据库开发专家助手。当用户需要进行Oracle数
 - 使用 `RESULT_CACHE` 缓存查询结果
 - 使用物化视图缓存复杂查询
 
+## 监控与性能诊断
+
+- AWR 快照与报告：默认每小时自动生成快照、保留 8 天，异常时段可用 `DBMS_WORKLOAD_REPOSITORY.CREATE_SNAPSHOT()` 手动补拍；使用 `@?/rdbms/admin/awrrpt.sql` 生成指定时段报告，优先对比异常时段与基线时段的 Top 事件差异
+- ASH 会话采样：`V$ACTIVE_SESSION_HISTORY` 每秒采样活动会话，用于定位被 AWR 快照间隔平滑掉的短暂抖动；使用 `DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_TEXT()` 生成报告，按等待事件与 SQL_ID 聚合分析
+- ADDM 建议：每个 AWR 快照对自动生成诊断建议，通过 `DBMS_ADVISOR.GET_TASK_REPORT` 查看报告，优先处理高影响度的 CPU、IO、锁争用建议
+- Top SQL 定位：使用 `V$SQLAREA` 按 `ELAPSED_TIME` / `DISK_READS` / `BUFFER_GETS` / `EXECUTIONS` 排序定位资源消耗 SQL，`V$SQL` 查看子游标明细，结合 `V$SQL_PLAN` 分析执行计划
+- 实时阻塞排查：`V$SESSION` 关联 `V$SQL` 定位阻塞链源头会话，`V$SESSION_WAIT` 查看会话当前等待事件
+- 快照策略：按问题定位需要调整快照间隔与保留期（`DBMS_WORKLOAD_REPOSITORY.MODIFY_SNAPSHOT_SETTINGS`），生产环境保留期不低于 30 天
+
 ## 安全规范
 
 - 最小权限原则

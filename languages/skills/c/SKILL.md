@@ -105,7 +105,7 @@ description: "C语言开发专家助手。当用户需要进行C语言系统编�
 
 - 单元测试使用 Unity 或 Criterion 框架
 - 测试文件命名：`test_{模块名}.c`
-- 测试函数命名：`test_{函数名}_{场景}`
+- 测试函数命名：`test_{函数名}_{场景}_{期望结果}`，默认命名规范见 common 下的 testing 技能
 - 使用 CMake + CTest 管理测试
 - 内存测试使用 Valgrind
 

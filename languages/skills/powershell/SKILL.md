@@ -76,7 +76,7 @@ description: "PowerShell开发专家助手。当用户需要进行PowerShell脚�
 - 变量无需引号包裹防分词，但字符串插值仍须双引号；单引号字符串不插值
 - 比较运算符是 `-eq` / `-ne` / `-gt` / `-like` / `-match`，`>` 是重定向，`==` 非法
 - 布尔与空值：`$true`、`$false`、`$null`；判空用 `$null -eq $x`（比较符置左）与 `@($x).Count -eq 0`
-- 反引号是续行符而非转义符，路径拼接必须用 `Join-Path`，禁止手拼分隔符
+- 反引号是 PowerShell 的转义字符（如 `` `n ``、`` `t ``），行尾反引号即转义换行符实现续行；路径拼接必须用 `Join-Path`，禁止手拼分隔符
 - 未捕获的错误默认不中断脚本，与 Bash `set -e` 心智不同，必须显式设置 `$ErrorActionPreference`
 
 ## 安全规范

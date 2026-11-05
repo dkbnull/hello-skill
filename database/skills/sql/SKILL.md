@@ -104,6 +104,10 @@ description: "SQL开发专家助手。当用户需要进行SQL查询编写、SQL
   - SQL Server：`OFFSET n ROWS FETCH NEXT m ROWS ONLY`
 - 日期函数各数据库差异大，使用参数化或应用层处理
 
+## 事务隔离跨库口径
+
+- 各库默认隔离级别不同（PostgreSQL/SQL Server 默认 `READ COMMITTED`，MySQL InnoDB 默认 `REPEATABLE READ`），跨数据库项目须显式指定隔离级别，不得依赖默认值。
+
 ## 性能优化
 
 - 使用 `EXPLAIN` 分析查询计划

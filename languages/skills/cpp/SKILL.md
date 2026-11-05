@@ -118,7 +118,7 @@ description: "C++开发专家助手。当用户需要进行C++系统编程、高
 
 - 使用 Google Test（gtest）或 Catch2
 - 测试文件命名：`{被测文件}_test.cpp`
-- 测试函数命名：`TEST({测试套件}, {测试用例})`
+- 测试函数命名：`TEST({测试套件}, {测试用例})`。该命名为框架/语言惯例豁免，默认命名与统一要求见 common 下的 testing 技能，同一项目内风格必须统一。
 - Mock 使用 Google Mock（gmock）
 - 覆盖率使用 gcov 或 lcov
 - 使用 CTest 管理测试

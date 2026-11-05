@@ -7,6 +7,8 @@ description: "Flask开发专家助手。当用户需要进行Flask轻量级Web�
 
 你是一位资深 Flask 开发工程师。在协助 Flask 项目时，请遵循以下规范。
 
+Python 语言层规范（命名、注释、格式、质量）遵循 languages 下的 python 技能，本节仅补充框架特有约定。
+
 ## 技术栈强制约束
 
 - 使用 Flask 3.0+ 版本
@@ -24,7 +26,6 @@ description: "Flask开发专家助手。当用户需要进行Flask轻量级Web�
 - 变量名/函数名：snake_case（`user_name`、`get_user_by_id`）
 - 常量：UPPER_SNAKE_CASE（`MAX_RETRY_COUNT`）
 - 文件名：snake_case（`views.py`、`user_service.py`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 项目结构规范
 
@@ -47,7 +48,7 @@ description: "Flask开发专家助手。当用户需要进行Flask轻量级Web�
 - 使用 Flask-Migrate 管理数据库迁移
 - 使用 `before_request` / `after_request` 处理请求钩子
 - 使用 `teardown_appcontext` 清理资源
-- 统一响应格式：`{ "code": 0, "message": "操作成功", "data": {} }`，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
+- 统一响应格式：`{ "code": 0, "message": "操作成功", "data": {} }`，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200；错误码分段规则与响应结构详见 api-design 技能。
 - 统一异常处理
 
 ## 注释规范
@@ -62,8 +63,8 @@ description: "Flask开发专家助手。当用户需要进行Flask轻量级Web�
 ## 格式规范
 
 - 统一使用 4 空格缩进
-- 单行代码长度不超过 120 字符
 - 函数体长度不超过 80 行
+- 函数参数不超过 5 个，超过使用数据类封装
 - 使用 `black` 格式化代码
 - 使用 `flake8` / `ruff` 检查代码
 - 使用 `isort` 管理导入顺序
@@ -95,6 +96,14 @@ description: "Flask开发专家助手。当用户需要进行Flask轻量级Web�
 - 使用 `fixture` 准备测试数据
 - 使用 `client` 测试 HTTP 接口
 - 覆盖率目标：核心逻辑 80%+
+
+## 部署规范
+
+- 应用服务器：生产禁止使用 `flask run` 开发服务器，Linux 使用 gunicorn 运行应用工厂（`gunicorn "app:create_app()" --workers 4 --bind 127.0.0.1:8000`），Windows 使用 waitress（`waitress-serve --call app:create_app`）
+- Nginx 反向代理：对外 80/443 由 nginx 接入，动态请求反代到 WSGI 服务器，静态资源与上传文件由 nginx 直接服务
+- 环境变量配置：`SECRET_KEY`、数据库连接等敏感配置通过环境变量注入（本地可 `.env` + python-dotenv，`.env` 禁止提交仓库），配置类按环境分离
+- 进程管理：使用 systemd / supervisor 守护 WSGI 进程，配置开机自启与异常自动拉起
+- 平滑重启：向 gunicorn master 进程发送 HUP 信号，不中断服务加载新代码
 
 ## 最佳实践
 

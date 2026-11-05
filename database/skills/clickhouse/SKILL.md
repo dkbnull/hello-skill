@@ -92,6 +92,20 @@ description: "ClickHouse开发专家助手。当用户需要进行ClickHouse OLA
 - 分片策略合理设计
 - 副本数至少 2
 
+## 备份与恢复
+
+- 备份策略：OLAP 数据按分区组织，备份以分区为粒度（与 TTL/分区周期对齐，按天/月）；重要表每日备份并异地存放，禁止只依赖副本当备份（误删表会同步删除所有副本）
+- BACKUP/RESTORE 语句（22.x+）：
+  - 备份表/库：`BACKUP TABLE db.table TO File('/data/backups/table.zip');`、`BACKUP DATABASE db TO Disk('backups', 'db1.zip');`
+  - 远端：`BACKUP TABLE db.table TO S3('https://bucket.s3.amazonaws.com/table.zip', 'access_key', 'secret_key');`
+  - 恢复：`RESTORE TABLE db.table FROM File('/data/backups/table.zip');`
+  - 备份目标目录/磁盘需在服务端配置中允许（backups 配置项），S3/HDFS 可用 named collection 或内联凭据
+- clickhouse-backup 工具（Altinity/clickhouse-backup）：社区标准方案，支持全量/增量与 S3/GCS 远端；`clickhouse-backup create bk_full` → `upload bk_full` → 恢复用 `restore bk_full`，`list` 查看备份；配合 cron 定时执行
+- Freeze partition 冻结快照：`ALTER TABLE t FREEZE PARTITION '2024-01' WITH NAME 'bk_20240101';` 将分区数据硬链接到 shadow 目录，基于已有分区的轻量快照；解冻释放用 `UNFREEZE PARTITION ... WITH NAME ...`；注意硬链接同盘存储，必须再同步到远端才算异地备份
+- S3/HDFS 远端备份：`BACKUP ... TO S3(...)` 或 `TO HDFS('hdfs://namenode:8020/backups/table.zip')`；生产推荐直备对象存储，避免本地盘单点
+- TTL 与备份策略配合：TTL 自动删除的数据无法从库内找回，依赖 TTL 清理的重要数据必须先有备份；备份周期与 TTL/分区周期对齐，便于按分区定点恢复（RESTORE 或 shadow 分区 detach/attach）
+- 备份校验与恢复演练：定期在测试环境 RESTORE 并比对 `system.parts` 行数与抽样数据；ReplicatedMergeTree 表恢复时注意清理旧 ZooKeeper 路径，避免副本元数据冲突
+
 ## 最佳实践
 
 - 使用物化视图预聚合数据

@@ -43,7 +43,7 @@ description: "Gin框架开发专家助手。当用户需要进行Gin框架Web开
 - 使用 `context.Context` 传递请求上下文
 - 使用中间件处理横切关注点（日志、认证、限流）
 - 使用 `ShouldBind` / `ShouldBindJSON` 绑定参数
-- 使用统一响应格式：`{ "code": 0, "message": "操作成功", "data": {} }`，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200
+- 使用统一响应格式：`{ "code": 0, "message": "操作成功", "data": {} }`，成功码固定为 0，失败使用5位分段编码（如 10001、20001），绝大部分接口返回 HTTP 200；错误码分段规则与响应结构详见 api-design 技能。
 - 使用 `gin.H` 简化 JSON 响应
 - 错误处理使用 `c.JSON` 返回错误信息
 - 路由使用分组（`Group`）组织
@@ -64,6 +64,7 @@ description: "Gin框架开发专家助手。当用户需要进行Gin框架Web开
 - 使用 `gofmt` / `goimports` 格式化代码
 - 单行代码长度不超过 120 字符
 - 函数体长度不超过 80 行
+- 函数参数不超过 5 个，超过使用 Option 模式或配置结构体
 - 使用 `golangci-lint` 检查代码
 
 ## 代码质量强制要求
@@ -79,11 +80,19 @@ description: "Gin框架开发专家助手。当用户需要进行Gin框架Web开
 ## 中间件规范
 
 - 日志中间件：记录请求/响应
-- 认证中间件：JWT Token 验证
+- 认证中间件：JWT Token 验证（规范详见下文"认证与鉴权规范"）
 - 限流中间件：令牌桶/漏桶算法
 - CORS 中间件：跨域配置
 - Recovery 中间件：异常恢复
 - 自定义中间件必须可配置
+
+## 认证与鉴权规范
+
+- JWT 签发：登录成功后签发 JWT，claims 仅包含 `userId`、角色、`exp` 等必要字段，禁止携带敏感信息；签名密钥从配置/环境变量读取，禁止硬编码
+- JWT 校验：认证中间件解析 `Authorization: Bearer <token>`，校验签名与过期时间，失败统一返回 401；解析出的 claims 通过 `c.Set()` 写入请求上下文传递给 Handler
+- 刷新令牌：Access Token 短有效期（如 30 分钟），Refresh Token 长有效期并存储于 Redis（支持主动吊销）；刷新时轮换 Refresh Token，注销时吊销
+- RBAC 鉴权：基于角色的鉴权中间件，在路由分组上挂载（如 `v1.Use(middleware.RequireRole("admin"))`），角色与权限映射表配置化管理
+- 密码存储：使用 bcrypt（`golang.org/x/crypto/bcrypt`），注册用 `GenerateFromPassword`（cost ≥ 10），登录用 `CompareHashAndPassword` 校验，禁止明文 / MD5 / SHA1 存储
 
 ## 测试规范
 

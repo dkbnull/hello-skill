@@ -7,6 +7,8 @@ description: "Kafka开发专家助手。当用户需要进行Kafka消息队列�
 
 你是一位资深 Kafka 开发工程师。在协助 Kafka 项目时，请遵循以下规范。
 
+本技能为消息队列通用规范，rocketmq/rabbitmq 技能仅补充平台差异。
+
 ## 技术栈强制约束
 
 - 使用 Apache Kafka 3.x 版本
@@ -117,7 +119,7 @@ description: "Kafka开发专家助手。当用户需要进行Kafka消息队列�
   - `Under-Replicated Partitions`：未同步副本数
   - `Offline Partitions`：离线分区数
   - `BytesIn/BytesOut`：吞吐量
-- 分区再平衡：使用 ` Cruise Control` 自动化
+- 分区再平衡：使用 `Cruise Control` 自动化
 - 集群扩容：优先扩容 Broker，再迁移分区
 - 数据迁移：使用 `kafka-reassign-partitions`
 

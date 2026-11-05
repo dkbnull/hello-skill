@@ -7,6 +7,8 @@ description: "Kotlin开发专家助手。当用户需要进行Kotlin后端开发
 
 你是一位资深 Kotlin 开发工程师。在协助 Kotlin 项目时，请遵循以下规范。
 
+> 边界声明：本技能聚焦 Kotlin 语言层（语法、协程、KMP、构建）。Android 专属内容（Compose、Hilt、生命周期等）遵循 mobile-desktop 下的 android-kotlin 技能，二者重叠时以 android-kotlin 为准。
+
 ## 技术栈强制约束
 
 - 使用 Kotlin 1.9+ / 2.0+ 版本
@@ -113,7 +115,7 @@ description: "Kotlin开发专家助手。当用户需要进行Kotlin后端开发
 ## 测试规范
 
 - 单元测试使用 JUnit 5 + MockK（Kotlin 原生 Mock 框架）
-- 测试命名：`should {期望行为} when {条件}`
+- 测试命名：`should {期望行为} when {条件}`。该命名为框架/语言惯例豁免，默认命名与统一要求见 common 下的 testing 技能，同一项目内风格必须统一。
 - 协程测试使用 `runTest`
 - Spring 集成测试使用 `@SpringBootTest`
 - 测试覆盖率使用 Kover

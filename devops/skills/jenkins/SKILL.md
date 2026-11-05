@@ -9,6 +9,8 @@ description: "Jenkins开发专家助手。当用户需要进行Jenkins CI/CD流�
 
 ## 技术栈强制约束
 
+> Groovy 语言层规范遵循 languages 下的 groovy 技能，本技能仅覆盖 Jenkins 平台规范。
+
 - 使用 Jenkins 2.400+ LTS 版本
 - 使用声明式 Pipeline（Declarative Pipeline）
 - 使用 Shared Library 复用公共逻辑

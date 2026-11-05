@@ -7,6 +7,8 @@ description: "RocketMQ开发专家助手。当用户需要进行RocketMQ消息�
 
 你是一位资深 RocketMQ 开发工程师。在协助 RocketMQ 项目时，请遵循以下规范。
 
+通用消息队列规范（Topic 设计、消息结构、消费幂等、死信队列、监控指标）以 kafka 技能为权威载体，本技能仅补充 RocketMQ 特有内容。
+
 ## 技术栈强制约束
 
 - 使用 Apache RocketMQ 5.x 版本
@@ -14,6 +16,7 @@ description: "RocketMQ开发专家助手。当用户需要进行RocketMQ消息�
 - Spring Boot 集成使用 `rocketmq-spring-boot-starter` 2.3+
 - 消息序列化优先使用 JSON
 - 代理模式优先使用 Proxy 模式（gRPC 协议）
+- 架构组成：NameServer（无状态路由注册，至少部署 2 个节点）+ Broker（Dledger 主从自动切换）+ Proxy 接入层
 
 ## 命名规范
 
@@ -25,18 +28,12 @@ description: "RocketMQ开发专家助手。当用户需要进行RocketMQ消息�
 
 ## Topic 设计规范
 
-- Topic 命名体现业务含义和事件类型
-- 分区数（MessageQueue）选择：
-  - 根据吞吐量估算：分区数 = 目标吞吐量 / 单分区吞吐量
-  - 分区数不宜过多，单个 Broker 分区数不超过 2000
-  - 分区数只能增加不能减少，设计时预留扩展空间
 - 消息类型选择：
   - 普通消息：无顺序要求的一般业务消息
   - 顺序消息：同一业务实体需严格按顺序消费（如订单状态变更）
   - 延迟消息：定时触发场景（如超时未支付取消订单），使用开源版固定等级或 5.x 任意延迟
   - 事务消息：需保证本地事务与消息发送一致性（如扣库存 + 发消息）
 - 禁止使用默认 Topic（`TBW102` 等）
-- 禁止自动创建 Topic（`autoCreateTopicEnable = false`）
 
 ## 生产者规范
 
@@ -60,30 +57,18 @@ description: "RocketMQ开发专家助手。当用户需要进行RocketMQ消息�
 - 消费模式选择：
   - 集群消费（`CLUSTERING`，默认）：同一 ConsumerGroup 下均衡消费，适合业务处理
   - 广播消费（`BROADCASTING`）：每台实例都消费全量消息，适合缓存刷新、通知广播
-- 消费幂等：
-  - 所有消费者必须实现幂等消费
-  - 方案：唯一 Key 去重、数据库唯一约束、Redis Set 判重
 - 消费重试：
   - 集群消费模式下消费失败自动重试，默认 16 次
   - 重试间隔递增：1s、5s、10s...2h
   - 重试次数可通过 `maxReconsumeTimes` 自定义
-- 死信队列（DLQ）：
-  - 超过最大重试次数后消息进入死信 Topic（`%DLQ%{ConsumerGroup}`）
-  - 死信消息必须监控告警，人工介入处理
-  - 禁止丢弃消费失败的消息
+- 死信队列：死信 Topic 命名 `%DLQ%{ConsumerGroup}`，超过最大重试次数后自动进入
 - 消费者线程数根据业务耗时调整，禁止消费耗时操作阻塞线程
 - 禁止在消息处理前确认消费（无 `ACK` 机制，异常即重试）
 
 ## 消息设计规范
 
 - 消息格式统一使用 JSON
-- 消息结构：
-  - Header：元数据（TraceId、消息类型、版本号、时间戳、来源系统）
-  - Body：业务数据
 - 消息大小不超过 4MB（RocketMQ 默认限制），建议不超过 1MB
-- 大消息使用引用模式：消息体存对象存储（OSS/S3），RocketMQ 存 URL
-- 消息版本兼容：新增字段使用默认值，禁止删除或修改已有字段
-- 禁止在消息中传递大对象
 
 ## 注释规范
 
@@ -106,11 +91,6 @@ description: "RocketMQ开发专家助手。当用户需要进行RocketMQ消息�
 
 ## 运维规范
 
-- 监控指标：
-  - `消费延迟（Delay）`：消费者积压量（告警阈值根据业务设定）
-  - `发送成功率`：生产者发送失败率
-  - `消费TPS`：每秒消费消息数
-  - `Broker磁盘使用率`：磁盘空间告警
 - 集群部署：至少 2 主 2 从，生产环境使用 Dledger 模式实现主从自动切换
 - 消息追踪：启用 `trace` 机制，使用 `rocketmq-console` 或自研面板可视化
 - 集群扩容：优先扩容 Broker，再迁移 Topic 分区

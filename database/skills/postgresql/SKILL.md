@@ -103,6 +103,7 @@ description: "PostgreSQL开发专家助手。当用户需要进行PostgreSQL数�
   - 默认：`READ COMMITTED`
   - 需要防止幻读：`REPEATABLE READ`
   - 严格一致性：`SERIALIZABLE`（谨慎使用）
+- 隔离级别跨库口径见 sql 技能，跨库项目显式指定。
 - 长事务必须设置超时：`SET LOCAL statement_timeout`
 - 禁止在事务中执行耗时操作
 - 行锁：`SELECT ... FOR UPDATE` / `FOR SHARE`

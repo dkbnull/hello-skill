@@ -124,7 +124,7 @@ description: "Java开发专家助手。当用户需要进行Java编码、项目�
 - 使用 JUnit 5 进行单元测试
 - 使用 Mockito 进行模拟
 - 使用 AssertJ 进行流式断言
-- 测试命名：`should_{期望行为}_when_{条件}`
+- 测试命名：`should_{期望行为}_when_{条件}`。该命名为框架/语言惯例豁免，默认命名与统一要求见 common 下的 testing 技能，同一项目内风格必须统一。
 - 重点覆盖 Service 层，确保高测试覆盖率
 
 ## 异常处理

@@ -113,7 +113,7 @@ export struct UserCard {
 
 ## 路由导航规范
 
-- 使用 `@ohos.router` 或 Navigation 组件
+- 新应用统一使用 Navigation 组件（官方主推）；`@ohos.router` 仅限存量旧项目维护，新代码禁用
 - 路由常量统一定义
 - 页面参数通过 `params` 传递
 - 使用 `router.back()` 返回上一页

@@ -74,7 +74,7 @@ description: "Nuxt开发专家助手。当用户需要进行Nuxt全栈开发、V
 - 请求方法通过文件名约定（`api/users.get.ts`、`api/users.post.ts`）
 - 客户端数据获取使用 `useFetch`，配合 `$fetch` 做非响应式请求
 - 统一响应格式：`{ code: number; message: string; data: T }`
-- 成功码固定为 0，失败使用5位分段编码（如 10001、20001）
+- 成功码固定为 0，失败使用5位分段编码（如 10001、20001）；错误码分段规则与响应结构详见 api-design 技能。
 
 ## 注释规范
 

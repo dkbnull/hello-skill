@@ -9,6 +9,8 @@ description: "Spark开发专家助手。当用户需要进行Spark大数据计�
 
 ## 技术栈强制约束
 
+> 语言层规范（Scala 语法、并发）遵循 scala 技能，本技能仅覆盖 Spark 框架层。
+
 - 使用 Spark 3.5+ 版本
 - Scala 2.13 / Python 3.10+（PySpark）
 - 优先使用 DataFrame / Dataset API，避免直接使用 RDD

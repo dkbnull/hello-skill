@@ -51,6 +51,7 @@ description: "Swift开发专家助手。当用户需要进行Swift语言开发�
 - 统一使用 4 空格缩进
 - 单行代码长度不超过 120 字符
 - 函数体长度不超过 80 行
+- 函数参数不超过 5 个，超过使用结构体封装
 - 大括号不换行（K&R 风格）
 - 使用 `swift-format` 格式化代码
 - 使用 `SwiftLint` 检查代码规范
@@ -67,21 +68,11 @@ description: "Swift开发专家助手。当用户需要进行Swift语言开发�
 
 ## SwiftUI 规范
 
-- 视图拆分为小组件，单个视图不超过 100 行
-- 使用 `@State` 管理本地状态
-- 使用 `@StateObject` 创建 Observable 对象
-- 使用 `@ObservedObject` 传入 Observable 对象
-- 使用 `@EnvironmentObject` 共享全局状态
-- 使用 `@Binding` 双向绑定
-- 业务逻辑抽取到 ViewModel
+SwiftUI 规范遵循 mobile-desktop 下的 ios 技能。
 
 ## 测试规范
 
-- 使用 XCTest 框架
-- 测试文件命名：`{类名}Tests.swift`
-- 测试方法命名：`test_{方法名}_{场景}`
-- UI 测试使用 XCUITest
-- Mock 使用 Protocol + 结构体实现
+测试规范遵循 mobile-desktop 下的 ios 技能。
 
 ## 最佳实践
 
