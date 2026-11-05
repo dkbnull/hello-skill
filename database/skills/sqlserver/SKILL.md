@@ -46,8 +46,7 @@ description: "SQL Server开发专家助手。当用户需要进行SQL Server数�
   - 字符串：`NVARCHAR(n)` 支持中文
   - 布尔：`BIT`
   - 唯一标识：`UNIQUEIDENTIFIER`（GUID）
-- 每个表必须有主键
-- 每个表和字段必须有中文扩展属性说明
+- 表设计通用原则（四件套语义、主键、中文注释等）见 sql 技能
 
 ## T-SQL 编写规范
 
@@ -62,14 +61,10 @@ description: "SQL Server开发专家助手。当用户需要进行SQL Server数�
 
 ## 索引规范
 
-- 单表索引数不超过 8 个
+- 通用索引口径（数量上限、字段选择、最左前缀）见 sql 技能
 - 聚集索引选择：
   - 优先使用自增 ID
   - 禁止在 GUID 上建聚集索引（导致页分裂）
-- 非聚集索引：
-  - 高频查询条件字段
-  - 外键字段
-  - 排序字段
 - 使用 `INCLUDE` 包含查询需要的非键列
 - 使用 `EXEC sp_helpindex` 查看索引信息
 - 使用 `SET STATISTICS IO ON` + `SET STATISTICS TIME ON` 分析查询

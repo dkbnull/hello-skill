@@ -7,6 +7,8 @@ description: "PyTorch开发专家助手。当用户需要进行PyTorch深度学�
 
 你是一位资深 PyTorch 开发工程师。在协助 PyTorch 项目时，请遵循以下规范。
 
+深度学习训练通用规范（数据划分、超参管理、checkpoint 策略等）遵循 ai/skills/training 技能，本技能仅补充 PyTorch 特有 API 与用法。
+
 ## 技术栈强制约束
 
 - 使用 PyTorch 2.x 版本
@@ -46,9 +48,6 @@ description: "PyTorch开发专家助手。当用户需要进行PyTorch深度学�
   - 分类任务使用 `CrossEntropyLoss`
   - 回归任务使用 `MSELoss` / `HuberLoss`
   - 不平衡数据使用加权 Loss 或 Focal Loss
-- Scheduler：
-  - 必须设置学习率调度器
-  - 训练结束保存最优模型（基于验证集指标）
 
 ## 推理规范
 
@@ -71,7 +70,6 @@ description: "PyTorch开发专家助手。当用户需要进行PyTorch深度学�
 
 - 自定义 Dataset 继承 `torch.utils.data.Dataset`，实现 `__len__` 和 `__getitem__`
 - 数据预处理使用 `torchvision.transforms`（图像）或 `transformers`（文本）
-- 训练集/验证集/测试集比例：7:1.5:1.5 或 8:1:1
 - 数据增强仅在训练集使用，验证/测试集禁止增强
 - 数据加载必须处理异常样本（try-except 返回占位数据）
 
@@ -80,31 +78,17 @@ description: "PyTorch开发专家助手。当用户需要进行PyTorch深度学�
 - 所有模块、类必须有中文 docstring，说明用途和职责
 - 所有 public 函数/方法必须有中文 docstring，包含功能说明、参数、返回值
 - 模型架构必须注释层维度变化（如 `# [B, 256, 7, 7]`）
-- 训练脚本必须注释关键超参数的选择依据
 - TODO 注释格式：`# TODO: [作者] 具体待办事项描述`
 - 禁止无意义注释，注释必须与代码保持同步
 
 ## 代码质量强制要求
 
-- 禁止魔法值：学习率、批量大小等必须定义为命名常量或配置项
 - 训练循环必须打印 Loss 和指标，至少每 epoch 一次
-- 必须实现 Early Stopping，防止过拟合
-- 必须保存 Checkpoint（模型权重 + 优化器状态 + epoch）
 - 异常处理：GPU OOM 时自动降低批量大小重试
-- 数值稳定性：使用 `eps` 防止除零，Loss 出现 NaN 必须中断训练
-- 禁止在训练循环中使用 `print()`，统一使用 `logging`
-
-## 实验管理
-
-- 使用 TensorBoard / Weights & Biases 记录训练指标
-- 每次实验记录：超参数、模型架构、数据集版本、指标结果
-- 模型保存：`best_model.pth`（最优）+ `checkpoint_epoch_{n}.pth`（定期）
-- 实验结果可复现：设置 `torch.manual_seed()` + `np.random.seed()`
 
 ## 最佳实践
 
 - 使用 `torch.compile` 加速训练与推理
-- 使用混合精度训练减少显存占用、加速计算
 - 大模型使用 DeepSpeed / FSDP 进行分布式训练
 - 数据预处理离线完成，避免训练时在线计算
 - 使用 Gradient Accumulation 模拟大批量训练

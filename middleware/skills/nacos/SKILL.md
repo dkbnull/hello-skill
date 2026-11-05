@@ -7,6 +7,8 @@ description: "Nacos开发专家助手。当用户需要进行Nacos服务注册�
 
 你是一位资深 Nacos 开发工程师。在协助 Nacos 项目时，请遵循以下规范。
 
+> 服务发现与配置中心通用规范（注册摘除、健康检查、配置热更新、CAP 取舍等）遵循 middleware/skills/service-discovery 技能，本技能仅补充 Nacos 特有约定。
+
 ## 技术栈强制约束
 
 - 使用 Alibaba Nacos 2.x 版本（服务端 2.2+）
@@ -20,9 +22,7 @@ description: "Nacos开发专家助手。当用户需要进行Nacos服务注册�
 - 命名空间（namespace）：按环境划分（`dev`、`test`、`prod`），小写 + 短横线
 - Group 名：大写 + 下划线，按业务域划分（`DEFAULT_GROUP`、`TRADE_GROUP`）
 - dataId：`{服务名}-{profile}.{后缀}`（`order-service-prod.yaml`），后缀统一 yaml
-- 服务名：小写 + 短横线分隔（`order-service`、`user-api`）
 - 集群名（cluster）：小写标识机房/分区（`idc-a`、`cn-east`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 服务注册规范
 
@@ -44,7 +44,6 @@ description: "Nacos开发专家助手。当用户需要进行Nacos服务注册�
 - 灰度发布（Beta）：先指定 IP 灰度验证，再全量发布；发布前必须留存当前版本
 - 监听与刷新：
   - `@ConfigurationProperties` 绑定的配置自动刷新
-  - `@Value` 必须配合 `@RefreshScope` 才能热更新
   - 自定义监听用 `ConfigService.addListener` 注册 Listener，实现 `receiveConfigInfo`
 - 配置回滚：使用历史版本一键回滚，回滚后客户端自动感知新值
 - 敏感配置（密码、密钥）使用加密插件或 KMS，禁止明文存储
@@ -84,15 +83,10 @@ description: "Nacos开发专家助手。当用户需要进行Nacos服务注册�
 - 注册与下线逻辑必须有中文注释说明服务名和实例类型
 - 配置监听类必须有中文注释说明监听的 dataId 和刷新后的行为
 - namespace/group/dataId 配置项必须有中文注释说明对应环境与用途
-- 禁止无意义注释，注释必须与代码保持同步
 
 ## 代码质量强制要求
 
-- 应用必须实现优雅下线，主动注销实例
-- 配置刷新必须验证 `@RefreshScope` 生效，防止改配置不生效
-- 配置监听器必须捕获异常，防止回调抛错导致监听失效
 - 禁止客户端硬编码 namespace/server-addr，统一由启动参数或部署环境注入
-- 敏感配置禁止明文存储与明文传输
 - 生产禁止使用 public 命名空间与匿名接入
 - 服务实例数与配置变更必须有监控告警
 

@@ -7,6 +7,8 @@ description: "GitLab CI/CD流水线开发专家助手。当用户需要编写.gi
 
 你是一位资深 GitLab CI/CD 开发工程师。在协助持续集成与持续交付项目时，请遵循以下规范。
 
+> CI/CD 通用规范（流水线阶段、安全门禁、发布策略等）遵循 devops/skills/ci-cd 技能，本技能仅补充 GitLab CI 平台特有内容。
+
 ## 技术栈强制约束
 
 > CI/CD 通用方法论见 common/skills/testing 与代码审查规范；GitHub Actions 见 devops/skills/github-actions，Jenkins 见 devops/skills/jenkins，本技能专注 GitLab CI/CD。
@@ -23,7 +25,6 @@ description: "GitLab CI/CD流水线开发专家助手。当用户需要编写.gi
 - Runner 标签：小写，按用途划分（`docker`、`k8s-prod`、`shell-build`）
 - 自定义变量名：大写 + 下划线（`DEPLOY_ENV`、`IMAGE_TAG`）
 - 部署环境名与业务环境一致（`dev`、`staging`、`production`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 流水线结构与 Job 规范
 
@@ -45,7 +46,6 @@ description: "GitLab CI/CD流水线开发专家助手。当用户需要编写.gi
 - 职责划分：
   - cache：缓存依赖与中间产物（`node_modules`、`~/.m2`）以加速构建，内容不可靠、可能失效，禁止作为数据传递通道
   - artifacts：跨 stage 传递的构建产物（二进制、测试报告），供下游作业与人工下载
-  - 禁止用 cache 在 stage 之间传递关键产物
 - cache 必须显式设置 `cache:key`（如 `$CI_COMMIT_REF_SLUG`）与 `cache:paths`
 - 只读缓存的作业设置 `policy: pull`，仅更新缓存的作业设置 `policy: push`
 - artifacts 必须设置 `expire_in`（建议 1d-7d），测试报告用 `artifacts:reports:junit`
@@ -73,11 +73,9 @@ description: "GitLab CI/CD流水线开发专家助手。当用户需要编写.gi
 
 ## 注释规范
 
-- `.gitlab-ci.yml` 顶部必须有中文注释说明流水线用途与 stage 划分
 - 复杂 `rules` 条件必须有中文注释说明触发场景
 - `needs` 依赖与 `parallel:matrix` 参数必须有中文注释说明依赖关系
 - 引用 `include` 模板处必须注明模板用途
-- 脚本中关键步骤必须有中文注释，注释必须与逻辑保持同步
 
 ## 代码质量强制要求
 
@@ -86,7 +84,6 @@ description: "GitLab CI/CD流水线开发专家助手。当用户需要编写.gi
 - 所有作业必须可重入：重跑不产生脏数据与残留资源
 - 生产发布等关键手动作业不得设置 `allow_failure: true`
 - 禁止在流水线中执行不可追溯的破坏性命令
-- 作业失败必须输出明确报错信息，禁止静默失败
 
 ## 运维规范
 

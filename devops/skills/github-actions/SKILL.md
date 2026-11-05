@@ -7,6 +7,8 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
 
 你是一位资深 GitHub Actions 开发工程师。在协助 CI/CD 流水线项目时，请遵循以下规范。
 
+> CI/CD 通用规范（流水线阶段、安全门禁、发布策略等）遵循 devops/skills/ci-cd 技能，本技能仅补充 GitHub Actions 平台特有内容。
+
 ## 技术栈强制约束
 
 - 使用 GitHub Actions 原生 YAML 语法
@@ -22,7 +24,6 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
 - Job 名：kebab-case（`build-image`、`deploy-staging`、`run-tests`）
 - Step 名：中文描述（`检出代码`、`安装依赖`、`构建镜像`）
 - 环境名：kebab-case（`production`、`staging`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 工作流规范
 
@@ -38,7 +39,6 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
   - Step 级：覆盖 Job 级变量
 - Secrets 管理：
   - 使用 GitHub Secrets 存储敏感信息
-  - 禁止在日志中输出 Secrets
   - 使用 `secrets.*` 引用，禁止硬编码
 - 并发控制：
   ```yaml
@@ -50,7 +50,6 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
 ## Job 规范
 
 - 依赖关系：使用 `needs` 声明 Job 依赖
-- 并发控制：同一环境同一分支仅允许一个运行
 - 条件执行：使用 `if` 控制（`if: github.event_name == 'push'`）
 - 超时设置：`timeout-minutes` 防止 Job 挂起（默认 360 分钟过长）
 - 权限设置：`permissions` 最小权限原则
@@ -69,7 +68,6 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
   - 第三方 Action 需审核源码后使用
 - Shell 脚本：
   - 使用 `shell: bash` 确保跨平台一致
-  - 复杂逻辑提取为脚本文件（`scripts/deploy.sh`）
   - 使用 `set -euo pipefail` 严格模式
 - 缓存配置：
   ```yaml
@@ -84,7 +82,6 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
 
 - 最小权限：每个 Job 必须声明 `permissions`，禁止 `write-all`
 - Secret 管理：
-  - 禁止在日志中打印 Secret 值
   - 使用 `add-mask` 屏蔽敏感输出
   - 使用 OIDC 替代长期 Access Key
 - 审批流程：生产部署必须配置 `environment` + `protection rules`
@@ -110,21 +107,15 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
 
 ## 注释规范
 
-- 工作流文件顶部必须添加中文注释说明用途
 - 关键 Job 和 Step 必须添加中文注释
-- 复杂的条件判断和表达式必须添加中文注释
 - TODO 注释格式：`# TODO(作者): 具体待办事项描述`
-- 禁止无意义注释
 
 ## 代码质量强制要求
 
 - 禁止使用 `@main` 或 `@master` 引用 Action
 - 每个 Job 必须声明 `permissions`
-- 禁止在日志中输出 Secrets
-- 必须设置 `timeout-minutes`
 - 生产部署必须配置环境保护规则
 - 禁止直接拼接外部输入到 Shell 命令
-- 缓存 Key 必须包含依赖文件哈希
 
 ## 最佳实践
 
@@ -133,6 +124,5 @@ description: "GitHub Actions开发专家助手。当用户需要进行CI/CD流�
 - 使用 OIDC 替代长期密钥访问云资源
 - 使用 `concurrency` 避免重复部署
 - 使用 GitHub Environment 管理部署审批
-- 使用依赖缓存加速构建
 - 使用 `dorny/test-reporter` 生成测试报告
 - 使用 `reviewdog` 自动化代码审查

@@ -7,6 +7,8 @@ description: "Hugging Face开发专家助手。当用户需要进行Hugging Face
 
 你是一位资深 Hugging Face 开发工程师。在协助 Hugging Face 项目时，请遵循以下规范。
 
+深度学习训练通用规范（数据划分、超参管理、checkpoint 策略等）遵循 ai/skills/training 技能，本技能仅补充 Hugging Face 特有 API 与用法。
+
 ## 技术栈强制约束
 
 - 使用 transformers 4.x 版本
@@ -86,19 +88,14 @@ description: "Hugging Face开发专家助手。当用户需要进行Hugging Face
 
 - 所有模块、类必须有中文 docstring，说明用途和职责
 - 所有 public 函数/方法必须有中文 docstring，包含功能说明、参数、返回值
-- 微调脚本必须注释超参数选择依据
 - 模型配置变更必须注释原因
 - TODO 注释格式：`# TODO: [作者] 具体待办事项描述`
 - 禁止无意义注释，注释必须与代码保持同步
 
 ## 代码质量强制要求
 
-- 禁止魔法值：所有超参数必须定义为命名常量或配置项
 - 模型加载必须处理网络异常和本地缓存
-- 训练必须保存 Checkpoint，支持断点续训
 - 必须使用 `accelerate` 的 `Accelerator` 管理分布式训练
-- 数值稳定性：Loss 出现 NaN 必须中断训练
-- 禁止在训练循环中使用 `print()`，统一使用 `logging`
 - 生成结果必须设置 `max_new_tokens` 防止无限生成
 
 ## 部署规范
@@ -114,6 +111,5 @@ description: "Hugging Face开发专家助手。当用户需要进行Hugging Face
 - 使用 PEFT / LoRA 微调减少显存占用
 - 使用 QLoRA（4-bit 量化 + LoRA）在单卡上微调大模型
 - 使用 `accelerate launch` 启动分布式训练
-- 使用 W&B / TensorBoard 记录训练指标
 - 生成时使用 `Temperature` + `Top-p` 采样控制多样性
 - 推理服务使用 vLLM 实现 KV Cache 和连续批处理

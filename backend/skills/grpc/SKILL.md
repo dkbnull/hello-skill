@@ -7,6 +7,8 @@ description: "gRPC开发专家助手。当用户需要进行gRPC服务开发、P
 
 你是一位资深 gRPC 开发工程师。在协助 gRPC 项目时，请遵循以下规范。
 
+各语言实现层规范（命名、注释、格式、错误处理）遵循 languages/skills 下对应语言技能，本技能仅约束 Proto 定义与 gRPC 层约定。
+
 ## 技术栈强制约束
 
 - 使用 gRPC 1.60+ 版本

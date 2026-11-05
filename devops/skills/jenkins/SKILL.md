@@ -7,6 +7,8 @@ description: "Jenkins开发专家助手。当用户需要进行Jenkins CI/CD流�
 
 你是一位资深 Jenkins 开发工程师。在协助 Jenkins 项目时，请遵循以下规范。
 
+> CI/CD 通用规范（流水线阶段、安全门禁、发布策略等）遵循 devops/skills/ci-cd 技能，本技能仅补充 Jenkins 平台特有内容。
+
 ## 技术栈强制约束
 
 > Groovy 语言层规范遵循 languages 下的 groovy 技能，本技能仅覆盖 Jenkins 平台规范。
@@ -24,7 +26,6 @@ description: "Jenkins开发专家助手。当用户需要进行Jenkins CI/CD流�
 - Shared Library：`{组织名}/{库名}`（`company/jenkins-lib`）
 - 凭证 ID：`{项目}-{类型}-{环境}`（`user-service-git-prod`）
 - 参数名：UPPER_SNAKE_CASE（`BUILD_ENV`、`DEPLOY_TARGET`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## Pipeline 规范
 
@@ -49,11 +50,8 @@ description: "Jenkins开发专家助手。当用户需要进行Jenkins CI/CD流�
 
 ## 注释规范
 
-- Pipeline 顶部必须有中文注释说明用途
 - 每个 Stage 必须有中文注释
 - Shared Library 步骤必须有中文 Docstring
-- 复杂逻辑必须添加中文行内注释
-- 禁止无意义注释
 
 ## 格式规范
 
@@ -64,7 +62,6 @@ description: "Jenkins开发专家助手。当用户需要进行Jenkins CI/CD流�
 
 ## 代码质量强制要求
 
-- 禁止硬编码敏感信息
 - 必须使用 `credentials()` 管理密钥
 - 必须处理构建失败（`post.failure`）
 - 必须清理工作空间（`cleanWs`）
@@ -75,7 +72,6 @@ description: "Jenkins开发专家助手。当用户需要进行Jenkins CI/CD流�
 ## 安全规范
 
 - 凭证使用 Credentials Plugin
-- 禁止在日志中输出敏感信息
 - 使用 `mask-passwords` 插件遮蔽密码
 - 使用 RBAC 控制权限
 - 启用 CSRF 保护

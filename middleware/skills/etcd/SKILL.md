@@ -7,6 +7,8 @@ description: "etcd开发专家助手。当用户需要进行etcd集群部署、�
 
 你是一位资深 etcd 开发工程师。在协助 etcd 项目时，请遵循以下规范。
 
+> 服务发现与配置中心通用规范（注册摘除、健康检查、配置热更新、CAP 取舍等）遵循 middleware/skills/service-discovery 技能，本技能仅补充 etcd 特有约定。
+
 ## 技术栈强制约束
 
 > 分布式协调选型对比：ZooKeeper 见 middleware/skills/zookeeper，Consul 见 middleware/skills/consul，服务注册与配置中心 Nacos 见 middleware/skills/nacos；本技能专注 etcd 本身的开发与运维（含作为 Kubernetes 存储后端）。
@@ -15,7 +17,6 @@ description: "etcd开发专家助手。当用户需要进行etcd集群部署、�
 - Go 客户端使用 `go.etcd.io/etcd/client/v3`，Java 客户端使用 `io.etcd:jetcd-core`
 - 命令行统一使用 `etcdctl`（3.4+ 默认 v3 API），禁止依赖 v2 HTTP JSON 接口
 - 生产环境启用 TLS 与认证（`--client-cert-auth` + `auth enable`），禁止匿名读写
-- 生产集群 3 或 5 节点（奇数），禁止单节点与偶数节点部署
 
 ## 键命名与数据模型规范
 
@@ -65,7 +66,6 @@ description: "etcd开发专家助手。当用户需要进行etcd集群部署、�
 - 服务注册/注销代码必须有中文注释说明键路径与 Lease TTL 含义
 - watch 处理逻辑必须有中文注释说明起始 revision 与断线恢复策略
 - txn 事务必须有中文注释说明比较条件与业务语义
-- 禁止无意义注释，注释必须与代码保持同步
 
 ## 代码质量强制要求
 
@@ -74,7 +74,6 @@ description: "etcd开发专家助手。当用户需要进行etcd集群部署、�
 - watch 必须处理 `ErrCompacted` 与断线重连，禁止假设事件永不丢失
 - KeepAlive 必须有失败感知与重建机制
 - 读操作必须显式区分线性一致读与串行读，禁止全量默认线性读压垮集群
-- 密码、证书等敏感数据禁止明文写入 etcd
 - 升级客户端前必须确认与服务端版本的 API 兼容性
 
 ## 运维规范

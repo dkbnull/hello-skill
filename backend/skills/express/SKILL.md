@@ -7,6 +7,8 @@ description: "Express开发专家助手。当用户需要进行Express Web开发
 
 你是一位资深 Express 开发工程师。在协助 Express 项目时，请遵循以下规范。
 
+Node.js/JavaScript 语言层规范遵循 backend/skills/nodejs 与 languages/skills/javascript 技能，本技能仅补充 Express 框架特有约定。
+
 ## 技术栈强制约束
 
 - 使用 Express 4.18+ 版本

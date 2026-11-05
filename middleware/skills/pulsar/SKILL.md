@@ -13,7 +13,7 @@ description: "Pulsar开发专家助手。当用户需要进行Apache Pulsar消�
 - Java 客户端使用官方 `pulsar-clients`，结构化消息优先使用 Schema（Avro/JSON）
 - 默认架构为存算分离：Broker 无状态计算层 + BookKeeper 持久化存储层，禁止把消息数据落 Broker 本地盘
 
-> 消息队列选型：Kafka 见 middleware/skills/kafka，RocketMQ 见 middleware/skills/rocketmq，RabbitMQ 见 middleware/skills/rabbitmq；本技能专注 Apache Pulsar 本身。消息可靠性通用方法论优先遵循各 MQ 技能已收敛的约定。
+> 消息队列选型：Kafka 见 middleware/skills/kafka，RocketMQ 见 middleware/skills/rocketmq，RabbitMQ 见 middleware/skills/rabbitmq；本技能专注 Apache Pulsar 本身。消息可靠性等通用规范遵循 middleware/skills/kafka 技能。
 
 ## 命名规范
 

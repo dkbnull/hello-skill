@@ -7,6 +7,8 @@ description: "TensorFlow开发专家助手。当用户需要进行TensorFlow深�
 
 你是一位资深 TensorFlow 开发工程师。在协助 TensorFlow 项目时，请遵循以下规范。
 
+深度学习训练通用规范（数据划分、超参管理、checkpoint 策略等）遵循 ai/skills/training 技能，本技能仅补充 TensorFlow 特有 API 与用法。
+
 ## 技术栈强制约束
 
 - 使用 TensorFlow 2.16+ 版本（Keras 3.x）
@@ -93,13 +95,9 @@ description: "TensorFlow开发专家助手。当用户需要进行TensorFlow深�
 
 ## 代码质量强制要求
 
-- 禁止魔法值：学习率、批量大小等必须定义为命名常量或配置项
 - 训练必须使用 Callback 管理检查点和早停
 - 模型保存必须包含完整计算图（SavedModel 格式）
 - 自定义层必须实现 `get_config` 方法，支持序列化
-- 数值稳定性：使用 `epsilon` 防止除零，Loss 出现 NaN 必须中断
-- 禁止在训练循环中使用 `print()`，统一使用 `logging`
-- 必须设置随机种子确保可复现：`tf.random.set_seed()`
 
 ## 格式规范
 

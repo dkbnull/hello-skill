@@ -7,6 +7,8 @@ description: "Consul开发专家助手。当用户需要进行服务注册发现
 
 你是一位资深 Consul 开发工程师。在协助 Consul 项目时，请遵循以下规范。
 
+> 服务发现与配置中心通用规范（注册摘除、健康检查、配置热更新、CAP 取舍等）遵循 middleware/skills/service-discovery 技能，本技能仅补充 Consul 特有约定。
+
 ## 技术栈强制约束
 
 - 使用 HashiCorp Consul 1.17+ 版本
@@ -16,16 +18,13 @@ description: "Consul开发专家助手。当用户需要进行服务注册发现
 
 ## 命名规范
 
-- 服务名：小写 + 短横线分隔（`order-service`、`user-api`）
 - KV 路径：`{项目}/{环境}/{模块}/{配置项}`（`myapp/prod/database/url`）
 - 节点名：小写 + 短横线分隔（`consul-server-01`）
 - 标签名：小写 + 短横线分隔（`v2`、`canary`、`dc-east`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 服务注册规范
 
 - 服务定义：
-  - 必须包含服务名、地址、端口
   - 必须配置健康检查（HTTP / gRPC / TCP / TTL）
   - 必须设置 `tags` 标识服务版本和环境
   - 必须设置 `meta` 存储自定义元数据（权重、协议、区域）
@@ -34,7 +33,6 @@ description: "Consul开发专家助手。当用户需要进行服务注册发现
   - gRPC 检查：使用 gRPC 健康检查协议
   - TTL 检查：应用主动上报心跳，适用于无 HTTP 端点的服务
   - 超时设置：`timeout` 不超过 `interval` 的 1/2
-  - 健康检查失败后自动摘除，恢复后自动注册
 - 标签策略：
   - 版本标签：`v1`、`v2`，用于灰度发布和版本路由
   - 环境标签：`prod`、`staging`，用于环境隔离
@@ -48,7 +46,6 @@ description: "Consul开发专家助手。当用户需要进行服务注册发现
   - 敏感配置（密码、密钥）使用 Consul Vault 集成，禁止明文存储
 - Watch 机制：
   - 使用 Spring Cloud Consul Config 自动 Watch 配置变更
-  - 配合 `@RefreshScope` 实现配置热更新
   - 关键配置变更必须有审计日志
 - 配置优先级：Consul KV > bootstrap.yml > application.yml
 - 禁止在 KV 中存储大体积配置（单个值不超过 512KB）
@@ -71,20 +68,14 @@ description: "Consul开发专家助手。当用户需要进行服务注册发现
 
 ## 注释规范
 
-- 服务注册配置必须有中文注释说明服务名称和依赖
 - 健康检查配置必须有中文注释说明检查方式和预期行为
 - KV 配置路径必须有中文注释说明配置用途
 - Intentions 规则必须有中文注释说明访问控制策略
-- 禁止无意义注释，注释必须与代码保持同步
 
 ## 代码质量强制要求
 
-- 服务注册必须配置健康检查
-- 敏感配置禁止明文存储
 - Intentions 必须显式声明，禁止全放通
 - KV 值大小不超过 512KB
-- 服务注销必须在应用关闭时主动执行
-- 配置 Watch 必须处理异常，防止无限重试
 - 多数据中心部署必须配置 WAN Gossip
 
 ## 运维规范
@@ -103,8 +94,6 @@ description: "Consul开发专家助手。当用户需要进行服务注册发现
 ## 最佳实践
 
 - 使用 Spring Cloud Consul 简化 Spring Boot 集成
-- 使用 `@EnableDiscoveryClient` 启用服务发现
-- 使用 `@RefreshScope` 实现配置热更新
 - 使用 Consul Connect 实现零信任服务间通信
 - 使用 Intentions 替代网络层防火墙规则
 - 使用 Consul Template 生成配置文件

@@ -7,6 +7,8 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
 
 你是一位资深 ZooKeeper 开发工程师。在协助 ZooKeeper 项目时，请遵循以下规范。
 
+> 服务发现与配置中心通用规范（注册摘除、健康检查、配置热更新、CAP 取舍等）遵循 middleware/skills/service-discovery 技能，本技能仅补充 ZooKeeper 特有约定。
+
 ## 技术栈强制约束
 
 - 使用 Apache ZooKeeper 3.8+ 版本
@@ -22,7 +24,6 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
 - 分布式锁路径：`/locks/{业务域}_{资源描述}`（`/locks/order_create`）
 - Leader选举路径：`/election/{服务名}`（`/election/scheduler`）
 - 配置路径：`/config/{项目名}/{模块名}/{配置项}`（`/config/order/max_retry`）
-- 命名语义化，禁止拼音、无意义缩写
 
 ## 节点设计规范
 
@@ -59,14 +60,11 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
   - 使用 Curator `NodeCache` 监听单个节点变化
   - 禁止使用原生 ZooKeeper Watch（一次性触发，易丢失事件）
 - 配置变更流程：修改节点数据 -> 触发 Watch -> 应用热更新
-- 敏感配置（密码、密钥）禁止明文存储，需加密后存储
 
 ## 服务发现规范
 
 - 服务注册：
   - 使用临时节点注册，会话断开自动摘除
-  - 注册信息包含：IP、端口、权重、协议、元数据
-  - 启动时注册，关闭时主动下线
 - 服务发现：
   - 使用 Curator `ServiceDiscovery` 或自定义实现
   - 本地缓存服务列表，Watch 驱动更新
@@ -87,10 +85,8 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
 ## 注释规范
 
 - 分布式锁使用处必须有中文注释说明锁的粒度和业务场景
-- 服务注册/发现类必须有中文注释说明服务名称和注册信息
 - 配置监听类必须有中文注释说明监听的路径和处理逻辑
 - Leader 选举类必须有中文注释说明选举策略和 Leader 职责
-- 禁止无意义注释，注释必须与代码保持同步
 
 ## 运维规范
 
@@ -100,7 +96,6 @@ description: "ZooKeeper开发专家助手。当用户需要进行分布式协调
   - `连接数`：客户端连接数告警
   - `延迟`：请求处理延迟
   - `事务日志大小`：磁盘空间告警
-- 集群部署：至少 3 节点（奇数），生产环境 5 节点
 - 快照清理：配置 `autopurge.snapRetainCount` 自动清理快照
 - 事务日志与快照分磁盘存储，提升性能
 - 定期检查集群状态：`ruok`、`mntr` 四字命令

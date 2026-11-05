@@ -45,22 +45,11 @@ description: "PostgreSQL开发专家助手。当用户需要进行PostgreSQL数�
   - UUID：`UUID` 类型，禁止使用字符串存储
   - 数组：`ARRAY` 类型
   - 枚举：`VARCHAR` + CHECK 约束，或 `ENUM` 类型
-- 每个表必须有主键
-- 每个表必须有中文注释（`COMMENT ON TABLE`）
-- 每个字段必须有中文注释（`COMMENT ON COLUMN`）
-- 禁止使用保留字作为表名/字段名
+- 表设计通用原则（四件套语义、主键、中文注释、保留字限制等）见 sql 技能
 
 ## 索引规范
 
-- 单表索引数不超过 8 个
-- 建立索引的字段选择：
-  - 高频查询条件字段
-  - 排序字段
-  - JOIN 关联字段
-  - 外键字段
-- 复合索引遵循最左前缀原则
-- 低区分度字段（如布尔值）不单独建索引
-- 使用 `EXPLAIN ANALYZE` 验证索引使用情况
+- 通用索引口径（数量上限、字段选择、最左前缀、低区分度）见 sql 技能
 - 部分索引（Partial Index）：`WHERE is_deleted = false`
 - 表达式索引：`LOWER(email)` 支持大小写不敏感查询
 - GIN 索引：JSONB、数组、全文搜索
@@ -112,8 +101,7 @@ description: "PostgreSQL开发专家助手。当用户需要进行PostgreSQL数�
 
 ## 注释规范
 
-- 每个表必须有中文注释
-- 每个字段必须有中文注释
+- 表和字段用 `COMMENT ON TABLE/COLUMN` 添加中文注释
 - 存储过程/函数必须有中文注释
 - 复杂 SQL 必须添加中文注释说明逻辑
 - 禁止无意义注释
@@ -148,5 +136,4 @@ description: "PostgreSQL开发专家助手。当用户需要进行PostgreSQL数�
 
 - 定期全量备份：`pg_dump` 或 `pg_basebackup`
 - WAL 归档实现增量备份
-- 恢复测试定期执行
 - 使用 `pg_repack` 在线清理膨胀表

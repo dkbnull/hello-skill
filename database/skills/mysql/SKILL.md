@@ -38,26 +38,16 @@ description: "MySQL开发专家助手。当用户需要进行MySQL数据库设�
   - `is_deleted`：tinyint unsigned，逻辑删除标志，0 未删除，1 已删除
 - 字段设计原则：
   - 禁止使用 enum 类型，使用 tinyint 代替
-  - 金额字段使用 decimal，禁止使用 float/double
   - 状态字段使用 tinyint unsigned，配合字典表或应用层枚举
   - 字符串长度合理设置，禁止所有字段都使用 varchar(255)
   - 布尔字段使用 tinyint(1)，0 和 1 表示
-- 表必须有中文注释，字段必须有中文注释
-- 单表字段数不超过 30 个，超过考虑垂直拆分
 - 禁止使用外键约束，应用层保证数据一致性
+- 表设计通用原则（四件套语义、主键、中文注释、字段数上限等）见 sql 技能
 
 ## 索引规范
 
-- 单表索引数不超过 5 个，单个索引字段数不超过 5 个
-- 建立索引的字段选择：
-  - WHERE 条件中的高频查询字段
-  - ORDER BY / GROUP BY 字段
-  - JOIN 关联字段
-- 联合索引遵循最左前缀原则，区分度高的字段放左边
-- 禁止在低区分度字段上建索引（如性别、状态只有几个值）
+- 单表索引数不超过 5 个，单个索引字段数不超过 5 个（通用口径见 sql 技能）
 - 字符串字段索引考虑使用前缀索引：`idx_name(name(20))`
-- 禁止冗余索引和重复索引
-- 频繁更新的字段谨慎建索引，影响写入性能
 
 ## SQL 编写规范
 
@@ -103,7 +93,7 @@ description: "MySQL开发专家助手。当用户需要进行MySQL数据库设�
 
 ## 备份与恢复
 
-- 备份策略：每日全量 + binlog 增量，核心业务 RPO 不超过 1 小时；备份文件与数据库分离存放，禁止只备在数据盘同机
+- 备份策略：每日全量 + binlog 增量，核心业务 RPO 不超过 1 小时（备份存放与恢复演练等通用原则见 sql 技能）
 - 逻辑备份（mysqldump）：
   - 单库：`mysqldump --single-transaction --databases mydb > mydb.sql`
   - 单表：`mysqldump --single-transaction mydb t_order > t_order.sql`
@@ -119,7 +109,6 @@ description: "MySQL开发专家助手。当用户需要进行MySQL数据库设�
   - 恢复流程：先恢复全量，再重放 binlog 到误操作前一刻：`mysqlbinlog --start-datetime="2024-01-01 00:00:00" --stop-datetime="2024-01-01 12:00:00" binlog.000010 | mysql -uroot -p`
   - GTID 模式下用 `--exclude-gtids` 跳过误操作事务
 - 备份校验与恢复演练：每季度在测试环境完成一次完整恢复演练，核对表数量、行数与关键业务数据；XtraBackup 用 `--prepare` 验证备份完整性，记录 RTO/RPO
-- 异地/对象存储存放：备份加密后上传对象存储（S3/OSS/COS），遵循 3-2-1 原则（3 份副本、2 种介质、1 份异地）；每日备份保留 7~30 天，重要数据长期归档；备份含敏感数据，严格控制访问权限
 
 ## 最佳实践
 
