@@ -17,14 +17,14 @@
   <img src="https://img.shields.io/badge/通用技能-20-9cf">
   <img src="https://img.shields.io/badge/编程语言-33-blueviolet">
   <img src="https://img.shields.io/badge/后端框架-13-blue">
-  <img src="https://img.shields.io/badge/前端框架-16-green">
+  <img src="https://img.shields.io/badge/前端框架-17-green">
   <img src="https://img.shields.io/badge/移动端_桌面端-15-orange">
   <img src="https://img.shields.io/badge/数据库-17-red">
   <img src="https://img.shields.io/badge/中间件-13-yellow">
   <img src="https://img.shields.io/badge/DevOps_工具-12-inactive">
   <img src="https://img.shields.io/badge/AI_大模型-9-ff69b4">
   <img src="https://img.shields.io/badge/数据工程-4-9cf">
-  <img src="https://img.shields.io/badge/合计-152-brightgreen">
+  <img src="https://img.shields.io/badge/合计-153-brightgreen">
 </p>
 
 ---
@@ -46,70 +46,70 @@
 | [中文回答与自动加载SKILL](common/rules/chinese-with-auto-skill.md) | 强制使用中文回答，并根据任务上下文自动加载对应的SKILL |
 | [编码行为准则](common/rules/coding-discipline.md) | 先思考再编码、简洁优先、外科手术式修改、目标驱动验证四条行为准则，减少常见 LLM 编码错误。源自 [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) |
 
-## 技术栈 Skill
-
-### 通用技能
+## 通用技能
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
-| [角色切换](common/skills/role-switch/SKILL.md) | 编码过程中根据上下文自动切换专业角色 | — |
-| [代码审查](common/skills/code-review/SKILL.md) | 多维度代码审查，减少AI生成代码错误率 | — |
-| [调试排错](common/skills/debug/SKILL.md) | 系统化调试方法论，快速定位问题根因 | — |
+| [代码生成规范](common/skills/code-generation/SKILL.md) | AI辅助编码规范，减少幻觉和逻辑遗漏 | — |
 | [需求分析](common/skills/requirement-analysis/SKILL.md) | 编码前需求分析，消除歧义和遗漏 | — |
-| [防御性编程](common/skills/defensive-programming/SKILL.md) | 主动预判错误，编写健壮防御性代码 | — |
-| [API 设计](common/skills/api-design/SKILL.md) | 系统化 API 设计规范，减少设计缺陷 | — |
-| [结构化思维](common/skills/structured-thinking/SKILL.md) | 系统化思维框架，减少AI幻觉和逻辑错误 | — |
+| [调试排错](common/skills/debug/SKILL.md) | 系统化调试方法论，快速定位问题根因 | — |
+| [代码审查](common/skills/code-review/SKILL.md) | 多维度代码审查，减少AI生成代码错误率 | — |
+| [测试规范](common/skills/testing/SKILL.md) | 系统化测试方法论，涵盖单元测试、集成测试、E2E测试、TDD实践 | — |
+| [性能优化](common/skills/performance/SKILL.md) | 系统化性能分析方法，全栈优化策略 | — |
 | [重构优化](common/skills/refactoring/SKILL.md) | 系统化重构方法论，改善代码质量 | — |
 | [错误处理规范](common/skills/error-handling/SKILL.md) | 系统化错误处理，确保异常可感知可追踪可恢复 | — |
-| [性能优化](common/skills/performance/SKILL.md) | 系统化性能分析方法，全栈优化策略 | — |
-| [设计模式](common/skills/design-patterns/SKILL.md) | 问题驱动的模式选择，提高代码可复用可扩展性 | — |
-| [技术文档](common/skills/tech-doc/SKILL.md) | 规范化文档写作标准，确保文档清晰完整可维护 | — |
-| [代码生成规范](common/skills/code-generation/SKILL.md) | AI辅助编码规范，减少幻觉和逻辑遗漏 | — |
+| [防御性编程](common/skills/defensive-programming/SKILL.md) | 主动预判错误，编写健壮防御性代码 | — |
 | [精简代码](common/skills/concise-code/SKILL.md) | 消除AI生成代码的重复、冗余、重复造轮，控制代码量 | — |
-| [UI/UX 设计](common/skills/ui-ux-design/SKILL.md) | 界面设计、交互设计与用户体验优化规范 | — |
 | [安全审查](common/skills/security-review/SKILL.md) | 安全扫描，涵盖注入攻击、认证授权、数据安全、配置安全、依赖安全 | — |
-| [测试规范](common/skills/testing/SKILL.md) | 系统化测试方法论，涵盖单元测试、集成测试、E2E测试、TDD实践 | — |
+| [API 设计](common/skills/api-design/SKILL.md) | 系统化 API 设计规范，减少设计缺陷 | — |
 | [系统架构](common/skills/architecture/SKILL.md) | 架构方法论，涵盖分层架构、微服务架构、事件驱动架构、架构决策记录 | — |
+| [设计模式](common/skills/design-patterns/SKILL.md) | 问题驱动的模式选择，提高代码可复用可扩展性 | — |
+| [UI/UX 设计](common/skills/ui-ux-design/SKILL.md) | 界面设计、交互设计与用户体验优化规范 | — |
+| [技术文档](common/skills/tech-doc/SKILL.md) | 规范化文档写作标准，确保文档清晰完整可维护 | — |
 | [可观测性](common/skills/observability/SKILL.md) | 可观测性方法论：指标、日志、链路追踪与告警体系 | — |
 | [并发设计](common/skills/concurrency/SKILL.md) | 并发与异步设计：线程池、锁、背压、幂等方法论 | — |
+| [结构化思维](common/skills/structured-thinking/SKILL.md) | 系统化思维框架，减少AI幻觉和逻辑错误 | — |
+| [角色切换](common/skills/role-switch/SKILL.md) | 编码过程中根据上下文自动切换专业角色 | — |
+
+## 技术栈 Skill
 
 ### 编程语言
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
 | [Java](languages/skills/java/SKILL.md) | Java 语言开发 | — |
-| [Kotlin](languages/skills/kotlin/SKILL.md) | Kotlin 语言开发 | — |
-| [Go](languages/skills/go/SKILL.md) | Go 语言开发 | — |
 | [Python](languages/skills/python/SKILL.md) | Python 语言开发 | — |
-| [C](languages/skills/c/SKILL.md) | C 语言开发 | — |
+| [JavaScript](languages/skills/javascript/SKILL.md) | JavaScript 开发（含浏览器端/DOM 规范） | — |
+| [TypeScript](languages/skills/typescript/SKILL.md) | TypeScript 类型安全开发 | — |
+| [Go](languages/skills/go/SKILL.md) | Go 语言开发 | — |
 | [C++](languages/skills/cpp/SKILL.md) | C++ 语言开发 | — |
 | [C# / .NET](languages/skills/csharp/SKILL.md) | C# / .NET 开发 | — |
+| [C](languages/skills/c/SKILL.md) | C 语言开发 | — |
 | [Rust](languages/skills/rust/SKILL.md) | Rust 语言开发 | — |
-| [TypeScript](languages/skills/typescript/SKILL.md) | TypeScript 类型安全开发 | — |
-| [JavaScript](languages/skills/javascript/SKILL.md) | JavaScript 开发 | — |
-| [Dart](languages/skills/dart/SKILL.md) | Dart 语言开发 | — |
 | [PHP](languages/skills/php/SKILL.md) | PHP 后端开发 | — |
+| [Kotlin](languages/skills/kotlin/SKILL.md) | Kotlin 语言开发 | — |
+| [Swift](languages/skills/swift/SKILL.md) | Swift / Apple 生态开发 | ios（SwiftUI/测试规范） |
+| [Ruby](languages/skills/ruby/SKILL.md) | Ruby / Rails 开发 | — |
+| [Scala](languages/skills/scala/SKILL.md) | Scala 函数式 + 大数据开发 | — |
+| [Dart](languages/skills/dart/SKILL.md) | Dart 语言开发 | — |
+| [Shell](languages/skills/shell/SKILL.md) | Shell / Bash 脚本开发 | — |
+| [Lua](languages/skills/lua/SKILL.md) | Lua 脚本 / 游戏脚本开发 | — |
+| [Haskell](languages/skills/haskell/SKILL.md) | Haskell 纯函数式开发 | — |
+| [Elixir](languages/skills/elixir/SKILL.md) | Elixir 高并发开发 | — |
+| [Erlang](languages/skills/erlang/SKILL.md) | Erlang / OTP 高并发容错开发 | — |
 | [R](languages/skills/r/SKILL.md) | R 统计分析开发 | — |
+| [MATLAB](languages/skills/matlab/SKILL.md) | MATLAB 数值计算开发 | — |
+| [Julia](languages/skills/julia/SKILL.md) | Julia 科学计算开发 | — |
 | [Perl](languages/skills/perl/SKILL.md) | Perl 脚本开发 | — |
 | [Visual Basic](languages/skills/vb/SKILL.md) | Visual Basic / VBA 开发 | — |
 | [Delphi](languages/skills/delphi/SKILL.md) | Delphi 桌面应用开发 | — |
 | [Fortran](languages/skills/fortran/SKILL.md) | Fortran 科学计算开发 | — |
-| [MATLAB](languages/skills/matlab/SKILL.md) | MATLAB 数值计算开发 | — |
 | [Assembly](languages/skills/assembly/SKILL.md) | 汇编语言开发 | — |
 | [COBOL](languages/skills/cobol/SKILL.md) | COBOL 企业级开发 | — |
-| [Scratch](languages/skills/scratch/SKILL.md) | Scratch 图形化编程 | — |
-| [Swift](languages/skills/swift/SKILL.md) | Swift / Apple 生态开发 | ios（SwiftUI/测试规范） |
 | [Objective-C](languages/skills/objective-c/SKILL.md) | Objective-C 语言开发与 Swift 混编 | — |
-| [Scala](languages/skills/scala/SKILL.md) | Scala 函数式 + 大数据开发 | — |
-| [Ruby](languages/skills/ruby/SKILL.md) | Ruby / Rails 开发 | — |
-| [Lua](languages/skills/lua/SKILL.md) | Lua 脚本 / 游戏脚本开发 | — |
-| [Elixir](languages/skills/elixir/SKILL.md) | Elixir 高并发开发 | — |
-| [Erlang](languages/skills/erlang/SKILL.md) | Erlang / OTP 高并发容错开发 | — |
-| [Haskell](languages/skills/haskell/SKILL.md) | Haskell 纯函数式开发 | — |
-| [Julia](languages/skills/julia/SKILL.md) | Julia 科学计算开发 | — |
 | [Groovy](languages/skills/groovy/SKILL.md) | Groovy / Gradle 脚本开发 | — |
-| [Shell](languages/skills/shell/SKILL.md) | Shell / Bash 脚本开发 | — |
 | [PowerShell](languages/skills/powershell/SKILL.md) | PowerShell 脚本开发 | — |
+| [Scratch](languages/skills/scratch/SKILL.md) | Scratch 图形化编程 | — |
 
 ### 后端框架
 
@@ -117,13 +117,13 @@
 |-------|------|------|
 | [Spring Boot](backend/skills/springboot/SKILL.md) | Spring Boot 后端开发 | java |
 | [Spring Cloud](backend/skills/springcloud/SKILL.md) | Spring Cloud 微服务开发 | java、springboot |
-| [FastAPI](backend/skills/fastapi/SKILL.md) | FastAPI 框架开发 | python |
 | [Django](backend/skills/django/SKILL.md) | Django Web 框架开发 | python |
+| [FastAPI](backend/skills/fastapi/SKILL.md) | FastAPI 框架开发 | python |
 | [Flask](backend/skills/flask/SKILL.md) | Flask 轻量级 Web 开发 | python |
 | [Gin](backend/skills/gin/SKILL.md) | Gin 高性能 HTTP 框架开发 | go |
 | [Node.js](backend/skills/nodejs/SKILL.md) | Node.js 后端开发 | express |
-| [NestJS](backend/skills/nestjs/SKILL.md) | NestJS 企业级后端开发 | — |
 | [Express](backend/skills/express/SKILL.md) | Express Web 开发 | nodejs、javascript |
+| [NestJS](backend/skills/nestjs/SKILL.md) | NestJS 企业级后端开发 | — |
 | [Laravel](backend/skills/laravel/SKILL.md) | Laravel PHP 后端开发 | — |
 | [gRPC](backend/skills/grpc/SKILL.md) | gRPC 微服务通信 | 对应语言技能 |
 | [Quarkus](backend/skills/quarkus/SKILL.md) | Quarkus 云原生 Java 开发与 GraalVM 原生编译 | java |
@@ -133,112 +133,113 @@
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
-| [HTML / CSS / JS](frontend/skills/html-css-js/SKILL.md) | Web 前端基础开发 | javascript |
-| [Vue](frontend/skills/vue/SKILL.md) | Vue 前端开发 | typescript、vite（按需组合） |
+| [HTML](frontend/skills/html/SKILL.md) | HTML 页面结构与语义化开发 | css、javascript（按需组合） |
+| [CSS](frontend/skills/css/SKILL.md) | CSS 样式、响应式布局与动画开发 | — |
+| [Vue](frontend/skills/vue/SKILL.md) | Vue 前端开发（含 TS/Vite 集成约定） | typescript、vite（按需组合） |
 | [React](frontend/skills/react/SKILL.md) | React 前端开发 | — |
-| [Next.js](frontend/skills/nextjs/SKILL.md) | Next.js 全栈框架开发 | — |
-| [Svelte](frontend/skills/svelte/SKILL.md) | Svelte 编译时框架开发 | — |
 | [Angular](frontend/skills/angular/SKILL.md) | Angular 企业级前端开发 | — |
-| [Layui](frontend/skills/layui/SKILL.md) | Layui 前端框架开发 | — |
+| [Next.js](frontend/skills/nextjs/SKILL.md) | Next.js 全栈框架开发 | — |
 | [Nuxt](frontend/skills/nuxt/SKILL.md) | Nuxt 全栈 SSR / SSG 开发 | — |
-| [Tailwind CSS](frontend/skills/tailwindcss/SKILL.md) | Tailwind CSS 实用优先样式开发 | — |
-| [Astro](frontend/skills/astro/SKILL.md) | Astro 内容驱动网站开发 | — |
+| [Svelte](frontend/skills/svelte/SKILL.md) | Svelte 编译时框架开发 | — |
 | [Svelte Kit](frontend/skills/svelte-kit/SKILL.md) | SvelteKit 全栈框架开发 | — |
+| [Astro](frontend/skills/astro/SKILL.md) | Astro 内容驱动网站开发 | — |
+| [Tailwind CSS](frontend/skills/tailwindcss/SKILL.md) | Tailwind CSS 实用优先样式开发 | — |
 | [Vite](frontend/skills/vite/SKILL.md) | Vite 构建工具开发 | — |
 | [Webpack](frontend/skills/webpack/SKILL.md) | Webpack 构建配置与优化 | 对应框架技能 |
-| [Jest / Vitest](frontend/skills/jest-vitest/SKILL.md) | 前端单元测试框架 | testing |
+| [Layui](frontend/skills/layui/SKILL.md) | Layui 前端框架开发 | — |
 | [Ant Design](frontend/skills/antd/SKILL.md) | Ant Design React 组件库 | react |
 | [Element Plus](frontend/skills/element-plus/SKILL.md) | Element Plus Vue 3 组件库 | vue |
+| [Jest / Vitest](frontend/skills/jest-vitest/SKILL.md) | 前端单元测试框架 | testing |
 
 ### 移动端 & 桌面端
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
 | [Android (Kotlin)](mobile-desktop/skills/android-kotlin/SKILL.md) | Android Kotlin 应用开发 | kotlin |
-| [Android (Java)](mobile-desktop/skills/android-java/SKILL.md) | Android Java 应用开发 | android-kotlin |
 | [iOS](mobile-desktop/skills/ios/SKILL.md) | iOS 应用开发 | swift |
 | [Flutter](mobile-desktop/skills/flutter/SKILL.md) | Flutter 应用开发 | dart |
 | [React Native](mobile-desktop/skills/react-native/SKILL.md) | React Native 跨平台移动开发 | react |
-| [UniApp](mobile-desktop/skills/uniapp/SKILL.md) | UniApp 跨平台开发 | — |
-| [Electron](mobile-desktop/skills/electron/SKILL.md) | Electron 桌面应用开发 | — |
-| [JavaFX](mobile-desktop/skills/javafx/SKILL.md) | JavaFX 桌面应用开发 | java |
-| [Qt](mobile-desktop/skills/qt/SKILL.md) | Qt 跨平台桌面应用开发 | — |
-| [鸿蒙 (HarmonyOS)](mobile-desktop/skills/harmonyos/SKILL.md) | 鸿蒙原生应用开发（ArkTS + ArkUI） | — |
 | [微信小程序](mobile-desktop/skills/miniprogram/SKILL.md) | 小程序开发：以微信为主，覆盖支付宝、抖音平台差异 | — |
-| [Tauri](mobile-desktop/skills/tauri/SKILL.md) | Tauri 桌面应用开发 | — |
+| [鸿蒙 (HarmonyOS)](mobile-desktop/skills/harmonyos/SKILL.md) | 鸿蒙原生应用开发（ArkTS + ArkUI） | — |
+| [Electron](mobile-desktop/skills/electron/SKILL.md) | Electron 桌面应用开发 | — |
 | [Compose Multiplatform](mobile-desktop/skills/compose-multiplatform/SKILL.md) | Kotlin 跨平台 UI 开发 | kotlin、android-kotlin |
+| [Qt](mobile-desktop/skills/qt/SKILL.md) | Qt 跨平台桌面应用开发 | — |
+| [JavaFX](mobile-desktop/skills/javafx/SKILL.md) | JavaFX 桌面应用开发 | java |
 | [WPF](mobile-desktop/skills/wpf/SKILL.md) | WPF Windows 桌面应用开发 | csharp |
 | [.NET MAUI](mobile-desktop/skills/maui/SKILL.md) | .NET MAUI 跨平台应用开发 | csharp |
+| [Android (Java)](mobile-desktop/skills/android-java/SKILL.md) | Android Java 应用开发（传统 View 体系） | android-kotlin |
+| [UniApp](mobile-desktop/skills/uniapp/SKILL.md) | UniApp 跨平台开发 | — |
+| [Tauri](mobile-desktop/skills/tauri/SKILL.md) | Tauri 桌面应用开发 | — |
 
 ### 数据库
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
-| [SQL](database/skills/sql/SKILL.md) | SQL 标准查询语言 | — |
 | [MySQL](database/skills/mysql/SKILL.md) | MySQL 数据库开发 | sql |
+| [Redis](database/skills/redis/SKILL.md) | Redis 缓存与数据结构 | — |
 | [PostgreSQL](database/skills/postgresql/SKILL.md) | PostgreSQL 数据库开发 | sql |
 | [SQL Server](database/skills/sqlserver/SKILL.md) | SQL Server 数据库开发 | sql |
 | [Oracle](database/skills/oracle/SKILL.md) | Oracle 数据库开发 | sql |
-| [Redis](database/skills/redis/SKILL.md) | Redis 缓存与数据结构 | — |
 | [MongoDB](database/skills/mongodb/SKILL.md) | MongoDB 文档数据库开发 | — |
 | [Elasticsearch](database/skills/elasticsearch/SKILL.md) | Elasticsearch 搜索引擎开发 | — |
 | [SQLite](database/skills/sqlite/SKILL.md) | SQLite 嵌入式数据库开发 | — |
+| [SQL](database/skills/sql/SKILL.md) | SQL 标准查询语言（通用规范权威） | — |
 | [ClickHouse](database/skills/clickhouse/SKILL.md) | ClickHouse OLAP 数据库开发 | — |
-| [数据库函数](database/skills/db-function/SKILL.md) | 数据库自定义函数开发 | — |
-| [存储过程](database/skills/db-procedure/SKILL.md) | 数据库存储过程开发 | — |
 | [TiDB](database/skills/tidb/SKILL.md) | TiDB 分布式 NewSQL 数据库开发 | mysql |
 | [TDengine](database/skills/tdengine/SKILL.md) | TDengine 时序数据库开发 | — |
 | [Neo4j](database/skills/neo4j/SKILL.md) | Neo4j 图数据库开发 | — |
 | [Doris](database/skills/doris/SKILL.md) | Apache Doris OLAP 分析型数据库开发 | mysql（语法兼容部分） |
 | [InfluxDB](database/skills/influxdb/SKILL.md) | InfluxDB 时序数据库开发 | — |
+| [数据库函数](database/skills/db-function/SKILL.md) | 数据库自定义函数开发 | — |
+| [存储过程](database/skills/db-procedure/SKILL.md) | 数据库存储过程开发 | — |
 
 ### 中间件
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
 | [服务发现通用](middleware/skills/service-discovery/SKILL.md) | 服务注册发现/健康检查/配置中心通用规范（权威） | — |
+| [Nginx](middleware/skills/nginx/SKILL.md) | Nginx 反向代理与负载均衡 | — |
 | [Kafka](middleware/skills/kafka/SKILL.md) | Kafka 消息队列开发（消息队列通用规范权威） | — |
 | [RabbitMQ](middleware/skills/rabbitmq/SKILL.md) | RabbitMQ 消息中间件开发 | kafka |
-| [Nginx](middleware/skills/nginx/SKILL.md) | Nginx 反向代理与负载均衡 | — |
 | [RocketMQ](middleware/skills/rocketmq/SKILL.md) | RocketMQ 消息队列开发 | kafka |
-| [ZooKeeper](middleware/skills/zookeeper/SKILL.md) | ZooKeeper 分布式协调 | service-discovery |
 | [Dubbo](middleware/skills/dubbo/SKILL.md) | Dubbo 微服务 RPC 开发 | — |
-| [Consul](middleware/skills/consul/SKILL.md) | Consul 服务发现与配置管理 | service-discovery |
 | [Nacos](middleware/skills/nacos/SKILL.md) | Nacos 服务注册发现与配置中心 | service-discovery |
+| [ZooKeeper](middleware/skills/zookeeper/SKILL.md) | ZooKeeper 分布式协调 | service-discovery |
 | [Sentinel](middleware/skills/sentinel/SKILL.md) | Sentinel 流量治理与熔断降级 | — |
+| [Consul](middleware/skills/consul/SKILL.md) | Consul 服务发现与配置管理 | service-discovery |
 | [etcd](middleware/skills/etcd/SKILL.md) | etcd 分布式键值存储 | service-discovery |
-| [Vault](middleware/skills/vault/SKILL.md) | Vault 密钥与敏感数据管理 | — |
 | [Pulsar](middleware/skills/pulsar/SKILL.md) | Pulsar 云原生消息队列 | kafka |
+| [Vault](middleware/skills/vault/SKILL.md) | Vault 密钥与敏感数据管理 | — |
 
 ### DevOps & 工具
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
-| [CI/CD 通用](devops/skills/ci-cd/SKILL.md) | CI/CD 流水线通用规范（权威） | — |
-| [Docker](devops/skills/docker/SKILL.md) | Docker 容器化部署 | — |
-| [Kubernetes](devops/skills/kubernetes/SKILL.md) | Kubernetes 容器编排 | docker、helm |
-| [Jenkins](devops/skills/jenkins/SKILL.md) | Jenkins CI/CD 流水线 | ci-cd、groovy |
-| [Terraform](devops/skills/terraform/SKILL.md) | Terraform 基础设施即代码 | — |
 | [Git](devops/skills/git/SKILL.md) | Git 版本控制：分支模型、提交规范与团队协作流程 | — |
+| [Docker](devops/skills/docker/SKILL.md) | Docker 容器化部署 | — |
+| [Jenkins](devops/skills/jenkins/SKILL.md) | Jenkins CI/CD 流水线 | ci-cd、groovy |
+| [Kubernetes](devops/skills/kubernetes/SKILL.md) | Kubernetes 容器编排 | docker、helm |
 | [GitHub Actions](devops/skills/github-actions/SKILL.md) | GitHub Actions CI/CD 流水线 | ci-cd |
+| [GitLab CI](devops/skills/gitlab-ci/SKILL.md) | GitLab CI/CD 流水线 | ci-cd |
+| [Helm](devops/skills/helm/SKILL.md) | Helm Chart 应用打包与管理 | docker |
+| [Terraform](devops/skills/terraform/SKILL.md) | Terraform 基础设施即代码 | — |
 | [Ansible](devops/skills/ansible/SKILL.md) | Ansible 自动化配置管理 | — |
 | [Prometheus](devops/skills/prometheus/SKILL.md) | Prometheus 监控与告警 | — |
-| [Helm](devops/skills/helm/SKILL.md) | Helm Chart 应用打包与管理 | docker |
-| [GitLab CI](devops/skills/gitlab-ci/SKILL.md) | GitLab CI/CD 流水线 | ci-cd |
 | [Grafana](devops/skills/grafana/SKILL.md) | Grafana 可视化与告警平台 | — |
+| [CI/CD 通用](devops/skills/ci-cd/SKILL.md) | CI/CD 流水线通用规范（权威） | — |
 
 ### AI / 大模型
 
 | Skill | 说明 | 依赖 |
 |-------|------|------|
-| [训练通用](ai/skills/training/SKILL.md) | 深度学习训练工程化通用规范（权威） | — |
 | [Prompt Engineering](ai/skills/prompt-engineering/SKILL.md) | Prompt 设计优化与大模型提示词开发 | — |
-| [LangChain](ai/skills/langchain/SKILL.md) | LangChain 应用开发与 RAG 检索增强生成 | — |
-| [PyTorch](ai/skills/pytorch/SKILL.md) | PyTorch 深度学习开发与模型训练 | training |
-| [TensorFlow](ai/skills/tensorflow/SKILL.md) | TensorFlow 深度学习开发与模型部署 | training |
-| [Hugging Face](ai/skills/huggingface/SKILL.md) | Hugging Face 模型库与 Transformers 开发 | training |
-| [MCP](ai/skills/mcp/SKILL.md) | Model Context Protocol 协议开发 | — |
 | [RAG](ai/skills/rag/SKILL.md) | RAG 检索增强生成系统设计 | — |
+| [LangChain](ai/skills/langchain/SKILL.md) | LangChain 应用开发与 RAG 检索增强生成 | — |
+| [MCP](ai/skills/mcp/SKILL.md) | Model Context Protocol 协议开发 | — |
+| [训练通用](ai/skills/training/SKILL.md) | 深度学习训练工程化通用规范（权威） | — |
+| [PyTorch](ai/skills/pytorch/SKILL.md) | PyTorch 深度学习开发与模型训练 | training |
+| [Hugging Face](ai/skills/huggingface/SKILL.md) | Hugging Face 模型库与 Transformers 开发 | training |
+| [TensorFlow](ai/skills/tensorflow/SKILL.md) | TensorFlow 深度学习开发与模型部署 | training |
 | [模型微调](ai/skills/finetune/SKILL.md) | 大模型微调：LoRA/QLoRA 与数据工程 | training |
 
 ### 数据工程
@@ -247,5 +248,5 @@
 |-------|------|------|
 | [Spark](data-engineering/skills/spark/SKILL.md) | Spark 大数据计算与批处理 | scala |
 | [Flink](data-engineering/skills/flink/SKILL.md) | Flink 实时流计算与管道开发 | — |
-| [Airflow](data-engineering/skills/airflow/SKILL.md) | Airflow 工作流调度与 ETL 自动化 | — |
 | [Hadoop](data-engineering/skills/hadoop/SKILL.md) | Hadoop 大数据存储与计算 | — |
+| [Airflow](data-engineering/skills/airflow/SKILL.md) | Airflow 工作流调度与 ETL 自动化 | — |

@@ -112,6 +112,22 @@ description: "JavaScript开发专家助手。当用户需要进行JavaScript独�
 - Mock 使用 `vi.fn()` 或 `jest.fn()`
 - 覆盖率目标：核心逻辑 80%+
 
+## 浏览器端规范（Web 前端场景）
+
+- 页面结构与样式规范遵循 frontend 下的 html、css 技能，本节仅列 JS 交互约定
+- DOM 操作：
+  - 使用 `querySelector` / `querySelectorAll`，禁止与 `getElementById` 混用
+  - 批量 DOM 操作使用 `DocumentFragment`
+  - 事件委托优先，减少事件监听器数量
+  - 使用 `addEventListener`，禁止 `onclick` 内联
+  - 操作前必须确保元素存在
+- 异步编程：统一使用 `async/await`，并发请求使用 `Promise.all()` / `Promise.allSettled()`
+- 安全：使用 `textContent` 替代 `innerHTML`（不需要 HTML 解析时），用户输入转义后再插入 DOM 防 XSS
+- Cookie 设置 `HttpOnly`、`Secure`、`SameSite`，禁止在客户端存储敏感信息
+- 性能：动画使用 `requestAnimationFrame`，防抖（debounce）和节流（throttle）处理高频事件，长列表使用虚拟滚动
+- 冗余代码、`console.log` 上线前必须清理
+- 浏览器 API：`fetch` 网络请求、Web Storage（localStorage/sessionStorage）缓存、`ResizeObserver` 监听尺寸、Service Worker 离线缓存
+
 ## 最佳实践
 
 - 使用 `Optional Chaining` 和 `Nullish Coalescing` 处理空值
