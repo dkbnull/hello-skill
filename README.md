@@ -3,6 +3,10 @@
 </h1>
 
 <p align="center">
+  <a href="README_EN.md">English</a> | <a href="README.md">简体中文</a>
+</p>
+
+<p align="center">
   <a href="https://github.com/dkbnull/hello-skill" target="_blank">
      <img src="https://img.shields.io/badge/GitHub-仓库-blue?logo=github">
   </a>
